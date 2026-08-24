@@ -48,15 +48,15 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const fetchProducts = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await fetch('/api/products');
-      if (res.ok) {
+      const res = await fetch('/api/products').catch(() => null);
+      if (res && res.ok) {
         const json = await res.json();
         if (json.success && Array.isArray(json.data) && json.data.length > 0) {
           setProducts(json.data);
         }
       }
-    } catch (err) {
-      console.warn('API /api/products unavailable, using fallback mock data:', err);
+    } catch {
+      // Pure frontend mode: MOCK_PRODUCTS loaded by default
     } finally {
       setLoading(false);
     }
@@ -64,15 +64,15 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   const fetchCategories = useCallback(async () => {
     try {
-      const res = await fetch('/api/categories');
-      if (res.ok) {
+      const res = await fetch('/api/categories').catch(() => null);
+      if (res && res.ok) {
         const json = await res.json();
         if (json.success && Array.isArray(json.data) && json.data.length > 0) {
           setCategories(json.data);
         }
       }
-    } catch (err) {
-      console.warn('API /api/categories unavailable, using fallback categories:', err);
+    } catch {
+      // Pure frontend mode: default categories loaded
     }
   }, []);
 

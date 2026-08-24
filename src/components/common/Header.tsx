@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FileText, Menu, Phone, Truck, X, ChevronDown } from 'lucide-react';
+import { FileText, Menu, Phone, Truck, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { LanguageSelector } from './LanguageSelector';
 import { WhatsAppIcon } from './WhatsAppIcon';
 import { useLanguage } from '../../context/LanguageContext';
@@ -14,8 +14,16 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [mobileAccordions, setMobileAccordions] = useState<{ [key: string]: boolean }>({
+    liveStock: false,
+    wholesale: false,
+    services: false,
+    resources: false
+  });
+  
   const location = useLocation();
   const { t } = useLanguage();
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,33 +40,60 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
     setOpen(false);
   }, [location.pathname]);
 
-  const wholesaleLinks = [
-    { label: t('navigation.wholesale', 'Wholesale Overview'), path: '/wholesale' },
+  // Click outside to close dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
+        setActiveDropdown(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const toggleMobileAccordion = (key: string) => {
+    setMobileAccordions((prev) => ({
+      ...prev,
+      [key]: !prev[key]
+    }));
+  };
+
+  const liveStockLinks = [
+    { label: t('navigation.viewLiveStock', 'View Live Stock'), path: '/stock' },
+    { label: t('navigation.stockList', 'Stock List Catalog'), path: '/stock-list' },
+    { label: t('navigation.stockOffers', 'Stock Offers'), path: '/stock-offers' }
+  ];
+
+  const buyingWholesaleLinks = [
     { label: t('navigation.bulkBuy', 'Bulk Buy'), path: '/wholesale/bulk-buy' },
     { label: t('navigation.buyStock', 'Buy Stock'), path: '/wholesale/buy-stock' },
     { label: t('navigation.getAQuote', 'Get a Quote'), path: '/wholesale/get-a-quote' },
     { label: t('navigation.howToBuy', 'How to Buy'), path: '/wholesale/how-to-buy' },
-    { label: t('navigation.openAccount', 'Open Trade Account'), path: '/wholesale/open-account' },
+    { label: t('navigation.openAccount', 'Open Trade Account'), path: '/wholesale/open-account' }
+  ];
+
+  const shopByCategoryLinks = [
     { label: t('navigation.tabletsWholesale', 'Tablets Wholesale'), path: '/wholesale/tablets-wholesale' },
     { label: t('navigation.laptopsWholesale', 'Laptops Wholesale'), path: '/wholesale/laptops-wholesale' },
-    { label: t('navigation.wearablesWholesale', 'Wearables Wholesale'), path: '/wholesale/wearables-wholesale' },
+    { label: t('navigation.wearablesWholesale', 'Wearables Wholesale'), path: '/wholesale/wearables-wholesale' }
+  ];
+
+  const shopByBrandLinks = [
     { label: 'iPhones Wholesale', path: '/iphones' },
     { label: 'Samsung Wholesale', path: '/samsungs' },
     { label: 'Google Pixel Wholesale', path: '/google-pixel' }
   ];
 
   const servicesLinks = [
-    { label: t('navigation.sellToUs', 'Sell To Us'), path: '/sell-to-us' },
+    { label: t('navigation.sellToUs', 'Sell to Us'), path: '/sell-to-us' },
     { label: t('navigation.diagnostics', 'Diagnostics'), path: '/services/diagnostics' },
-    { label: t('navigation.recycling', 'Recycling'), path: '/services/recycling' },
-    { label: t('navigation.repair', 'Repair'), path: '/services/repair' }
+    { label: t('navigation.repair', 'Repair'), path: '/services/repair' },
+    { label: t('navigation.recycling', 'Recycling'), path: '/services/recycling' }
   ];
 
   const resourcesLinks = [
     { label: t('navigation.howWeGrade', 'How We Grade'), path: '/how-we-grade' },
     { label: t('navigation.warrantyAndReturns', 'Warranty & Returns'), path: '/warranty-and-returns' },
-    { label: t('navigation.stockList', 'Stock List Catalog'), path: '/stock-list' },
-    { label: t('navigation.stockOffers', 'Stock Offers'), path: '/stock-offers' },
     { label: t('navigation.faqs', 'FAQs'), path: '/faqs' },
     { label: t('navigation.aboutUs', 'About Us'), path: '/about' }
   ];
@@ -94,9 +129,12 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
       </div>
 
       {/* 2. Main Navigation Header */}
-      <header className={`sticky top-0 z-50 w-full text-white header-glass-dark border-b border-[#063F35]/70 transition-all duration-200 ${
-        scrolled ? 'shadow-xl shadow-black/30' : 'shadow-md'
-      }`}>
+      <header
+        ref={headerRef}
+        className={`sticky top-0 z-50 w-full text-white header-glass-dark border-b border-[#063F35]/70 transition-all duration-200 ${
+          scrolled ? 'shadow-xl shadow-black/30' : 'shadow-md'
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-[5.25rem] sm:h-[5.75rem] gap-2 lg:gap-4">
             {/* Logo */}
@@ -110,7 +148,7 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
 
             {/* Desktop Navigation Links */}
             <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
-              {/* Home */}
+              {/* 1. Home */}
               <Link
                 to="/"
                 className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
@@ -122,40 +160,30 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
                 {t('navigation.home', 'Home')}
               </Link>
 
-              {/* Live Stock */}
-              <Link
-                to="/stock"
-                className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
-                  location.pathname === '/stock' || location.pathname === '/stock-list'
-                    ? 'text-[#D4AF62] bg-[#D4AF62]/10 border-b-2 border-[#D4AF62] font-black'
-                    : 'text-[#DCE8E4] hover:text-white hover:bg-white/5'
-                }`}
-              >
-                {t('navigation.liveStock', 'Live Stock')}
-              </Link>
-
-              {/* Wholesale Dropdown */}
+              {/* 2. Live Stock Dropdown */}
               <div 
                 className="relative"
-                onMouseEnter={() => setActiveDropdown('wholesale')}
+                onMouseEnter={() => setActiveDropdown('liveStock')}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <button
-                  type="button"
-                  className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1 transition-all whitespace-nowrap ${
-                    location.pathname.startsWith('/wholesale') || location.pathname === '/iphones' || location.pathname === '/samsungs' || location.pathname === '/google-pixel'
-                      ? 'text-[#D4AF62] bg-[#D4AF62]/10 border-b-2 border-[#D4AF62] font-black'
-                      : 'text-[#DCE8E4] hover:text-white hover:bg-white/5'
-                  }`}
-                >
-                  <span>{t('navigation.wholesaleDropdown', 'Wholesale')}</span>
-                  <ChevronDown className="w-3.5 h-3.5" />
-                </button>
+                <div className="flex items-center">
+                  <Link
+                    to="/stock"
+                    className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1 transition-all whitespace-nowrap ${
+                      location.pathname === '/stock' || location.pathname === '/stock-list' || location.pathname === '/stock-offers'
+                        ? 'text-[#D4AF62] bg-[#D4AF62]/10 border-b-2 border-[#D4AF62] font-black'
+                        : 'text-[#DCE8E4] hover:text-white hover:bg-white/5'
+                    }`}
+                  >
+                    <span>{t('navigation.liveStock', 'Live Stock')}</span>
+                    <ChevronDown className="w-3.5 h-3.5 opacity-80" />
+                  </Link>
+                </div>
 
-                {activeDropdown === 'wholesale' && (
-                  <div className="absolute left-0 top-full pt-1 w-64 z-50">
+                {activeDropdown === 'liveStock' && (
+                  <div className="absolute left-0 top-full pt-1 w-56 z-50">
                     <div className="bg-[#071715] border border-[#063F35] rounded-xl shadow-2xl p-2 grid gap-0.5">
-                      {wholesaleLinks.map((item) => (
+                      {liveStockLinks.map((item) => (
                         <Link
                           key={item.path}
                           to={item.path}
@@ -173,7 +201,108 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
                 )}
               </div>
 
-              {/* Services Dropdown */}
+              {/* 3. Wholesale Mega-Menu */}
+              <div 
+                className="relative"
+                onMouseEnter={() => setActiveDropdown('wholesale')}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <Link
+                  to="/wholesale"
+                  className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1 transition-all whitespace-nowrap ${
+                    location.pathname.startsWith('/wholesale') || location.pathname === '/iphones' || location.pathname === '/samsungs' || location.pathname === '/google-pixel'
+                      ? 'text-[#D4AF62] bg-[#D4AF62]/10 border-b-2 border-[#D4AF62] font-black'
+                      : 'text-[#DCE8E4] hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  <span>{t('navigation.wholesaleDropdown', 'Wholesale')}</span>
+                  <ChevronDown className="w-3.5 h-3.5 opacity-80" />
+                </Link>
+
+                {activeDropdown === 'wholesale' && (
+                  <div className="absolute -left-12 xl:left-0 top-full pt-1.5 w-[680px] max-w-[90vw] z-50">
+                    <div className="bg-[#071715] border border-[#063F35] rounded-2xl shadow-2xl p-5 grid grid-cols-3 gap-5 backdrop-blur-xl">
+                      {/* Column 1: Main Link & Buying Wholesale */}
+                      <div className="space-y-4">
+                        <div>
+                          <Link
+                            to="/wholesale"
+                            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-black text-[#D4AF62] bg-[#D4AF62]/10 border border-[#D4AF62]/30 hover:bg-[#D4AF62]/20 transition-all w-full"
+                          >
+                            <span>Wholesale Overview</span>
+                          </Link>
+                        </div>
+                        <div>
+                          <div className="text-[10px] font-black text-[#D4AF62] uppercase tracking-wider mb-2 border-b border-[#063F35] pb-1 cursor-default select-none">
+                            Buying Wholesale
+                          </div>
+                          <div className="grid gap-0.5">
+                            {buyingWholesaleLinks.map((item) => (
+                              <Link
+                                key={item.path}
+                                to={item.path}
+                                className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                                  location.pathname === item.path
+                                    ? 'text-[#D4AF62] bg-[#D4AF62]/10 font-bold'
+                                    : 'text-[#DCE8E4] hover:text-white hover:bg-white/5'
+                                }`}
+                              >
+                                {item.label}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Column 2: Shop by Category */}
+                      <div>
+                        <div className="text-[10px] font-black text-[#00A88F] uppercase tracking-wider mb-2 border-b border-[#063F35] pb-1 cursor-default select-none">
+                          Shop by Category
+                        </div>
+                        <div className="grid gap-0.5">
+                          {shopByCategoryLinks.map((item) => (
+                            <Link
+                              key={item.path}
+                              to={item.path}
+                              className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                                location.pathname === item.path
+                                  ? 'text-[#D4AF62] bg-[#D4AF62]/10 font-bold'
+                                  : 'text-[#DCE8E4] hover:text-white hover:bg-white/5'
+                              }`}
+                            >
+                              {item.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Column 3: Shop by Brand */}
+                      <div>
+                        <div className="text-[10px] font-black text-[#D4AF62] uppercase tracking-wider mb-2 border-b border-[#063F35] pb-1 cursor-default select-none">
+                          Shop by Brand
+                        </div>
+                        <div className="grid gap-0.5">
+                          {shopByBrandLinks.map((item) => (
+                            <Link
+                              key={item.path}
+                              to={item.path}
+                              className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                                location.pathname === item.path
+                                  ? 'text-[#D4AF62] bg-[#D4AF62]/10 font-bold'
+                                  : 'text-[#DCE8E4] hover:text-white hover:bg-white/5'
+                              }`}
+                            >
+                              {item.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* 4. Services Dropdown */}
               <div 
                 className="relative"
                 onMouseEnter={() => setActiveDropdown('services')}
@@ -182,13 +311,13 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
                 <button
                   type="button"
                   className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1 transition-all whitespace-nowrap ${
-                    location.pathname.startsWith('/services')
+                    location.pathname.startsWith('/services') || location.pathname === '/sell-to-us'
                       ? 'text-[#D4AF62] bg-[#D4AF62]/10 border-b-2 border-[#D4AF62] font-black'
                       : 'text-[#DCE8E4] hover:text-white hover:bg-white/5'
                   }`}
                 >
                   <span>{t('navigation.servicesDropdown', 'Services')}</span>
-                  <ChevronDown className="w-3.5 h-3.5" />
+                  <ChevronDown className="w-3.5 h-3.5 opacity-80" />
                 </button>
 
                 {activeDropdown === 'services' && (
@@ -212,7 +341,7 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
                 )}
               </div>
 
-              {/* Resources Dropdown */}
+              {/* 5. Resources Dropdown */}
               <div 
                 className="relative"
                 onMouseEnter={() => setActiveDropdown('resources')}
@@ -221,13 +350,13 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
                 <button
                   type="button"
                   className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1 transition-all whitespace-nowrap ${
-                    location.pathname === '/how-we-grade' || location.pathname === '/warranty-and-returns' || location.pathname === '/faqs' || location.pathname === '/grading' || location.pathname === '/about'
+                    location.pathname === '/how-we-grade' || location.pathname === '/warranty-and-returns' || location.pathname === '/faqs' || location.pathname === '/about'
                       ? 'text-[#D4AF62] bg-[#D4AF62]/10 border-b-2 border-[#D4AF62] font-black'
                       : 'text-[#DCE8E4] hover:text-white hover:bg-white/5'
                   }`}
                 >
                   <span>{t('navigation.resourcesDropdown', 'Resources')}</span>
-                  <ChevronDown className="w-3.5 h-3.5" />
+                  <ChevronDown className="w-3.5 h-3.5 opacity-80" />
                 </button>
 
                 {activeDropdown === 'resources' && (
@@ -251,7 +380,7 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
                 )}
               </div>
 
-              {/* Trade Application */}
+              {/* 6. Trade Application */}
               <Link
                 to="/business"
                 className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
@@ -263,7 +392,7 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
                 {t('navigation.tradeApplication', 'Trade Application')}
               </Link>
 
-              {/* Contact */}
+              {/* 7. Contact */}
               <Link
                 to="/contact"
                 className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
@@ -303,7 +432,8 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
 
         {/* Mobile Navigation Drawer */}
         {open && (
-          <nav className="lg:hidden p-4 bg-[#071715] border-t border-[#063F35] grid gap-1 shadow-2xl max-h-[80vh] overflow-y-auto">
+          <nav className="lg:hidden p-4 bg-[#071715] border-t border-[#063F35] grid gap-2 shadow-2xl max-h-[80vh] overflow-y-auto">
+            {/* Home */}
             <Link
               to="/"
               onClick={() => setOpen(false)}
@@ -314,58 +444,150 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
               {t('navigation.home', 'Home')}
             </Link>
 
-            <Link
-              to="/stock"
-              onClick={() => setOpen(false)}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all ${
-                location.pathname === '/stock' || location.pathname === '/stock-list' ? 'text-[#D4AF62] bg-[#D4AF62]/10' : 'text-[#DCE8E4] hover:bg-white/5'
-              }`}
-            >
-              {t('navigation.liveStock', 'Live Stock')}
-            </Link>
-
-            <div className="pt-2 border-t border-[#063F35]">
-              <div className="px-4 text-[10px] font-black text-[#D4AF62] uppercase tracking-wider mb-1">Wholesale</div>
-              {wholesaleLinks.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setOpen(false)}
-                  className="px-4 py-1.5 block text-xs font-semibold text-[#DCE8E4] hover:text-white"
-                >
-                  {item.label}
-                </Link>
-              ))}
+            {/* Live Stock Accordion */}
+            <div className="border-t border-[#063F35] pt-2">
+              <button
+                type="button"
+                onClick={() => toggleMobileAccordion('liveStock')}
+                className="w-full px-4 py-2 flex items-center justify-between text-xs font-bold text-[#DCE8E4] hover:text-white"
+              >
+                <span>Live Stock</span>
+                {mobileAccordions.liveStock ? <ChevronUp className="w-4 h-4 text-[#D4AF62]" /> : <ChevronDown className="w-4 h-4" />}
+              </button>
+              {mobileAccordions.liveStock && (
+                <div className="pl-4 pt-1 grid gap-1">
+                  {liveStockLinks.map((item) => (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      onClick={() => setOpen(false)}
+                      className="px-4 py-1.5 block text-xs font-semibold text-[#DCE8E4] hover:text-white"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
 
-            <div className="pt-2 border-t border-[#063F35]">
-              <div className="px-4 text-[10px] font-black text-[#D4AF62] uppercase tracking-wider mb-1">Services</div>
-              {servicesLinks.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setOpen(false)}
-                  className="px-4 py-1.5 block text-xs font-semibold text-[#DCE8E4] hover:text-white"
-                >
-                  {item.label}
-                </Link>
-              ))}
+            {/* Wholesale Accordion */}
+            <div className="border-t border-[#063F35] pt-2">
+              <button
+                type="button"
+                onClick={() => toggleMobileAccordion('wholesale')}
+                className="w-full px-4 py-2 flex items-center justify-between text-xs font-bold text-[#DCE8E4] hover:text-white"
+              >
+                <span>Wholesale</span>
+                {mobileAccordions.wholesale ? <ChevronUp className="w-4 h-4 text-[#D4AF62]" /> : <ChevronDown className="w-4 h-4" />}
+              </button>
+              {mobileAccordions.wholesale && (
+                <div className="pl-4 pt-1.5 grid gap-3">
+                  <Link
+                    to="/wholesale"
+                    onClick={() => setOpen(false)}
+                    className="px-4 py-1.5 block text-xs font-black text-[#D4AF62]"
+                  >
+                    Wholesale Overview
+                  </Link>
+
+                  <div>
+                    <div className="px-4 text-[10px] font-black text-[#D4AF62] uppercase tracking-wider mb-1">Buying Wholesale</div>
+                    {buyingWholesaleLinks.map((item) => (
+                      <Link
+                        key={item.path}
+                        to={item.path}
+                        onClick={() => setOpen(false)}
+                        className="px-4 py-1.5 block text-xs font-semibold text-[#DCE8E4] hover:text-white"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+
+                  <div>
+                    <div className="px-4 text-[10px] font-black text-[#00A88F] uppercase tracking-wider mb-1">Shop by Category</div>
+                    {shopByCategoryLinks.map((item) => (
+                      <Link
+                        key={item.path}
+                        to={item.path}
+                        onClick={() => setOpen(false)}
+                        className="px-4 py-1.5 block text-xs font-semibold text-[#DCE8E4] hover:text-white"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+
+                  <div>
+                    <div className="px-4 text-[10px] font-black text-[#D4AF62] uppercase tracking-wider mb-1">Shop by Brand</div>
+                    {shopByBrandLinks.map((item) => (
+                      <Link
+                        key={item.path}
+                        to={item.path}
+                        onClick={() => setOpen(false)}
+                        className="px-4 py-1.5 block text-xs font-semibold text-[#DCE8E4] hover:text-white"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
-            <div className="pt-2 border-t border-[#063F35]">
-              <div className="px-4 text-[10px] font-black text-[#D4AF62] uppercase tracking-wider mb-1">Resources</div>
-              {resourcesLinks.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setOpen(false)}
-                  className="px-4 py-1.5 block text-xs font-semibold text-[#DCE8E4] hover:text-white"
-                >
-                  {item.label}
-                </Link>
-              ))}
+            {/* Services Accordion */}
+            <div className="border-t border-[#063F35] pt-2">
+              <button
+                type="button"
+                onClick={() => toggleMobileAccordion('services')}
+                className="w-full px-4 py-2 flex items-center justify-between text-xs font-bold text-[#DCE8E4] hover:text-white"
+              >
+                <span>Services</span>
+                {mobileAccordions.services ? <ChevronUp className="w-4 h-4 text-[#D4AF62]" /> : <ChevronDown className="w-4 h-4" />}
+              </button>
+              {mobileAccordions.services && (
+                <div className="pl-4 pt-1 grid gap-1">
+                  {servicesLinks.map((item) => (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      onClick={() => setOpen(false)}
+                      className="px-4 py-1.5 block text-xs font-semibold text-[#DCE8E4] hover:text-white"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
 
+            {/* Resources Accordion */}
+            <div className="border-t border-[#063F35] pt-2">
+              <button
+                type="button"
+                onClick={() => toggleMobileAccordion('resources')}
+                className="w-full px-4 py-2 flex items-center justify-between text-xs font-bold text-[#DCE8E4] hover:text-white"
+              >
+                <span>Resources</span>
+                {mobileAccordions.resources ? <ChevronUp className="w-4 h-4 text-[#D4AF62]" /> : <ChevronDown className="w-4 h-4" />}
+              </button>
+              {mobileAccordions.resources && (
+                <div className="pl-4 pt-1 grid gap-1">
+                  {resourcesLinks.map((item) => (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      onClick={() => setOpen(false)}
+                      className="px-4 py-1.5 block text-xs font-semibold text-[#DCE8E4] hover:text-white"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Trade Application */}
             <Link
               to="/business"
               onClick={() => setOpen(false)}
@@ -376,6 +598,7 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
               {t('navigation.tradeApplication', 'Trade Application')}
             </Link>
 
+            {/* Contact */}
             <Link
               to="/contact"
               onClick={() => setOpen(false)}
@@ -386,6 +609,7 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
               {t('navigation.contact', 'Contact')}
             </Link>
 
+            {/* Mobile CTAs */}
             <div className="pt-3 border-t border-[#063F35] flex flex-col gap-2">
               <Link to="/contact" onClick={() => setOpen(false)}>
                 <button
@@ -408,3 +632,4 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
     </>
   );
 };
+
