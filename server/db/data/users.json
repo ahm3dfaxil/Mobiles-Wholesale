@@ -1,0 +1,10 @@
+[
+  {
+    "id": "user-admin-01",
+    "email": "admin@mobileswholesale.co.uk",
+    "passwordHash": "$2b$10$ae432vF4DRM0TJUfaO0qa.mZ/6pUZZ8wcfI.wS5iKHf.NzejlJdYK",
+    "name": "Mobiles Wholesale Admin",
+    "role": "SUPER_ADMIN",
+    "createdAt": "2026-08-13T15:25:30.825Z"
+  }
+]

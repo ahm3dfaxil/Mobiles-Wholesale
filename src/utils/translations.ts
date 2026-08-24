@@ -1,0 +1,397 @@
+export type LanguageCode = 'en' | 'ar' | 'zh-CN' | 'nl' | 'fr' | 'de' | 'it' | 'pt' | 'ru' | 'es';
+
+export const TRANSLATIONS: Record<string, Record<LanguageCode, string>> = {
+  // Header
+  live_uk_stock: {
+    en: "Live UK stock updated today",
+    ar: "مخزون المملكة المتحدة المباشر المحدث اليوم",
+    'zh-CN': "今日更新的英国现货",
+    nl: "Live UK-voorraad vandaag bijgewerkt",
+    fr: "Stock en direct au Royaume-Uni mis à jour aujourd'hui",
+    de: "Live-Bestand UK heute aktualisiert",
+    it: "Stock UK in tempo reale aggiornato oggi",
+    pt: "Estoque ao vivo do Reino Unido atualizado hoje",
+    ru: "Текущий склад в Великобритании обновлен сегодня",
+    es: "Stock en vivo del Reino Unido actualizado hoy"
+  },
+  insured_delivery: {
+    en: "Insured UK next-day courier delivery",
+    ar: "توصيل مؤمن في اليوم التالي في المملكة المتحدة",
+    'zh-CN': "投保的英国次日快递服务",
+    nl: "Verzekerde UK koeriersdienst voor de volgende dag",
+    fr: "Livraison assurée le lendemain au Royaume-Uni",
+    de: "Versicherte UK-Kurierzustellung am nächsten Tag",
+    it: "Consegna con corriere assicurato il giorno successivo nel Regno Unito",
+    pt: "Entrega por transportadora segurada no dia seguinte no Reino Unido",
+    ru: "Застрахованная курьерская доставка по Великобритании на следующий день",
+    es: "Entrega por mensajería asegurada al día siguiente en el Reino Unido"
+  },
+  home: {
+    en: "Home",
+    ar: "الرئيسية",
+    'zh-CN': "首页",
+    nl: "Home",
+    fr: "Accueil",
+    de: "Startseite",
+    it: "Home",
+    pt: "Início",
+    ru: "Главная",
+    es: "Inicio"
+  },
+  live_stock: {
+    en: "Live Stock",
+    ar: "المخزون المباشر",
+    'zh-CN': "实时现货",
+    nl: "Live Voorraad",
+    fr: "Stock en Direct",
+    de: "Live-Bestand",
+    it: "Stock In Tempo Reale",
+    pt: "Estoque Ao Vivo",
+    ru: "Текущий السклад",
+    es: "Stock En Vivo"
+  },
+  grading_guide: {
+    en: "Grading Guide",
+    ar: "دليل التصنيف",
+    'zh-CN': "分级指南",
+    nl: "Grading Gids",
+    fr: "Guide de Classification",
+    de: "Grading-Leitfaden",
+    it: "Guida Alla Classificazione",
+    pt: "Guia de Classificação",
+    ru: "Руководство По Грейдингу",
+    es: "Guía de Clasificación"
+  },
+  sell_to_us: {
+    en: "Sell To Us",
+    ar: "بع لنا",
+    'zh-CN': "回收/出售给我们",
+    nl: "Verkoop aan ons",
+    fr: "Vendez-nous",
+    de: "An uns verkaufen",
+    it: "Vendi a noi",
+    pt: "Venda para nós",
+    ru: "Продать нам",
+    es: "Véndenos"
+  },
+  trade_application: {
+    en: "Trade Application",
+    ar: "طلب فتح حساب تجاري",
+    'zh-CN': "批发/贸易申请",
+    nl: "Handelsaanvraag",
+    fr: "Demande de Compte Pro",
+    de: "Händlerantrag",
+    it: "Domanda Commerciale",
+    pt: "Solicitação Comercial",
+    ru: "Заявка На Торговый Аккаунт",
+    es: "Solicitud Comercial"
+  },
+  about_us: {
+    en: "About Us",
+    ar: "من نحن",
+    'zh-CN': "关于我们",
+    nl: "Over ons",
+    fr: "À propos de nous",
+    de: "Über uns",
+    it: "Chi siamo",
+    pt: "Sobre nós",
+    ru: "О нас",
+    es: "Sobre nosotros"
+  },
+  contact: {
+    en: "Contact",
+    ar: "اتصل بنا",
+    'zh-CN': "联系我们",
+    nl: "Contact",
+    fr: "Contact",
+    de: "Kontakt",
+    it: "Contatti",
+    pt: "Contato",
+    ru: "Контакты",
+    es: "Contacto"
+  },
+  request_pricing: {
+    en: "Request Pricing",
+    ar: "طلب الأسعار",
+    'zh-CN': "索取报价",
+    nl: "Offerte Aanvragen",
+    fr: "Demander un Devis",
+    de: "Preise Anfragen",
+    it: "Richiedi Prezzi",
+    pt: "Solicitar Preços",
+    ru: "Запросить Прайс",
+    es: "Solicitar Precios"
+  },
+  whatsapp_desk: {
+    en: "WhatsApp Trade Desk",
+    ar: "مكتب واتساب التجاري",
+    'zh-CN': "WhatsApp 批发客服",
+    nl: "WhatsApp Handelsdesk",
+    fr: "Service Client WhatsApp",
+    de: "WhatsApp Händler-Desk",
+    it: "Desk Commerciale WhatsApp",
+    pt: "Atendimento WhatsApp",
+    ru: "WhatsApp Торговый Отдел",
+    es: "Mesa Comercial WhatsApp"
+  },
+
+  // Hero Section
+  hero_badge: {
+    en: "Premier UK B2B Electronics Trade Supplier",
+    ar: "المورد التجاري الأول للإلكترونيات B2B في المملكة المتحدة",
+    'zh-CN': "英国首屈一指的 B2B 电子产品批发供应商",
+    nl: "Führender UK B2B Elektronik-Großhändler",
+    fr: "Premier Fournisseur B2B d'Électronique au Royaume-Uni",
+    de: "Führender UK B2B-Elektronik-Großhändler",
+    it: "Primo Fornitore B2B di Elettronica nel Regno Unito",
+    pt: "Principal Fornecedor B2B de Eletrônicos no Reino Unido",
+    ru: "Ведущий B2B-поставщик электроники в Великобритании",
+    es: "Primer Proveedor B2B de Electrónica en el Reino Unido"
+  },
+  hero_title_phones: {
+    en: "Mobiles Wholesale",
+    ar: "الجملة للهواتف المحمولة والإلكترونيات",
+    'zh-CN': "批发移动手机与电子产品",
+    nl: "Groothandel Mobiele Telefoons & Elektronica",
+    fr: "Vente au Gros de Téléphones & Électronique",
+    de: "Großhandel mit Mobiltelefonen & Elektronik",
+    it: "Ingrosso Telefoni Cellulari ed Elettronica",
+    pt: "Atacado de Celulares e Eletrônicos",
+    ru: "Оптовая Торговля Мобильными Телефонами и Электроникой",
+    es: "Venta al por Mayor de Teléfonos Móviles y Electrónica"
+  },
+  hero_desc: {
+    en: "Direct UK warehouse stock. Grade A+ to C, Brand New Sealed, Margin & Standard VAT options available for global trade partners.",
+    ar: "مخزون مباشر من مستودعات المملكة المتحدة. درجات من A+ إلى C، جديد تمامًا ومختوم، خيارات ضريبة المبادلة والضريبة القياسية متاحة للشركاء التجاريين الدوليين.",
+    'zh-CN': "英国仓库直发现货。包含 A+ 至 C 级、全新未拆封原装正品，为全球贸易伙伴提供边际税及标准增值税选项。",
+    nl: "Directe UK magazijnvoorraad. Grade A+ tot C, Gloednieuw verzegeld, Marge & Standaard BTW opties beschikbaar.",
+    fr: "Stock direct de notre entrepôt au Royaume-Uni. Grades A+ à C, Neuf scellé, options de TVA sur marge et standard disponibles.",
+    de: "Direkter UK Lagerbestand. Grade A+ bis C, Brandneu versiegelt, Differenzbesteuerung & Standard MwSt. Optionen verfügbar.",
+    it: "Stock diretto dai magazzini del Regno Unito. Gradi da A+ a C, Nuovo sigillato, opzioni IVA margine e standard disponibili.",
+    pt: "Estoque direto do armazém no Reino Unido. Graus A+ a C, Novo lacrado, opções de Margem e IVA Padrão disponíveis.",
+    ru: "Прямой склад в Великобритании. Грейды от A+ до C, Новые запечатанные, варианты с маржинальным и стандартным НДС.",
+    es: "Stock directo de almacén en el Reino Unido. Grados A+ a C, Nuevo precintado, opciones de IVA de margen y estándar disponibles."
+  },
+  live_stock_feed: {
+    en: "Live Stock Feed",
+    ar: "تغذية المخزون المباشرة",
+    'zh-CN': "实时库存列表",
+    nl: "Live Voorraad Feed",
+    fr: "Flux de Stock en Direct",
+    de: "Live-Bestandsfeed",
+    it: "Feed Stock in Tempo Reale",
+    pt: "Feed de Estoque ao Vivo",
+    ru: "Лента Наличия Товаров",
+    es: "Feed de Stock en Vivo"
+  },
+  updated_today: {
+    en: "UPDATED TODAY",
+    ar: "تم التحديث اليوم",
+    'zh-CN': "今日已更新",
+    nl: "VANDAAG BIJGEWERKT",
+    fr: "MIS À JOUR AUJOURD'HUI",
+    de: "HEUTE AKTUALISIERT",
+    it: "AGGIORNATO OGGI",
+    pt: "ATUALIZADO HOJE",
+    ru: "ОБНОВЛЕНО СЕГОДНЯ",
+    es: "ACTUALIZADO HOY"
+  },
+  ask_price: {
+    en: "Ask Price",
+    ar: "طلب السعر",
+    'zh-CN': "询问价格",
+    nl: "Vraag Prijs",
+    fr: "Demander le Prix",
+    de: "Preis anfragen",
+    it: "Chiedi Prezzo",
+    pt: "Pedir Preço",
+    ru: "Узнать цену",
+    es: "Consultar Precio"
+  },
+
+  // Stock Page & Filters
+  search_placeholder: {
+    en: "Search models, SKUs, or specs...",
+    ar: "ابحث عن الموديلات أو الرموز أو المواصفات...",
+    'zh-CN': "搜索型号、SKU 或规格...",
+    nl: "Zoek modellen, SKU's of specificaties...",
+    fr: "Rechercher des modèles, SKU ou specs...",
+    de: "Modelle, SKUs oder Specs suchen...",
+    it: "Cerca modelli, SKU o specifiche...",
+    pt: "Buscar modelos, SKUs ou especificações...",
+    ru: "Поиск моделей, артикулов или характеристик...",
+    es: "Buscar modelos, SKUs o especificaciones..."
+  },
+  all_brands: {
+    en: "All Brands",
+    ar: "جميع العلامات التجارية",
+    'zh-CN': "所有品牌",
+    nl: "Alle Merken",
+    fr: "Toutes les Marques",
+    de: "Alle Marken",
+    it: "Tutti i Marchi",
+    pt: "Todas as Marcas",
+    ru: "Все Бренды",
+    es: "Todas las Marcas"
+  },
+  all_categories: {
+    en: "All Categories",
+    ar: "جميع الفئات",
+    'zh-CN': "所有分类",
+    nl: "Alle Categorieën",
+    fr: "Toutes les Catégories",
+    de: "Alle Kategorien",
+    it: "Tutte le Categorie",
+    pt: "Todas as Categorias",
+    ru: "Все Категории",
+    es: "Todas las Categorías"
+  },
+  all_grades: {
+    en: "All Grades",
+    ar: "جميع الدرجات",
+    'zh-CN': "所有成色/等级",
+    nl: "Alle Kwaliteiten",
+    fr: "Tous les Grades",
+    de: "Alle Qualitätsstufen",
+    it: "Tutti i Gradi",
+    pt: "Todos os Graus",
+    ru: "Все Грейды",
+    es: "Todos los Grados"
+  },
+
+  // Common Labels
+  moq: {
+    en: "MOQ",
+    ar: "الحد الأدنى للطلب",
+    'zh-CN': "起订量",
+    nl: "MOQ",
+    fr: "MOQ",
+    de: "MOQ",
+    it: "MOQ",
+    pt: "MOQ",
+    ru: "Мин. заказ",
+    es: "MOQ"
+  },
+  brand_new_sealed: {
+    en: "Brand New Sealed",
+    ar: "جديد تمامًا ومختوم",
+    'zh-CN': "全新未拆封",
+    nl: "Gloednieuw Verzegeld",
+    fr: "Neuf Scellé",
+    de: "Brandneu Versiegelt",
+    it: "Nuovo Sigillato",
+    pt: "Novo Lacrado",
+    ru: "Новый Запечатанный",
+    es: "Nuevo Precintado"
+  },
+
+  // Footer
+  trading_notice: {
+    en: "Mobile Wholesale Is A Trading Name Of Regenerate Global Limited And It's Registered In England And Wales.",
+    ar: "موبايل هولسيل هو اسم تجاري لشركة ريجينيريت جلوبال المحدودة ومسجلة في إنجلترا وويلز.",
+    'zh-CN': "Mobile Wholesale 是 Regenerate Global Limited 的交易名称，在英格兰和威尔士注册。",
+    nl: "Mobile Wholesale is een handelsnaam van Regenerate Global Limited en is geregistreerd in Engeland en Wales.",
+    fr: "Mobile Wholesale est un nom commercial de Regenerate Global Limited, enregistrée en Angleterre et au Pays de Galles.",
+    de: "Mobile Wholesale ist ein Handelsname von Regenerate Global Limited, eingetragen in England und Wales.",
+    it: "Mobile Wholesale è un nome commerciale di Regenerate Global Limited, registrata in Inghilterra e Galles.",
+    pt: "Mobile Wholesale é um nome comercial da Regenerate Global Limited, registrada na Inglaterra e no País de Gales.",
+    ru: "Mobile Wholesale является торговым наименованием компании Regenerate Global Limited, зарегистрированной в Англии и Уэльсе.",
+    es: "Mobile Wholesale es un اسم تجاري de Regenerate Global Limited y está registrada en Inglaterra y Gales."
+  },
+  quick_links: {
+    en: "QUICK LINKS",
+    ar: "روابط سريعة",
+    'zh-CN': "快速链接",
+    nl: "SNELLE LINKS",
+    fr: "LIENS RAPIDES",
+    de: "SCHNELLE LINKS",
+    it: "LINK RAPIDI",
+    pt: "LINKS RÁPIDOS",
+    ru: "БЫСТРЫЕ ССЫЛКИ",
+    es: "ENLACES RÁPIDOS"
+  },
+  policy_info: {
+    en: "POLICY INFO",
+    ar: "معلومات السياسات",
+    'zh-CN': "政策与条款",
+    nl: "BELEIDSINFORMATIE",
+    fr: "POLITIQUES & CONDITIONS",
+    de: "RICHTLINIEN",
+    it: "INFORMAZIONI SULLE POLICY",
+    pt: "POLÍTICAS E TERMOS",
+    ru: "ИНФОРМАЦИЯ О ПОЛИТИКЕ",
+    es: "INFORMACIÓN DE POLÍTICAS"
+  },
+  services: {
+    en: "SERVICES",
+    ar: "الخدمات",
+    'zh-CN': "业务服务",
+    nl: "DIENSTEN",
+    fr: "SERVICES",
+    de: "DIENSTLEISTUNGEN",
+    it: "SERVIZI",
+    pt: "SERVIÇOS",
+    ru: "УСЛУГИ",
+    es: "SERVICIOS"
+  },
+  company_info: {
+    en: "COMPANY INFO",
+    ar: "معلومات الشركة",
+    'zh-CN': "公司信息",
+    nl: "BEDRIJFSINFO",
+    fr: "INFORMATIONS SUR L'ENTREPRISE",
+    de: "UNTERNEHMENSINFO",
+    it: "INFORMAZIONI SOCIETARIE",
+    pt: "INFORMAÇÕES DA EMPRESA",
+    ru: "ИНФОРМАЦИЯ О КОМПАНИИ",
+    es: "INFORMACIÓN DE LA EMPRESA"
+  },
+  newsletter_signup: {
+    en: "NewsLetter Signup",
+    ar: "الاشتراك في النشرة الإخبارية",
+    'zh-CN': "订阅库存周报",
+    nl: "Nieuwsbrief Aanmelden",
+    fr: "Inscription à la Newsletter",
+    de: "Newsletter-Anmeldung",
+    it: "Iscrizione alla Newsletter",
+    pt: "Assinar Newsletter",
+    ru: "Подписка на рассылку",
+    es: "Suscripción al Boletín"
+  },
+  send: {
+    en: "Send",
+    ar: "إرسال",
+    'zh-CN': "发送",
+    nl: "Versturen",
+    fr: "Envoyer",
+    de: "Senden",
+    it: "Invia",
+    pt: "Enviar",
+    ru: "Отправить",
+    es: "Enviar"
+  },
+  follow_us: {
+    en: "Follow Us",
+    ar: "تابعنا",
+    'zh-CN': "关注我们",
+    nl: "Volg Ons",
+    fr: "Suivez-nous",
+    de: "Folgen Sie uns",
+    it: "Seguici",
+    pt: "Siga-nos",
+    ru: "Подписывайтесь на нас",
+    es: "Síguenos"
+  },
+  rights_reserved: {
+    en: "Copyright © 2024 Mobile Wholesale. All Rights Reserved.",
+    ar: "حقوق الطبع والنشر © 2024 موبايل هولسيل. جميع الحقوق محفوظة.",
+    'zh-CN': "版权所有 © 2024 Mobile Wholesale。保留所有权利。",
+    nl: "Copyright © 2024 Mobile Wholesale. Alle Rechten Voorbehouden.",
+    fr: "Copyright © 2024 Mobile Wholesale. Tous droits réservés.",
+    de: "Copyright © 2024 Mobile Wholesale. Alle Rechte vorbehalten.",
+    it: "Copyright © 2024 Mobile Wholesale. Tutti i diritti riservati.",
+    pt: "Copyright © 2024 Mobile Wholesale. Todos os direitos reservados.",
+    ru: "Авторские права © 2024 Mobile Wholesale. Все права защищены.",
+    es: "Copyright © 2024 Mobile Wholesale. Todos los derechos reservados."
+  }
+};

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="120" fill="#10b981" />
+  <rect x="144" y="80" width="224" height="352" rx="36" fill="#0f172a" stroke="#ffffff" stroke-width="16" />
+  <circle cx="256" cy="384" r="14" fill="#10b981" />
+  <line x1="216" y1="120" x2="296" y2="120" stroke="#475569" stroke-width="12" stroke-linecap="round" />
+  <!-- Phone screen signal / M logo lines -->
+  <path d="M 190 260 L 220 200 L 256 240 L 292 200 L 322 260" stroke="#10b981" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+</svg>
