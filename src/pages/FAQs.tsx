@@ -125,7 +125,7 @@ export const FAQs: React.FC = () => {
   return (
     <>
       <SEOHead
-        title="Frequently Asked Questions (FAQs) | Mobiles Wholesale UK"
+        title="Faq - Mobile Wholesale"
         description="Find answers to frequently asked questions about wholesale mobile phones, orders, shipping, warranty, and business services."
         canonicalPath="/faqs"
         breadcrumbs={breadcrumbs}

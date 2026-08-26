@@ -35,6 +35,7 @@ import { Button } from '../components/common/Button';
 import { WhatsAppIcon } from '../components/common/WhatsAppIcon';
 import { AccordionGallery, AccordionItem } from '../components/common/AccordionGallery';
 import { ElectricBorder } from '../components/common/ElectricBorder';
+import { SEOHead } from '../components/common/SEOHead';
 import { useLanguage } from '../context/LanguageContext';
 import { createWhatsAppGeneralUrl, createWhatsAppProductUrl } from '../utils/whatsapp';
 import { Product } from '../types';
@@ -217,6 +218,11 @@ export const Home: React.FC = () => {
 
   return (
     <div className="space-y-16 pb-16 font-sans bg-[#FAF8F2] text-[#101A18]">
+      <SEOHead 
+        title="Mobile Wholesale UK"
+        description="UK’s leading wholesale mobile phone supplier — bulk new & graded devices at unbeatable prices. Trusted B2B/B2C exporter. Fast delivery, top brands"
+        canonicalPath="/"
+      />
       {/* 1. HERO SECTION WITH DRIFTWALL BACKGROUND */}
       <section className="premium-hero relative overflow-hidden border-b border-[#D8E2DE] pt-12 sm:pt-16 pb-20 sm:pb-24 bg-[#FAF8F2]">
         {/* Background Radial Pattern & Glow */}

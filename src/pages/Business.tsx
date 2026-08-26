@@ -24,6 +24,7 @@ import { WhatsAppIcon } from '../components/common/WhatsAppIcon';
 import { useLanguage } from '../context/LanguageContext';
 import { createWhatsAppGeneralUrl } from '../utils/whatsapp';
 import { EnquiryModal } from '../components/product/EnquiryModal';
+import { SEOHead } from '../components/common/SEOHead';
 
 export const Business: React.FC = () => {
   const { t } = useLanguage();
@@ -177,6 +178,11 @@ export const Business: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12 bg-[#FAF8F2]">
+      <SEOHead 
+        title="Trade Application - Mobile Wholesale"
+        description="Apply for a trade account to access wholesale pricing, bulk mobile phone deals, and exclusive offers for retailers and resellers."
+        canonicalPath="/trade-application/"
+      />
       {/* Header Banner */}
       <div className="bg-white text-[#101A18] rounded-2xl p-8 sm:p-12 border border-[#D8E2DE] shadow-md relative overflow-hidden">
         <div className="max-w-3xl space-y-5">

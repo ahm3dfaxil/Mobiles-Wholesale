@@ -89,9 +89,9 @@ export const HowWeGrade: React.FC = () => {
   return (
     <>
       <SEOHead
-        title="How We Grade | Device Grading & Testing | Mobiles Wholesale"
-        description="Comprehensive guide to Mobiles Wholesale device grading system. Learn about our testing process, functional inspection, cosmetic grading (Grade A, B, C, Brand New Sealed), and quality control standards."
-        canonicalPath="/how-we-grade"
+        title="Grading - Mobile Wholesale"
+        description="Understand our mobile phone grading system for used and refurbished devices to ensure quality, transparency, and reliable wholesale purchases."
+        canonicalPath="/grading/"
         breadcrumbs={breadcrumbs}
       />
 

@@ -29,6 +29,16 @@ import { StockList } from './pages/StockList';
 import { StockOffers } from './pages/StockOffers';
 import { FAQs } from './pages/FAQs';
 
+// Newly Replicated SEO Pages
+import { Corporate } from './pages/Corporate';
+import { Education } from './pages/Education';
+import { RetailSector } from './pages/RetailSector';
+import { BusinessITRecycling } from './pages/BusinessITRecycling';
+import { TermsConditions } from './pages/TermsConditions';
+import { Blogs } from './pages/Blogs';
+import { BlogPostRefurbished } from './pages/BlogPostRefurbished';
+import { BlogPostWholesaleVsRetail } from './pages/BlogPostWholesaleVsRetail';
+
 // Templates & Configs
 import { ServicePage } from './components/templates/ServicePage';
 import { WholesaleLandingPage } from './components/templates/WholesaleLandingPage';
@@ -112,6 +122,17 @@ export const App: React.FC = () => {
                   <Route path="/iphones" element={<BrandPage {...iphonesBrandConfig} />} />
                   <Route path="/samsungs" element={<BrandPage {...samsungsBrandConfig} />} />
                   <Route path="/google-pixel" element={<BrandPage {...googlePixelBrandConfig} />} />
+
+                  {/* 8. Replicated SEO Audit Routes & Aliases */}
+                  <Route path="/trade-application" element={<Business />} />
+                  <Route path="/corporate" element={<Corporate />} />
+                  <Route path="/education" element={<Education />} />
+                  <Route path="/retail" element={<RetailSector />} />
+                  <Route path="/business-it-recycling" element={<BusinessITRecycling />} />
+                  <Route path="/terms-conditions" element={<TermsConditions />} />
+                  <Route path="/blogs" element={<Blogs />} />
+                  <Route path="/how-to-know-if-a-phone-is-refurbished-expert-tips" element={<BlogPostRefurbished />} />
+                  <Route path="/wholesale-vs-retail-mobile-phones-whats-the-real-difference" element={<BlogPostWholesaleVsRetail />} />
 
                   {/* Admin Routes */}
                   <Route path="/admin/login" element={<AdminLogin />} />

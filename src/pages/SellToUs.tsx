@@ -19,6 +19,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { SellToUsForm } from '../types';
 import { createWhatsAppSellToUsUrl } from '../utils/whatsapp';
 import { UK_COMPANY_INFO } from '../data/mockData';
+import { SEOHead } from '../components/common/SEOHead';
 
 export const SellToUs: React.FC = () => {
   const { t } = useLanguage();
@@ -153,6 +154,11 @@ export const SellToUs: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12 bg-[#FAF8F2]">
+      <SEOHead 
+        title="Contact - Mobile Wholesale"
+        description="Sell your used or surplus mobile devices to us and get competitive offers with a smooth and secure selling process."
+        canonicalPath="/sell-to-us"
+      />
       {/* Header Banner */}
       <div className="bg-white text-[#101A18] rounded-2xl p-8 sm:p-12 border border-[#D8E2DE] shadow-md relative overflow-hidden">
         <div className="max-w-3xl space-y-4 relative z-10">

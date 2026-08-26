@@ -115,11 +115,15 @@ export const Footer: React.FC = () => {
 
           {/* Services & Resources Links */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-[#D4AF62] font-black text-xs tracking-wider uppercase">SERVICES</h4>
+            <h4 className="text-[#D4AF62] font-black text-xs tracking-wider uppercase">SERVICES & SECTORS</h4>
             <ul className="space-y-1.5 text-xs text-[#DCE8E4]">
               <li><Link to="/sell-to-us" className="hover:text-[#00A88F] transition-colors">Sell To Us</Link></li>
+              <li><Link to="/buy-from-us" className="hover:text-[#00A88F] transition-colors">Buy From Us</Link></li>
+              <li><Link to="/corporate" className="hover:text-[#00A88F] transition-colors">Corporate Solutions</Link></li>
+              <li><Link to="/education" className="hover:text-[#00A88F] transition-colors">Education Sector</Link></li>
+              <li><Link to="/retail" className="hover:text-[#00A88F] transition-colors">Retail Sector</Link></li>
+              <li><Link to="/business-it-recycling" className="hover:text-[#00A88F] transition-colors">Business IT Recycling</Link></li>
               <li><Link to="/services/diagnostics" className="hover:text-[#00A88F] transition-colors">Diagnostics</Link></li>
-              <li><Link to="/services/recycling" className="hover:text-[#00A88F] transition-colors">Recycling</Link></li>
               <li><Link to="/services/repair" className="hover:text-[#00A88F] transition-colors">Repair Support</Link></li>
             </ul>
 
@@ -127,12 +131,13 @@ export const Footer: React.FC = () => {
             <ul className="space-y-1.5 text-xs text-[#DCE8E4]">
               <li><Link to="/about" className="hover:text-[#00A88F] transition-colors">About Us</Link></li>
               <li><Link to="/contact" className="hover:text-[#00A88F] transition-colors">Contact Us</Link></li>
-              <li><Link to="/how-we-grade" className="hover:text-[#00A88F] transition-colors">How We Grade</Link></li>
+              <li><Link to="/grading" className="hover:text-[#00A88F] transition-colors">Grading Standards</Link></li>
               <li><Link to="/warranty-and-returns" className="hover:text-[#00A88F] transition-colors">Warranty & Returns</Link></li>
               <li><Link to="/stock-list" className="hover:text-[#00A88F] transition-colors">Stock List Catalog</Link></li>
               <li><Link to="/stock-offers" className="hover:text-[#00A88F] transition-colors">Stock Offers</Link></li>
               <li><Link to="/faqs" className="hover:text-[#00A88F] transition-colors">FAQs</Link></li>
-              <li><Link to="/about#blog" className="hover:text-[#00A88F] transition-colors">Blog</Link></li>
+              <li><Link to="/blogs" className="hover:text-[#00A88F] transition-colors">Blogs & Insights</Link></li>
+              <li><Link to="/terms-conditions" className="hover:text-[#00A88F] transition-colors">Terms & Conditions</Link></li>
             </ul>
           </div>
 

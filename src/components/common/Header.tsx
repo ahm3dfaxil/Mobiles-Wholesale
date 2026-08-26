@@ -91,6 +91,12 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
     { label: t('navigation.recycling', 'Recycling'), path: '/services/recycling' }
   ];
 
+  const sectorsLinks = [
+    { label: 'Public', path: '/retail' },
+    { label: 'Education', path: '/education' },
+    { label: 'Corporate', path: '/corporate' }
+  ];
+
   const resourcesLinks = [
     { label: t('navigation.howWeGrade', 'How We Grade'), path: '/how-we-grade' },
     { label: t('navigation.warrantyAndReturns', 'Warranty & Returns'), path: '/warranty-and-returns' },
@@ -136,22 +142,22 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-[5.25rem] sm:h-[5.75rem] gap-2 lg:gap-4">
-            {/* Logo */}
-            <Link to="/" className="flex items-center py-1 shrink-0">
+          <div className="flex items-center justify-between h-[5.25rem] sm:h-[5.75rem] gap-1 sm:gap-2 lg:gap-3">
+            {/* Logo - Shifted left */}
+            <Link to="/" className="flex items-center py-1 shrink-0 -ml-2 sm:-ml-4 lg:-ml-6 transition-all">
               <img 
                 src="/mobiles-wholesale-logo.1-removebg-preview.png" 
                 alt="Mobiles Wholesale" 
-                className="h-16 sm:h-20 lg:h-22 w-auto object-contain transition-transform hover:scale-110 brightness-110 drop-shadow-md origin-left" 
+                className="h-16 sm:h-20 lg:h-22 w-auto object-contain transition-transform hover:scale-105 brightness-110 drop-shadow-md origin-left" 
               />
             </Link>
 
             {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+            <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1.5">
               {/* 1. Home */}
               <Link
                 to="/"
-                className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
+                className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
                   location.pathname === '/'
                     ? 'text-[#D4AF62] bg-[#D4AF62]/10 border-b-2 border-[#D4AF62] font-black'
                     : 'text-[#DCE8E4] hover:text-white hover:bg-white/5'
@@ -169,7 +175,7 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
                 <div className="flex items-center">
                   <Link
                     to="/stock"
-                    className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1 transition-all whitespace-nowrap ${
+                    className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs font-bold flex items-center gap-1 transition-all whitespace-nowrap ${
                       location.pathname === '/stock' || location.pathname === '/stock-list' || location.pathname === '/stock-offers'
                         ? 'text-[#D4AF62] bg-[#D4AF62]/10 border-b-2 border-[#D4AF62] font-black'
                         : 'text-[#DCE8E4] hover:text-white hover:bg-white/5'
@@ -209,7 +215,7 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
               >
                 <Link
                   to="/wholesale"
-                  className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1 transition-all whitespace-nowrap ${
+                  className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs font-bold flex items-center gap-1 transition-all whitespace-nowrap ${
                     location.pathname.startsWith('/wholesale') || location.pathname === '/iphones' || location.pathname === '/samsungs' || location.pathname === '/google-pixel'
                       ? 'text-[#D4AF62] bg-[#D4AF62]/10 border-b-2 border-[#D4AF62] font-black'
                       : 'text-[#DCE8E4] hover:text-white hover:bg-white/5'
@@ -310,7 +316,7 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
               >
                 <button
                   type="button"
-                  className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1 transition-all whitespace-nowrap ${
+                  className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs font-bold flex items-center gap-1 transition-all whitespace-nowrap ${
                     location.pathname.startsWith('/services') || location.pathname === '/sell-to-us'
                       ? 'text-[#D4AF62] bg-[#D4AF62]/10 border-b-2 border-[#D4AF62] font-black'
                       : 'text-[#DCE8E4] hover:text-white hover:bg-white/5'
@@ -349,7 +355,7 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
               >
                 <button
                   type="button"
-                  className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs font-bold flex items-center gap-1 transition-all whitespace-nowrap ${
+                  className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs font-bold flex items-center gap-1 transition-all whitespace-nowrap ${
                     location.pathname === '/how-we-grade' || location.pathname === '/warranty-and-returns' || location.pathname === '/faqs' || location.pathname === '/about'
                       ? 'text-[#D4AF62] bg-[#D4AF62]/10 border-b-2 border-[#D4AF62] font-black'
                       : 'text-[#DCE8E4] hover:text-white hover:bg-white/5'
@@ -380,10 +386,49 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
                 )}
               </div>
 
+              {/* 5. Sectors Dropdown */}
+              <div 
+                className="relative"
+                onMouseEnter={() => setActiveDropdown('sectors')}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <button
+                  type="button"
+                  className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs font-bold flex items-center gap-1 transition-all whitespace-nowrap ${
+                    location.pathname === '/corporate' || location.pathname === '/education' || location.pathname === '/retail'
+                      ? 'text-[#D4AF62] bg-[#D4AF62]/10 border-b-2 border-[#D4AF62] font-black'
+                      : 'text-[#DCE8E4] hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  <span>Sectors</span>
+                  <ChevronDown className="w-3.5 h-3.5 opacity-80 text-[#00A88F]" />
+                </button>
+
+                {activeDropdown === 'sectors' && (
+                  <div className="absolute left-0 top-full pt-1 w-48 z-50">
+                    <div className="bg-[#071715] border border-[#063F35] rounded-xl shadow-2xl p-2 grid gap-0.5">
+                      {sectorsLinks.map((item) => (
+                        <Link
+                          key={item.path}
+                          to={item.path}
+                          className={`px-3 py-2 rounded-lg text-xs font-semibold transition-all ${
+                            location.pathname === item.path
+                              ? 'text-[#00A88F] bg-[#00A88F]/10 font-bold'
+                              : 'text-[#DCE8E4] hover:text-[#00A88F] hover:bg-white/5'
+                          }`}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
               {/* 6. Trade Application */}
               <Link
                 to="/business"
-                className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
+                className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
                   location.pathname === '/business'
                     ? 'text-[#D4AF62] bg-[#D4AF62]/10 border-b-2 border-[#D4AF62] font-black'
                     : 'text-[#DCE8E4] hover:text-white hover:bg-white/5'
@@ -395,7 +440,7 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
               {/* 7. Contact */}
               <Link
                 to="/contact"
-                className={`px-2.5 xl:px-3 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
+                className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
                   location.pathname === '/contact'
                     ? 'text-[#D4AF62] bg-[#D4AF62]/10 border-b-2 border-[#D4AF62] font-black'
                     : 'text-[#DCE8E4] hover:text-white hover:bg-white/5'
@@ -406,17 +451,17 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
             </nav>
 
             {/* Header Action CTAs */}
-            <div className="hidden sm:flex items-center gap-2.5 xl:gap-3 shrink-0">
+            <div className="hidden sm:flex items-center gap-2 xl:gap-2.5 shrink-0">
               <Link to="/contact">
                 <button
-                  className="inline-flex items-center justify-center gap-1.5 px-3.5 xl:px-4 py-2 rounded-xl text-xs font-bold text-white bg-[rgba(255,255,255,0.06)] border border-[#D4AF62]/55 hover:bg-[#D4AF62]/15 hover:border-[#D4AF62] transition-all shadow-2xs cursor-pointer whitespace-nowrap"
+                  className="inline-flex items-center justify-center gap-1.5 px-3 xl:px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-[rgba(255,255,255,0.06)] border border-[#D4AF62]/55 hover:bg-[#D4AF62]/15 hover:border-[#D4AF62] transition-all shadow-2xs cursor-pointer whitespace-nowrap"
                 >
                   <FileText className="w-4 h-4 text-[#D4AF62]" />
                   <span>{t('common.requestPricing', 'Request Pricing')}</span>
                 </button>
               </Link>
               <a href={createWhatsAppGeneralUrl()} target="_blank" rel="noreferrer">
-                <button className="inline-flex items-center justify-center gap-1.5 px-3.5 xl:px-4 py-2 rounded-xl text-xs font-black text-white bg-[#00A88F] hover:bg-[#007A68] transition-all glow-emerald shadow-md cursor-pointer whitespace-nowrap">
+                <button className="inline-flex items-center justify-center gap-1.5 px-3 xl:px-3.5 py-2 rounded-xl text-xs font-black text-white bg-[#00A88F] hover:bg-[#007A68] transition-all glow-emerald shadow-md cursor-pointer whitespace-nowrap">
                   <WhatsAppIcon className="w-4 h-4" />
                   <span>{t('common.whatsappTradeDesk', 'WhatsApp Trade Desk')}</span>
                 </button>

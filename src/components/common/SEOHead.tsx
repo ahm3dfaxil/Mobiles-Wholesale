@@ -31,8 +31,9 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   faqs
 }) => {
   const location = useLocation();
-  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://www.mobileswholesale.co.uk';
-  const fullCanonicalUrl = `${origin}${canonicalPath || location.pathname}`;
+  const baseDomain = 'https://mobileswholesale.co.uk';
+  const rawPath = canonicalPath || location.pathname;
+  const fullCanonicalUrl = rawPath.startsWith('http') ? rawPath : `${baseDomain}${rawPath.startsWith('/') ? '' : '/'}${rawPath}`;
 
   useEffect(() => {
     // 1. Page Title

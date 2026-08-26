@@ -23,7 +23,7 @@ export const WarrantyAndReturns: React.FC = () => {
     <>
       <SEOHead
         title="Warranty & Returns Policy | Mobiles Wholesale UK"
-        description="Learn about Mobiles Wholesale UK trade warranty coverage, returns process, RMA faulty device procedures, covered & excluded items, and how to contact customer support."
+        description="Read our warranty and returns policy to understand product coverage, return procedures, and support for wholesale mobile phone purchases."
         canonicalPath="/warranty-and-returns"
         breadcrumbs={breadcrumbs}
       />
