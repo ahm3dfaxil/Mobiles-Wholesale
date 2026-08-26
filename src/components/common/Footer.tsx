@@ -32,7 +32,7 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-12">
           
           {/* Brand & Contact Info Column */}
-          <div className="lg:col-span-4 space-y-4">
+          <div className="lg:col-span-3 space-y-4">
             {/* Logo */}
             <Link to="/" className="inline-flex items-center">
               <img 
@@ -94,51 +94,73 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Wholesale Hub Links */}
-          <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-[#D4AF62] font-black text-xs tracking-wider uppercase">WHOLESALE HUB</h4>
-            <ul className="space-y-1.5 text-xs text-[#DCE8E4]">
-              <li><Link to="/wholesale" className="hover:text-[#00A88F] transition-colors">Wholesale Overview</Link></li>
-              <li><Link to="/wholesale/bulk-buy" className="hover:text-[#00A88F] transition-colors">Bulk Buy Mobile Phones</Link></li>
-              <li><Link to="/wholesale/buy-stock" className="hover:text-[#00A88F] transition-colors">Buy Wholesale Stock</Link></li>
-              <li><Link to="/wholesale/get-a-quote" className="hover:text-[#00A88F] transition-colors">Get a Trade Quote</Link></li>
-              <li><Link to="/wholesale/how-to-buy" className="hover:text-[#00A88F] transition-colors">How to Buy Guide</Link></li>
-              <li><Link to="/wholesale/open-account" className="hover:text-[#00A88F] transition-colors">Open Trade Account</Link></li>
-              <li><Link to="/wholesale/tablets-wholesale" className="hover:text-[#00A88F] transition-colors">Tablets Wholesale</Link></li>
-              <li><Link to="/wholesale/laptops-wholesale" className="hover:text-[#00A88F] transition-colors">Laptops Wholesale</Link></li>
-              <li><Link to="/wholesale/wearables-wholesale" className="hover:text-[#00A88F] transition-colors">Wearables Wholesale</Link></li>
-              <li><Link to="/iphones" className="hover:text-[#00A88F] transition-colors">iPhones Wholesale UK</Link></li>
-              <li><Link to="/samsungs" className="hover:text-[#00A88F] transition-colors">Samsung Wholesale UK</Link></li>
-              <li><Link to="/google-pixel" className="hover:text-[#00A88F] transition-colors">Google Pixel Wholesale UK</Link></li>
-            </ul>
-          </div>
+          {/* Categorized Footer Links (5 Columns) */}
+          <div className="lg:col-span-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 xl:grid-cols-5 gap-y-6 gap-x-4">
+            
+            {/* 1. Products */}
+            <div className="space-y-2.5">
+              <h4 className="text-[#D4AF62] font-black text-xs tracking-wider uppercase">PRODUCTS</h4>
+              <ul className="space-y-1.5 text-xs text-[#DCE8E4]">
+                <li><Link to="/iphones" className="hover:text-[#00A88F] transition-colors">iPhones Wholesale UK</Link></li>
+                <li><Link to="/samsungs" className="hover:text-[#00A88F] transition-colors">Samsung Wholesale UK</Link></li>
+                <li><Link to="/google-pixel" className="hover:text-[#00A88F] transition-colors">Google Pixel Wholesale UK</Link></li>
+                <li><Link to="/wholesale/tablets-wholesale" className="hover:text-[#00A88F] transition-colors">Tablets Wholesale</Link></li>
+                <li><Link to="/wholesale/laptops-wholesale" className="hover:text-[#00A88F] transition-colors">Laptops Wholesale</Link></li>
+                <li><Link to="/wholesale/wearables-wholesale" className="hover:text-[#00A88F] transition-colors">Wearables Wholesale</Link></li>
+                <li><Link to="/wholesale/bulk-buy" className="hover:text-[#00A88F] transition-colors">Bulk Buy Mobile Phones</Link></li>
+              </ul>
+            </div>
 
-          {/* Services & Resources Links */}
-          <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-[#D4AF62] font-black text-xs tracking-wider uppercase">SERVICES & SECTORS</h4>
-            <ul className="space-y-1.5 text-xs text-[#DCE8E4]">
-              <li><Link to="/sell-to-us" className="hover:text-[#00A88F] transition-colors">Sell To Us</Link></li>
-              <li><Link to="/buy-from-us" className="hover:text-[#00A88F] transition-colors">Buy From Us</Link></li>
-              <li><Link to="/corporate" className="hover:text-[#00A88F] transition-colors">Corporate Solutions</Link></li>
-              <li><Link to="/education" className="hover:text-[#00A88F] transition-colors">Education Sector</Link></li>
-              <li><Link to="/retail" className="hover:text-[#00A88F] transition-colors">Retail Sector</Link></li>
-              <li><Link to="/business-it-recycling" className="hover:text-[#00A88F] transition-colors">Business IT Recycling</Link></li>
-              <li><Link to="/services/diagnostics" className="hover:text-[#00A88F] transition-colors">Diagnostics</Link></li>
-              <li><Link to="/services/repair" className="hover:text-[#00A88F] transition-colors">Repair Support</Link></li>
-            </ul>
+            {/* 2. Wholesale & Trade */}
+            <div className="space-y-2.5">
+              <h4 className="text-[#D4AF62] font-black text-xs tracking-wider uppercase">WHOLESALE & TRADE</h4>
+              <ul className="space-y-1.5 text-xs text-[#DCE8E4]">
+                <li><Link to="/wholesale" className="hover:text-[#00A88F] transition-colors">Wholesale Overview</Link></li>
+                <li><Link to="/wholesale/buy-stock" className="hover:text-[#00A88F] transition-colors">Buy Wholesale Stock</Link></li>
+                <li><Link to="/stock-list" className="hover:text-[#00A88F] transition-colors">Stock List Catalog</Link></li>
+                <li><Link to="/stock-offers" className="hover:text-[#00A88F] transition-colors">Stock Offers</Link></li>
+                <li><Link to="/wholesale/open-account" className="hover:text-[#00A88F] transition-colors">Open Trade Account</Link></li>
+                <li><Link to="/wholesale/get-a-quote" className="hover:text-[#00A88F] transition-colors">Get a Trade Quote</Link></li>
+                <li><Link to="/wholesale/how-to-buy" className="hover:text-[#00A88F] transition-colors">How to Buy Guide</Link></li>
+              </ul>
+            </div>
 
-            <h4 className="text-[#D4AF62] font-black text-xs tracking-wider uppercase pt-3">RESOURCES</h4>
-            <ul className="space-y-1.5 text-xs text-[#DCE8E4]">
-              <li><Link to="/about" className="hover:text-[#00A88F] transition-colors">About Us</Link></li>
-              <li><Link to="/contact" className="hover:text-[#00A88F] transition-colors">Contact Us</Link></li>
-              <li><Link to="/grading" className="hover:text-[#00A88F] transition-colors">Grading Standards</Link></li>
-              <li><Link to="/warranty-and-returns" className="hover:text-[#00A88F] transition-colors">Warranty & Returns</Link></li>
-              <li><Link to="/stock-list" className="hover:text-[#00A88F] transition-colors">Stock List Catalog</Link></li>
-              <li><Link to="/stock-offers" className="hover:text-[#00A88F] transition-colors">Stock Offers</Link></li>
-              <li><Link to="/faqs" className="hover:text-[#00A88F] transition-colors">FAQs</Link></li>
-              <li><Link to="/blogs" className="hover:text-[#00A88F] transition-colors">Blogs & Insights</Link></li>
-              <li><Link to="/terms-conditions" className="hover:text-[#00A88F] transition-colors">Terms & Conditions</Link></li>
-            </ul>
+            {/* 3. Services */}
+            <div className="space-y-2.5">
+              <h4 className="text-[#D4AF62] font-black text-xs tracking-wider uppercase">SERVICES</h4>
+              <ul className="space-y-1.5 text-xs text-[#DCE8E4]">
+                <li><Link to="/sell-to-us" className="hover:text-[#00A88F] transition-colors">Sell To Us</Link></li>
+                <li><Link to="/business-it-recycling" className="hover:text-[#00A88F] transition-colors">Business IT Recycling</Link></li>
+                <li><Link to="/services/diagnostics" className="hover:text-[#00A88F] transition-colors">Diagnostics</Link></li>
+                <li><Link to="/services/repair" className="hover:text-[#00A88F] transition-colors">Repair Support</Link></li>
+              </ul>
+            </div>
+
+            {/* 4. Sectors */}
+            <div className="space-y-2.5">
+              <h4 className="text-[#D4AF62] font-black text-xs tracking-wider uppercase">SECTORS</h4>
+              <ul className="space-y-1.5 text-xs text-[#DCE8E4]">
+                <li><Link to="/buy-from-us" className="hover:text-[#00A88F] transition-colors">Buy From Us</Link></li>
+                <li><Link to="/corporate" className="hover:text-[#00A88F] transition-colors">Corporate Solutions</Link></li>
+                <li><Link to="/education" className="hover:text-[#00A88F] transition-colors">Education Sector</Link></li>
+                <li><Link to="/retail" className="hover:text-[#00A88F] transition-colors">Retail Sector</Link></li>
+              </ul>
+            </div>
+
+            {/* 5. Company & Support */}
+            <div className="space-y-2.5">
+              <h4 className="text-[#D4AF62] font-black text-xs tracking-wider uppercase">COMPANY & SUPPORT</h4>
+              <ul className="space-y-1.5 text-xs text-[#DCE8E4]">
+                <li><Link to="/about" className="hover:text-[#00A88F] transition-colors">About Us</Link></li>
+                <li><Link to="/contact" className="hover:text-[#00A88F] transition-colors">Contact Us</Link></li>
+                <li><Link to="/grading" className="hover:text-[#00A88F] transition-colors">Grading Standards</Link></li>
+                <li><Link to="/warranty-and-returns" className="hover:text-[#00A88F] transition-colors">Warranty & Returns</Link></li>
+                <li><Link to="/faqs" className="hover:text-[#00A88F] transition-colors">FAQs</Link></li>
+                <li><Link to="/blogs" className="hover:text-[#00A88F] transition-colors">Blogs & Insights</Link></li>
+                <li><Link to="/terms-conditions" className="hover:text-[#00A88F] transition-colors">Terms & Conditions</Link></li>
+              </ul>
+            </div>
+
           </div>
 
           {/* Newsletter Signup Column */}
