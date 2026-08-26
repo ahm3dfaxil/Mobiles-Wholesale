@@ -190,7 +190,7 @@ export const Business: React.FC = () => {
             Tailored B2B Trade Solutions
           </span>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#071715] leading-tight">
-            {t('businessPage.title', 'Trade Account Application')}
+            {t('businessPage.title', 'Trade Application - Mobile Wholesale')}
           </h1>
           <p className="text-[#596662] text-base sm:text-lg leading-relaxed">
             {t('businessPage.subtitle', 'Unlock wholesale trade pricing, pro-forma invoicing, live CSV stock feeds, and dedicated account support.')}

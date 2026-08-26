@@ -149,7 +149,7 @@ export const TRANSLATIONS: Record<string, Record<LanguageCode, string>> = {
     es: "Primer Proveedor B2B de Electrónica en el Reino Unido"
   },
   hero_title_phones: {
-    en: "Mobiles Wholesale",
+    en: "Mobile Wholesale UK",
     ar: "الجملة للهواتف المحمولة والإلكترونيات",
     'zh-CN': "批发移动手机与电子产品",
     nl: "Groothandel Mobiele Telefoons & Elektronica",

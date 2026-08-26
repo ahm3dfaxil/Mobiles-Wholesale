@@ -84,134 +84,80 @@ export const About: React.FC = () => {
           </div>
         </div>
       </div>
+      {/* Our Story Section with Mobile Phone Grid Background */}
+      <div 
+        className="relative rounded-3xl p-6 sm:p-12 overflow-hidden shadow-lg border border-[#D8E2DE] bg-cover bg-center"
+        style={{ backgroundImage: `url('/our_story_bg_grid.jpg')` }}
+      >
+        {/* Subtle dark overlay for contrast */}
+        <div className="absolute inset-0 bg-black/50" />
 
-      {/* Core Wholesale Expertise Statistics */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-white rounded-2xl p-6 border border-[#D8E2DE] text-center b2b-card-shadow space-y-1 hover:border-[#D4AF62] transition-all">
-          <div className="text-3xl sm:text-4xl font-black text-[#071715]">15,000+</div>
-          <div className="text-xs text-[#596662] font-bold uppercase tracking-wider">Units Processed Monthly</div>
-        </div>
+        {/* Foreground Content Card */}
+        <div className="relative z-10 max-w-4xl mx-auto bg-white rounded-2xl p-6 sm:p-10 border border-white/60 shadow-xl space-y-6">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#00A88F] tracking-tight">
+              Our Story
+            </h2>
+            <p className="text-[#596662] text-sm sm:text-base leading-relaxed font-medium">
+              Mobiles Wholesale is a wholesaler and distributor of brand new, 14-day return, used, and non-working mobile phones. With one of the largest networks of clients, ranging from retail shops to blue chip organizations worldwide, we proudly hold the title of the UK’s leading mobile phone wholesaler and distributor. Mobiles Wholesale specializes in the following:
+            </p>
+          </div>
 
-        <div className="bg-white rounded-2xl p-6 border border-[#D8E2DE] text-center b2b-card-shadow space-y-1 hover:border-[#D4AF62] transition-all">
-          <div className="text-3xl sm:text-4xl font-black text-[#071715]">500+</div>
-          <div className="text-xs text-[#596662] font-bold uppercase tracking-wider">Active UK Trade Clients</div>
-        </div>
-
-        <div className="bg-white rounded-2xl p-6 border border-[#D8E2DE] text-center b2b-card-shadow space-y-1 hover:border-[#D4AF62] transition-all">
-          <div className="text-3xl sm:text-4xl font-black text-[#071715]">60-Point</div>
-          <div className="text-xs text-[#596662] font-bold uppercase tracking-wider">PhoneCheck Diagnostic Test</div>
-        </div>
-
-        <div className="bg-white rounded-2xl p-6 border border-[#D8E2DE] text-center b2b-card-shadow space-y-1 hover:border-[#D4AF62] transition-all">
-          <div className="text-3xl sm:text-4xl font-black text-[#00A88F]">24 Hours</div>
-          <div className="text-xs text-[#596662] font-bold uppercase tracking-wider">UK Next-Day Courier Delivery</div>
-        </div>
-      </div>
-
-      {/* Product Categories Breakdown */}
-      <div className="bg-white rounded-2xl border border-[#D8E2DE] p-6 sm:p-10 b2b-card-shadow space-y-6">
-        <div className="border-b border-[#D8E2DE] pb-4">
-          <span className="text-xs font-bold text-[#071715] uppercase tracking-wider">Product Inventory Range</span>
-          <h2 className="text-2xl font-black text-[#071715] mt-1">Product Categories We Supply</h2>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {categoriesList.map((cat, idx) => (
-            <div key={idx} className="bg-[#FAF8F2] p-4 rounded-xl border border-[#D8E2DE] flex items-start gap-3">
-              <div className="p-2.5 bg-white rounded-lg border border-[#D8E2DE] shadow-xs shrink-0">{cat.icon}</div>
-              <div>
-                <h4 className="font-extrabold text-[#101A18] text-sm">{cat.name}</h4>
-                <p className="text-xs text-[#596662] mt-0.5">{cat.desc}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 max-w-3xl mx-auto pt-2 bg-[#FAF8F2] p-6 rounded-2xl border border-[#D8E2DE]">
+            {[
+              'Mobile Devices',
+              'Tablets & iPads',
+              '14-day return mobiles',
+              'Electronics Pallets',
+              'Used mobiles (A, B, C Grade)',
+              'Network Stock',
+              'BER mobiles (Beyond Economical Repair)',
+              'International Export of Electronics',
+              'Accessories',
+              'Containers',
+              'Smartwatches'
+            ].map((item, idx) => (
+              <div key={idx} className="flex items-center gap-2.5 text-sm sm:text-base font-bold text-[#101A18]">
+                <CheckCircle2 className="w-4 h-4 text-[#00A88F] shrink-0" />
+                <span>{item}</span>
               </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Quality Process & Inspection Workflow */}
-      <div className="bg-white rounded-2xl border border-[#D8E2DE] p-6 sm:p-10 b2b-card-shadow space-y-8">
-        <div>
-          <span className="text-xs font-bold text-[#071715] uppercase tracking-wider">Quality Process</span>
-          <h2 className="text-2xl sm:text-3xl font-black text-[#071715] mt-1">Our 5-Stage Quality & Testing Process</h2>
-          <p className="text-[#596662] text-sm mt-1">
-            Every lot entering our London warehouse undergoes rigorous multi-step inspection before joining our live trade catalog.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          <div className="bg-[#FAF8F2] p-4.5 rounded-xl border border-[#D8E2DE] space-y-2 text-xs">
-            <div className="w-8 h-8 rounded-full bg-[#071715] text-white font-bold flex items-center justify-center text-sm shadow-xs">1</div>
-            <h4 className="font-extrabold text-[#101A18] text-sm">IMEI Verification</h4>
-            <p className="text-[#596662] text-[11px] leading-relaxed">CheckMEND database verification ensuring clean IMEI status with zero blacklist or insurance claims.</p>
-          </div>
-
-          <div className="bg-[#FAF8F2] p-4.5 rounded-xl border border-[#D8E2DE] space-y-2 text-xs">
-            <div className="w-8 h-8 rounded-full bg-[#071715] text-white font-bold flex items-center justify-center text-sm shadow-xs">2</div>
-            <h4 className="font-extrabold text-[#101A18] text-sm">PhoneCheck Software</h4>
-            <p className="text-[#596662] text-[11px] leading-relaxed">Automated 60-point hardware testing across screens, cameras, sensors, speakers, and ports.</p>
-          </div>
-
-          <div className="bg-[#FAF8F2] p-4.5 rounded-xl border border-[#D8E2DE] space-y-2 text-xs">
-            <div className="w-8 h-8 rounded-full bg-[#071715] text-white font-bold flex items-center justify-center text-sm shadow-xs">3</div>
-            <h4 className="font-extrabold text-[#101A18] text-sm">Battery Stress Test</h4>
-            <p className="text-[#596662] text-[11px] leading-relaxed">Full charge/discharge stress test guaranteeing minimum 85%+ battery health standard on graded units.</p>
-          </div>
-
-          <div className="bg-[#FAF8F2] p-4.5 rounded-xl border border-[#D8E2DE] space-y-2 text-xs">
-            <div className="w-8 h-8 rounded-full bg-[#071715] text-white font-bold flex items-center justify-center text-sm shadow-xs">4</div>
-            <h4 className="font-extrabold text-[#101A18] text-sm">Cosmetic Grading</h4>
-            <p className="text-[#596662] text-[11px] leading-relaxed">Studio lighting visual audit assigning exact Brand New, Grade A, Grade B, or Grade C classification.</p>
-          </div>
-
-          <div className="bg-[#FAF8F2] p-4.5 rounded-xl border border-[#D8E2DE] space-y-2 text-xs">
-            <div className="w-8 h-8 rounded-full bg-[#007A68] text-white font-bold flex items-center justify-center text-sm shadow-xs">5</div>
-            <h4 className="font-extrabold text-[#101A18] text-sm">Secure Packaging</h4>
-            <p className="text-[#596662] text-[11px] leading-relaxed">Individual anti-static bubble sleeves with barcode lot labels ready for rapid UK next-day dispatch.</p>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* UK-Based Service & Legal Credentials */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="bg-white rounded-2xl border border-[#D8E2DE] p-8 b2b-card-shadow space-y-4 hover:border-[#D4AF62] transition-all">
-          <div className="w-12 h-12 bg-[#E5F3EF] text-[#007A68] rounded-xl flex items-center justify-center border border-[#D8E2DE]">
-            <Building2 className="w-6 h-6" />
-          </div>
-          <h3 className="text-xl font-bold text-[#071715]">UK Registered & HMRC VAT Compliant</h3>
-          <p className="text-[#596662] text-sm leading-relaxed">
-            We operate in full compliance with UK HM Revenue & Customs regulations. We issue both Margin Scheme VAT invoices (ideal for pre-owned phone shops) and Standard 20% VAT invoices for tax-registered entities and export.
-          </p>
-          <div className="bg-[#FAF8F2] p-4 rounded-xl text-xs text-[#101A18] space-y-1 font-mono border border-[#D8E2DE]">
-            <div>Company Legal Notice: {UK_COMPANY_INFO.tradingNotice}</div>
-            <div>UK Reg Status: {UK_COMPANY_INFO.registrationNumber}</div>
-            <div>VAT Registration: {UK_COMPANY_INFO.vatNumber}</div>
-          </div>
+      {/* Our Vision Section */}
+      <div className="bg-white rounded-3xl p-8 sm:p-12 border border-[#D8E2DE] shadow-md grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        <div className="md:col-span-5 flex justify-center">
+          <img 
+            src="/our_vision_iphone_mockup.jpg" 
+            alt="Mobiles Wholesale Industry Vision Devices" 
+            className="w-full max-w-sm rounded-2xl shadow-lg border border-[#D8E2DE] object-cover"
+          />
         </div>
-
-        <div className="bg-white rounded-2xl border border-[#D8E2DE] p-8 b2b-card-shadow space-y-4 hover:border-[#D4AF62] transition-all">
-          <div className="w-12 h-12 bg-[#E5F3EF] text-[#007A68] rounded-xl flex items-center justify-center border border-[#D8E2DE]">
-            <Truck className="w-6 h-6" />
+        <div className="md:col-span-7 space-y-5">
+          <div className="space-y-1">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#00A88F] tracking-tight">
+              Our Vision
+            </h2>
+            <h3 className="text-xl font-bold text-[#7E22CE]">
+              Insight the Industry
+            </h3>
           </div>
-          <h3 className="text-xl font-bold text-[#071715]">UK Warehouse & Same-Day Dispatch</h3>
-          <p className="text-[#596662] text-sm leading-relaxed">
-            Orders confirmed before 2:00 PM GMT are dispatched same-day via DPD Next Day or Royal Mail Special Delivery Guaranteed by 1:00 PM. Every order is fully insured up to its full trade invoice value.
-          </p>
-          <div className="flex flex-wrap items-center gap-3 pt-2">
-            <Link to="/stock">
-              <Button variant="primary" size="md" icon={<FileSpreadsheet className="w-4 h-4" />}>
-                Browse Live Stock List
-              </Button>
-            </Link>
-            <a href={createWhatsAppGeneralUrl()} target="_blank" rel="noopener noreferrer">
-              <Button variant="whatsapp" size="md" icon={<WhatsAppIcon className="w-4 h-4" />}>
-                WhatsApp Desk
-              </Button>
-            </a>
-            <Link to="/contact">
-              <Button variant="dark" size="md" icon={<PhoneCall className="w-4 h-4" />}>
-                Contact Sales Desk
-              </Button>
-            </Link>
+
+          <div className="space-y-4 text-[#596662] text-sm sm:text-base leading-relaxed font-medium">
+            <p>
+              Our clientele spans across various sectors including corporate entities, exporters, distributors, businesses, retail outlets, independent mobile dealers, and large mobile distributors, both nationally and internationally.
+            </p>
+            <p>
+              Given the dynamic and price-sensitive nature of the telecommunications industry in the UK, delivering products at the right price point is paramount. With our wholesale process streamlined from start to finish, you can count on us to fulfill orders promptly and efficiently.
+            </p>
+            <p>
+              Our sales platform is tailored to meet the unique needs and specifications of individual clients.
+            </p>
+            <p>
+              Whether you require a handful of handsets or a bulk order of thousands, we ensure that our distribution channels are swift and effective.
+            </p>
           </div>
         </div>
       </div>

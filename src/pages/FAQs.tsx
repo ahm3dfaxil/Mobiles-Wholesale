@@ -140,7 +140,7 @@ export const FAQs: React.FC = () => {
               <HelpCircle className="w-3.5 h-3.5 text-[#00A88F]" /> Frequently Asked Questions
             </span>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#071715] leading-tight">
-              FAQ QUESTIONS
+              {t('faqsPage.title', 'Faq - Mobile Wholesale')}
             </h1>
             <p className="text-[#596662] text-base sm:text-lg leading-relaxed">
               Find instant answers to questions regarding wholesale purchasing, trade accounts, grading standards, warranty claims, and shipping policies.

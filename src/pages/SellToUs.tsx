@@ -166,7 +166,7 @@ export const SellToUs: React.FC = () => {
             <Sparkles className="w-3.5 h-3.5 text-[#00A88F]" /> Direct Stock Purchasing & Liquidation
           </span>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#071715] leading-tight">
-            {t('sellToUs.title', 'Sell Your Surplus Stock & Devices To Us')}
+            {t('sellToUs.title', 'Contact - Mobile Wholesale')}
           </h1>
           <p className="text-[#596662] text-base sm:text-lg leading-relaxed">
             {t('sellToUs.subtitle', 'We purchase bulk smartphones, tablets, MacBooks, and tech stock directly from liquidators, corporate fleets, and trade suppliers.')}

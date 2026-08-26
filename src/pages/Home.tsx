@@ -279,13 +279,8 @@ export const Home: React.FC = () => {
 
         {/* Hero Content Container */}
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center space-y-6 sm:space-y-7">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#E5F3EF] border border-[#D4AF62] text-[#071715] text-xs font-black eyebrow shadow-2xs">
-            <i className="w-2 h-2 rounded-full bg-[#00A88F] animate-pulse" />
-            {t('hero.badge', 'Premier UK B2B Electronics Trade Supplier')}
-          </div>
-
           <h1 className="text-4xl sm:text-5xl lg:text-[4.25rem] font-black tracking-[-.055em] text-[#071715] leading-[1.06]">
-            {t('hero.titlePhones', 'Mobiles Wholesale')}
+            {t('hero.titlePhones', 'Mobile Wholesale UK')}
           </h1>
 
           <p className="text-[#596662] text-base sm:text-lg leading-relaxed max-w-3xl mx-auto font-medium">

@@ -103,7 +103,7 @@ export const en = {
   },
   hero: {
     badge: "Premier UK B2B Electronics Trade Supplier",
-    titlePhones: "Mobiles Wholesale",
+    titlePhones: "Mobile Wholesale UK",
     description: "Mobiles Wholesale is a premier supplier of brand new and graded mobile phones and other electronics in the UK. We specialize in B2B, B2C, D2C, wholesale, retail, corporate, public, and education sectors. Whether you’re looking for the latest models or reliable graded devices in bulk, we have you covered.",
     browseLiveStock: "Browse Live Stock",
     orderOnWhatsapp: "Order on WhatsApp",
@@ -384,7 +384,7 @@ export const en = {
     val3Desc: "Studio lighting inspection guaranteeing accurate Grade A, B, and C standards with 0% surprises."
   },
   sellToUs: {
-    title: "Sell Your Surplus Stock & Devices To Us",
+    title: "Contact - Mobile Wholesale",
     subtitle: "We purchase bulk smartphones, tablets, MacBooks, and tech stock directly from liquidators, corporate fleets, and trade suppliers.",
     valuationBtn: "Get Instant Trade Valuation",
     step1Title: "1. Submit Stock Manifest",
@@ -395,7 +395,7 @@ export const en = {
     step3Desc: "Insured courier pickup and instant bank transfer payment upon physical inspection."
   },
   businessPage: {
-    title: "Trade Account Application",
+    title: "Trade Application - Mobile Wholesale",
     subtitle: "Unlock wholesale trade pricing, pro-forma invoicing, live CSV stock feeds, and dedicated account support.",
     benefitsTitle: "Why Register For A B2B Trade Account?",
     formTitle: "Official Trade Account Application"

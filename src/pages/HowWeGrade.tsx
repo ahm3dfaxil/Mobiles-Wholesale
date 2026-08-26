@@ -103,7 +103,7 @@ export const HowWeGrade: React.FC = () => {
               <Award className="w-3.5 h-3.5 text-[#00A88F]" /> B2B Quality Grading Specification
             </span>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#071715] leading-tight">
-              Mobile Phone & Electronics Visual Grading Guide
+              {t('grading.fullGuideTitle', 'Grading - Mobile Wholesale')}
             </h1>
             <p className="text-[#596662] text-base sm:text-lg leading-relaxed">
               Every device is tested for 100% functional operation before entering our UK trade stock catalog.

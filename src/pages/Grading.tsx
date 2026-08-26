@@ -113,7 +113,7 @@ export const Grading: React.FC = () => {
             <Award className="w-3.5 h-3.5 text-[#00A88F]" /> {t('grading.badge', 'B2B Quality Standard Specification')}
           </span>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#071715] leading-tight">
-            {t('grading.fullGuideTitle', 'Mobile Phone & Electronics Visual Grading Guide')}
+            {t('grading.fullGuideTitle', 'Grading - Mobile Wholesale')}
           </h1>
           <p className="text-[#596662] text-base sm:text-lg leading-relaxed">
             {t('grading.fullGuideSubtitle', 'Every device tested with 60-point PhoneCheck diagnostics. Zero functional defects guaranteed.')}

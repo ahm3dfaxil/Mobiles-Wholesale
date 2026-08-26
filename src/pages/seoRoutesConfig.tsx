@@ -7,11 +7,11 @@ import { BrandPage, BrandPageProps } from '../components/templates/BrandPage';
 // --- SERVICE PAGES CONFIG ---
 
 export const buyBackServiceConfig: ServicePageProps = {
-  title: 'Sell To Us — Device Purchasing & Trade-In',
+  title: 'Contact - Mobile Wholesale',
   subtitle: 'Sell surplus mobile phone inventory, customer trade-ins, or corporate mobile fleets to Mobiles Wholesale UK.',
   badge: 'Sell To Us & Trade Valuation',
-  metaTitle: 'Sell To Us | Device Purchasing & Trade-In | Mobiles Wholesale UK',
-  metaDescription: 'Sell surplus mobile phones, tablets, and corporate device fleets to Mobiles Wholesale UK. Get competitive trade valuations and fast payments.',
+  metaTitle: 'Contact - Mobile Wholesale',
+  metaDescription: 'Sell your used or surplus mobile devices to us and get competitive offers with a smooth and secure selling process.',
   canonicalPath: '/sell-to-us',
   breadcrumbs: [
     { name: 'Home', url: '/' },
