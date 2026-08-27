@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ProductProvider } from './context/ProductContext';
 import { LanguageProvider } from './context/LanguageContext';
@@ -83,12 +83,13 @@ export const App: React.FC = () => {
                   <Route path="/about" element={<About />} />
                   <Route path="/grading" element={<Grading />} />
                   <Route path="/sell-to-us" element={<SellToUs />} />
-                  <Route path="/business" element={<Business />} />
+                  <Route path="/trade-application" element={<Business />} />
+                  <Route path="/business" element={<Navigate to="/trade-application" replace />} />
                   <Route path="/contact" element={<Contact />} />
 
                   {/* 1. Buy From Us, Grading & Warranty */}
                   <Route path="/buy-from-us" element={<BuyFromUs />} />
-                  <Route path="/how-we-grade" element={<HowWeGrade />} />
+                  <Route path="/how-we-grade" element={<Navigate to="/grading" replace />} />
                   <Route path="/warranty-and-returns" element={<WarrantyAndReturns />} />
 
                   {/* 2. Services Section */}

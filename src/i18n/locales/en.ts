@@ -199,8 +199,8 @@ export const en = {
   grading: {
     badge: "Transparent Classification",
     title: "Cosmetic Grading Preview",
-    fullGuideTitle: "Cosmetic Grading Guide & Quality Standards",
-    fullGuideSubtitle: "Every device tested with 60-point PhoneCheck diagnostics. Zero functional defects guaranteed.",
+    fullGuideTitle: "Grading Structure",
+    fullGuideSubtitle: "Mobiles Wholesale has established itself as a premier supplier of mobile phones both domestically and internationally. Through robust partnerships worldwide, we've experienced consistent growth year after year, expanding our network continuously. We extend a warm invitation to all traders and businesses to connect with us.\n\nUnlike other mobile distributors, our open-door policy allows us to engage with customers of all sizes.\n\nWhether you're looking to purchase a single handset or a bulk order of thousands, we can accommodate any requirements.",
     viewFullGuideBtn: "View Full Grading Guide",
     gradeNew: "Brand New Factory Sealed",
     gradeNewDesc: "Official factory sealed or pristine unactivated devices with original manufacturer boxes and full accessories.",

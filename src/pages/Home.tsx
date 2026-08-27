@@ -573,7 +573,7 @@ export const Home: React.FC = () => {
                 <span className="text-xs uppercase tracking-[.16em] font-black text-[#071715] bg-[#E5F3EF] px-3 py-1 rounded-full border border-[#D4AF62]">{t('businessSolutions.badge', 'Tailored Trade Programs')}</span>
                 <h2 className="text-2xl sm:text-3xl font-black text-[#071715] mt-2">{t('businessSolutions.title', 'Built for Businesses')}</h2>
               </div>
-              <Link to="/business">
+              <Link to="/trade-application">
                 <Button variant="primary" size="sm" icon={<Building2 className="w-4 h-4" />}>
                   {t('businessSolutions.submitBtn', 'Submit Trade Application')}
                 </Button>

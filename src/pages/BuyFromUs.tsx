@@ -20,7 +20,7 @@ export const BuyFromUs: React.FC = () => {
   const sections = [
     {
       title: t('buyFromUs.gradingTitle', 'How We Grade'),
-      path: '/how-we-grade',
+      path: '/grading',
       description: t('buyFromUs.gradingDesc', 'Learn about our testing process, functional inspection, cosmetic grading (Grade A, B, C, Brand New Sealed), and quality control standards.'),
       icon: <Award className="w-6 h-6 text-[#00A88F]" />,
       ctaText: t('buyFromUs.viewGradingGuide', 'View Full Grading Guide')
@@ -51,9 +51,9 @@ export const BuyFromUs: React.FC = () => {
   return (
     <>
       <SEOHead
-        title={t('buyFromUs.metaTitle', 'Buy From Us | UK B2B Wholesale Mobile Phones & Electronics')}
-        description={t('buyFromUs.metaDesc', 'Overview of buying wholesale mobile phones and electronics from Mobiles Wholesale. Learn about grading, warranties, bulk stock purchasing, and trade accounts.')}
-        canonicalPath="/buy-from-us"
+        title="Buy From Us - Mobile Wholesale"
+        description="Discover how to buy wholesale mobile phones from us with easy ordering, competitive pricing, and trusted supply for retail businesses."
+        canonicalPath="/buy-from-us/"
         breadcrumbs={breadcrumbs}
       />
 

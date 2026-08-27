@@ -254,7 +254,7 @@ export const buyStockConfig: WholesaleLandingPageProps = {
   showTradeApplicationCTA: true,
   relatedWholesaleLinks: [
     { title: 'Stock List Catalog', path: '/stock-list', description: 'Browse live UK catalog.' },
-    { title: 'How We Grade', path: '/how-we-grade', description: 'Read grading guide.' },
+    { title: 'How We Grade', path: '/grading', description: 'Read grading guide.' },
     { title: 'Warranty Policy', path: '/warranty-and-returns', description: 'Review warranty coverage.' }
   ]
 };
@@ -335,7 +335,7 @@ export const openAccountConfig: WholesaleLandingPageProps = {
   ],
   showTradeApplicationCTA: false,
   relatedWholesaleLinks: [
-    { title: 'Submit Application', path: '/business', description: 'Complete trade application.' },
+    { title: 'Submit Application', path: '/trade-application', description: 'Complete trade application.' },
     { title: 'How to Buy', path: '/wholesale/how-to-buy', description: 'Purchasing steps.' }
   ]
 };

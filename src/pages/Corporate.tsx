@@ -134,8 +134,8 @@ export const Corporate: React.FC = () => {
   return (
     <>
       <SEOHead
-        title="Corporate Sector - Mobile Fleet & Tablet Supply"
-        description="Equip your corporate fleet with cost-effective, PhoneCheck certified smartphones, iPads, and MacBooks for enterprise teams."
+        title="Corporate - Mobile Wholesale"
+        description="Discover corporate mobile solutions designed for businesses needing bulk smartphones and reliable device supply."
         canonicalPath="/corporate/"
         breadcrumbs={breadcrumbs}
       />

@@ -53,7 +53,7 @@ export const FAQs: React.FC = () => {
         },
         {
           question: 'How do I open a wholesale trade account?',
-          answer: 'Visit our "/wholesale/open-account/" or "/business" page, fill in your business name, contact details, and stock requirements. Our account team reviews and approves applications within 24 business hours.'
+          answer: 'Visit our "/wholesale/open-account/" or "/trade-application" page, fill in your business name, contact details, and stock requirements. Our account team reviews and approves applications within 24 business hours.'
         },
         {
           question: 'Do you offer Margin Scheme VAT invoices?',

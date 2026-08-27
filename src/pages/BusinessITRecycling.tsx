@@ -82,8 +82,8 @@ export const BusinessITRecycling: React.FC = () => {
   return (
     <>
       <SEOHead
-        title="Business & IT Recycling - Mobile Wholesale"
-        description="Safe, secure, and sustainable mobile device recycling and IT recycling solutions for UK businesses, public sector, charities, and education."
+        title="Business IT Recycling - Mobile Wholesale"
+        description="Discover our business IT recycling services designed to help companies safely recycle mobile devices and electronics responsibly."
         canonicalPath="/business-it-recycling/"
         breadcrumbs={breadcrumbs}
       />

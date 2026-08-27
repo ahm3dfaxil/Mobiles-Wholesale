@@ -136,8 +136,8 @@ export const Education: React.FC = () => {
   return (
     <>
       <SEOHead
-        title="Education Sector - Mobile & Tablet Wholesale"
-        description="Providing UK nurseries, schools, academies, and universities with customized mobile & tablet solutions, cases, and accessories."
+        title="Education - Mobile Wholesale"
+        description="Learn how educational institutions can benefit from wholesale mobile devices and technology solutions for students and staff."
         canonicalPath="/education/"
         breadcrumbs={breadcrumbs}
       />

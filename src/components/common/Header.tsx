@@ -98,7 +98,7 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
   ];
 
   const resourcesLinks = [
-    { label: t('navigation.howWeGrade', 'How We Grade'), path: '/how-we-grade' },
+    { label: t('navigation.howWeGrade', 'How We Grade'), path: '/grading' },
     { label: t('navigation.warrantyAndReturns', 'Warranty & Returns'), path: '/warranty-and-returns' },
     { label: t('navigation.faqs', 'FAQs'), path: '/faqs' },
     { label: t('navigation.aboutUs', 'About Us'), path: '/about' }
@@ -356,7 +356,7 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
                 <button
                   type="button"
                   className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs font-bold flex items-center gap-1 transition-all whitespace-nowrap ${
-                    location.pathname === '/how-we-grade' || location.pathname === '/warranty-and-returns' || location.pathname === '/faqs' || location.pathname === '/about'
+                    location.pathname === '/grading' || location.pathname === '/how-we-grade' || location.pathname === '/warranty-and-returns' || location.pathname === '/faqs' || location.pathname === '/about'
                       ? 'text-[#D4AF62] bg-[#D4AF62]/10 border-b-2 border-[#D4AF62] font-black'
                       : 'text-[#DCE8E4] hover:text-white hover:bg-white/5'
                   }`}
@@ -427,9 +427,9 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
 
               {/* 6. Trade Application */}
               <Link
-                to="/business"
+                to="/trade-application"
                 className={`px-2 xl:px-2.5 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
-                  location.pathname === '/business'
+                  location.pathname === '/trade-application' || location.pathname === '/business'
                     ? 'text-[#D4AF62] bg-[#D4AF62]/10 border-b-2 border-[#D4AF62] font-black'
                     : 'text-[#DCE8E4] hover:text-white hover:bg-white/5'
                 }`}
@@ -634,10 +634,10 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
 
             {/* Trade Application */}
             <Link
-              to="/business"
+              to="/trade-application"
               onClick={() => setOpen(false)}
               className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all border-t border-[#063F35] mt-1 ${
-                location.pathname === '/business' ? 'text-[#D4AF62] bg-[#D4AF62]/10' : 'text-[#DCE8E4] hover:bg-white/5'
+                location.pathname === '/trade-application' || location.pathname === '/business' ? 'text-[#D4AF62] bg-[#D4AF62]/10' : 'text-[#DCE8E4] hover:bg-white/5'
               }`}
             >
               {t('navigation.tradeApplication', 'Trade Application')}

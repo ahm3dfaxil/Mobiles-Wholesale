@@ -175,8 +175,8 @@ export const RetailSector: React.FC = () => {
   return (
     <>
       <SEOHead
-        title="Public Sector - Mobile & Accessories Supply"
-        description="Providing bespoke mobile devices, protective cases, accessories, and tailored supply packages for UK public sector organizations."
+        title="RETAIL - Mobile Wholesale"
+        description="Discover wholesale mobile solutions designed for retailers looking to source smartphones in bulk with reliable supply and competitive pricing."
         canonicalPath="/retail/"
         breadcrumbs={breadcrumbs}
       />

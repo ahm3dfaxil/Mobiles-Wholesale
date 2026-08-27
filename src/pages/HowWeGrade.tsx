@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Award, ShieldCheck, FileSpreadsheet, Smartphone, Eye, CheckCircle2, Layers } from 'lucide-react';
+import { Award, ShieldCheck, FileSpreadsheet, Smartphone, Eye, CheckCircle2, Layers, Camera } from 'lucide-react';
 import { SEOHead } from '../components/common/SEOHead';
 import { Button } from '../components/common/Button';
 import { WhatsAppIcon } from '../components/common/WhatsAppIcon';
@@ -16,7 +16,7 @@ export const HowWeGrade: React.FC = () => {
   const breadcrumbs = [
     { name: t('navigation.home', 'Home'), url: '/' },
     { name: t('navigation.buyFromUs', 'Buy From Us'), url: '/buy-from-us' },
-    { name: t('navigation.howWeGrade', 'How We Grade'), url: '/how-we-grade' }
+    { name: t('navigation.howWeGrade', 'How We Grade'), url: '/grading' }
   ];
 
   const gradingTiers = [
@@ -33,7 +33,18 @@ export const HowWeGrade: React.FC = () => {
       housingCondition: 'Untouched pristine casing with intact security seals',
       accessories: 'Original retail box with all inbox accessories',
       idealFor: 'Premium retailers, telco trade-in partners, export sealed stock buyers',
-      description: 'Factory sealed UK stock direct from official supply chains. Never opened, activated, or refurbished. Includes 1 Year official OEM manufacturer warranty and 100% factory battery.'
+      description: 'Factory sealed UK stock direct from official supply chains. Never opened, activated, or refurbished. Includes 1 Year official OEM manufacturer warranty and 100% factory battery.',
+      keyPoints: [
+        'A pristine, factory-sealed handset in its original packaging',
+        'Never opened or used',
+        'Network unlocked',
+        'PIN, Touch ID, and iCloud (FMI) ready for initial setup',
+        'Fully functional with all original accessories included',
+        'Factory settings intact',
+        'Guaranteed to pass all electronic tests for functionality',
+        'Eligible for full manufacturer warranty'
+      ],
+      images: ['/Brand New Phone.webp']
     },
     {
       id: 'grade-a',
@@ -48,7 +59,17 @@ export const HowWeGrade: React.FC = () => {
       housingCondition: 'Imperceptible cosmetic wear around charging port or bezels. Like-new feel',
       accessories: 'Supplied in clean neutral trade packaging with protective sleeve',
       idealFor: 'High-street retail stores, top-rated online sellers, corporate replacements',
-      description: 'Our most popular B2B wholesale tier. Pristine condition with maximum retail resale appeal and minimum 80% battery health.'
+      description: 'Our most popular B2B wholesale tier. Pristine condition with maximum retail resale appeal and minimum 80% battery health.',
+      keyPoints: [
+        'Show no signs of prior use',
+        'No cracks or damage',
+        'Unlocked for any network',
+        'PIN, Touch ID, and iCloud (Find My iPhone) have been removed',
+        'Completely operational',
+        'All data has been erased',
+        'Successfully passed electronic testing to confirm that internal components are fully operational'
+      ],
+      images: ['/Grade-A.jpg']
     },
     {
       id: 'grade-b',
@@ -63,7 +84,17 @@ export const HowWeGrade: React.FC = () => {
       housingCondition: 'Minor cosmetic scratches, subtle edge scuffs or minor corner nicks',
       accessories: 'Supplied in neutral trade packaging with barcode tracking labels',
       idealFor: 'Margin-focused retailers, trade-in shops, budget-conscious consumers',
-      description: 'High margin opportunity for phone shops. Minimum 80% battery health guaranteed.'
+      description: 'High margin opportunity for phone shops. Minimum 80% battery health guaranteed.',
+      keyPoints: [
+        'A Good device with only minor signs of use',
+        'No cracks, no damage, and no significant scratches',
+        'Unlocked for all networks',
+        'PIN, Touch ID, and iCloud (Find My iPhone) have been disabled',
+        'In perfect working order',
+        'All data has been completely erased',
+        'Successfully passed electronic testing to verify that internal components are fully operational'
+      ],
+      images: ['/Grade-B.jpg']
     },
     {
       id: 'grade-c',
@@ -78,7 +109,17 @@ export const HowWeGrade: React.FC = () => {
       housingCondition: 'Dents, deep scratches, or color wear on aluminum/glass housing',
       accessories: 'Supplied in bulk anti-static bubble sleeves',
       idealFor: 'Repair centers, refurbishment facilities, ultra-budget phone sellers',
-      description: '100% mechanically tested device inventory with minimum 80% battery health. Purely cosmetic wear at clearance wholesale pricing.'
+      description: '100% mechanically tested device inventory with minimum 80% battery health. Purely cosmetic wear at clearance wholesale pricing.',
+      keyPoints: [
+        'A high-quality device showing moderate to significant signs of wear',
+        'No cracks, no damage, and no deep scratches',
+        'Unlocked for all networks',
+        'PIN, Touch ID, and iCloud (Find My iPhone) have been deactivated',
+        'All data has been erased',
+        'Essential functions have been tested and are operational',
+        'Successfully passed electronic testing to confirm that internal components are fully functional'
+      ],
+      images: ['/Grade-C.jpeg', '/Grade-C-2.png']
     }
   ];
 
@@ -98,16 +139,21 @@ export const HowWeGrade: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10 bg-[#FAF8F2]">
         {/* Header Banner */}
         <div className="bg-white text-[#101A18] rounded-2xl p-8 sm:p-12 border border-[#D8E2DE] shadow-md relative overflow-hidden">
-          <div className="max-w-3xl space-y-4">
-            <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#071715] uppercase tracking-widest bg-[#E5F3EF] px-3.5 py-1.5 rounded-full border border-[#D4AF62]">
-              <Award className="w-3.5 h-3.5 text-[#00A88F]" /> B2B Quality Grading Specification
-            </span>
+          <div className="max-w-4xl space-y-4">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#071715] leading-tight">
-              {t('grading.fullGuideTitle', 'Grading - Mobile Wholesale')}
+              {t('grading.fullGuideTitle', 'Grading Structure')}
             </h1>
-            <p className="text-[#596662] text-base sm:text-lg leading-relaxed">
-              Every device is tested for 100% functional operation before entering our UK trade stock catalog.
-            </p>
+            <div className="text-[#596662] text-sm sm:text-base leading-relaxed space-y-3 font-medium">
+              <p>
+                Mobiles Wholesale has established itself as a premier supplier of mobile phones both domestically and internationally. Through robust partnerships worldwide, we've experienced consistent growth year after year, expanding our network continuously. We extend a warm invitation to all traders and businesses to connect with us.
+              </p>
+              <p>
+                Unlike other mobile distributors, our open-door policy allows us to engage with customers of all sizes.
+              </p>
+              <p>
+                Whether you're looking to purchase a single handset or a bulk order of thousands, we can accommodate any requirements.
+              </p>
+            </div>
 
             <div className="pt-3 flex flex-wrap gap-4">
               <Link to="/stock-list">
@@ -237,6 +283,46 @@ export const HowWeGrade: React.FC = () => {
                   <p className="font-semibold text-[#101A18] leading-snug">{item.idealFor}</p>
                 </div>
               </div>
+
+              {/* Key Specifications / Bullet Points */}
+              {item.keyPoints && item.keyPoints.length > 0 && (
+                <div className="pt-4 border-t border-[#D8E2DE] space-y-3">
+                  <span className="text-xs font-black uppercase tracking-wider text-[#071715] flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-[#007A68]" /> Key Condition & Standards
+                  </span>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-[#101A18] font-medium">
+                    {item.keyPoints.map((point, pIdx) => (
+                      <li key={pIdx} className="flex items-start gap-2.5 bg-[#FAF8F2] p-3 rounded-xl border border-[#D8E2DE]/80">
+                        <CheckCircle2 className="w-4 h-4 text-[#007A68] shrink-0 mt-0.5" />
+                        <span className="leading-snug">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Visual Examples / Grade Photos */}
+              {item.images && item.images.length > 0 && (
+                <div className="pt-4 border-t border-[#D8E2DE] space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-black uppercase tracking-wider text-[#071715] flex items-center gap-1.5">
+                      <Camera className="w-4 h-4 text-[#007A68]" /> Visual Reference Photo{item.images.length > 1 ? 's' : ''}
+                    </span>
+                  </div>
+                  <div className={`grid gap-4 ${item.images.length > 1 ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'}`}>
+                    {item.images.map((imgSrc, idx) => (
+                      <div key={idx} className="relative group overflow-hidden rounded-xl border border-[#D8E2DE] bg-[#FAF8F2] sm:p-4 p-2 shadow-2xs hover:shadow-md transition-all flex items-center justify-center min-h-[260px]">
+                        <img
+                          src={imgSrc}
+                          alt={`${item.fullTitle} visual reference ${idx + 1}`}
+                          className="w-auto max-w-full h-auto max-h-[360px] sm:max-h-[420px] object-contain rounded-lg group-hover:scale-[1.01] transition-transform duration-300"
+                          loading="lazy"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
