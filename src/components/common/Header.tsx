@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FileText, Menu, Phone, Truck, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { FileText, Menu, Phone, Truck, X, ChevronDown, ChevronUp, ShoppingBag } from 'lucide-react';
 import { LanguageSelector } from './LanguageSelector';
 import { WhatsAppIcon } from './WhatsAppIcon';
 import { useLanguage } from '../../context/LanguageContext';
 import { createWhatsAppGeneralUrl } from '../../utils/whatsapp';
+import { useCart } from '../../context/CartContext';
 
 interface HeaderProps { 
   onRequestStockList?: () => void; 
@@ -23,7 +24,9 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
   
   const location = useLocation();
   const { t } = useLanguage();
+  const { totalItems } = useCart();
   const headerRef = useRef<HTMLElement>(null);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -451,27 +454,45 @@ export const Header: React.FC<HeaderProps> = ({ onRequestStockList }) => {
             </nav>
 
             {/* Header Action CTAs */}
-            <div className="hidden sm:flex items-center gap-2 xl:gap-2.5 shrink-0">
-              <Link to="/contact">
-                <button
-                  className="inline-flex items-center justify-center gap-1.5 px-3 xl:px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-[rgba(255,255,255,0.06)] border border-[#D4AF62]/55 hover:bg-[#D4AF62]/15 hover:border-[#D4AF62] transition-all shadow-2xs cursor-pointer whitespace-nowrap"
-                >
-                  <FileText className="w-4 h-4 text-[#D4AF62]" />
-                  <span>{t('common.requestPricing', 'Request Pricing')}</span>
-                </button>
+            <div className="flex items-center gap-2 xl:gap-2.5 shrink-0">
+              {/* Cart Badge Button */}
+              <Link
+                to="/cart"
+                aria-label="View Quotation Cart"
+                className="relative p-2 rounded-xl text-[#DCE8E4] hover:text-white bg-white/5 border border-[#063F35] hover:border-[#D4AF62] transition-all flex items-center justify-center mr-1"
+                title="View Quotation Cart"
+              >
+                <ShoppingBag className="w-5 h-5 text-[#D4AF62]" />
+                {totalItems > 0 && (
+                  <span className="absolute -top-1.5 -right-1.5 bg-[#00A88F] text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-[#071715] shadow-md animate-pulse">
+                    {totalItems}
+                  </span>
+                )}
               </Link>
-              <a href={createWhatsAppGeneralUrl()} target="_blank" rel="noreferrer">
-                <button className="inline-flex items-center justify-center gap-1.5 px-3 xl:px-3.5 py-2 rounded-xl text-xs font-black text-white bg-[#00A88F] hover:bg-[#007A68] transition-all glow-emerald shadow-md cursor-pointer whitespace-nowrap">
-                  <WhatsAppIcon className="w-4 h-4" />
-                  <span>{t('common.whatsappTradeDesk', 'WhatsApp Trade Desk')}</span>
-                </button>
-              </a>
+
+              <div className="hidden sm:flex items-center gap-2 xl:gap-2.5">
+                <Link to="/contact">
+                  <button
+                    className="inline-flex items-center justify-center gap-1.5 px-3 xl:px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-[rgba(255,255,255,0.06)] border border-[#D4AF62]/55 hover:bg-[#D4AF62]/15 hover:border-[#D4AF62] transition-all shadow-2xs cursor-pointer whitespace-nowrap"
+                  >
+                    <FileText className="w-4 h-4 text-[#D4AF62]" />
+                    <span>{t('common.requestPricing', 'Request Pricing')}</span>
+                  </button>
+                </Link>
+                <a href={createWhatsAppGeneralUrl()} target="_blank" rel="noreferrer">
+                  <button className="inline-flex items-center justify-center gap-1.5 px-3 xl:px-3.5 py-2 rounded-xl text-xs font-black text-white bg-[#00A88F] hover:bg-[#007A68] transition-all glow-emerald shadow-md cursor-pointer whitespace-nowrap">
+                    <WhatsAppIcon className="w-4 h-4" />
+                    <span>{t('common.whatsappTradeDesk', 'WhatsApp Trade Desk')}</span>
+                  </button>
+                </a>
+              </div>
             </div>
 
             {/* Mobile Menu Toggle */}
             <button onClick={() => setOpen(!open)} className="lg:hidden p-2 text-[#DCE8E4] rounded-lg hover:bg-white/10 shrink-0">
               {open ? <X /> : <Menu />}
             </button>
+
           </div>
         </div>
 

@@ -150,6 +150,8 @@ export const WholesaleCategoryPage: React.FC<WholesaleCategoryPageProps> = ({
               <option value="Grade A">Grade A</option>
               <option value="Grade B">Grade B</option>
               <option value="Grade C">Grade C</option>
+              <option value="Clearance / As Is">Clearance / As Is</option>
+              <option value="Mixed Grades">Mixed Grades</option>
             </select>
           </div>
         </div>

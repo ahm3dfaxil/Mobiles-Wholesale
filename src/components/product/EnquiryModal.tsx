@@ -187,7 +187,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
           {product && (
             <div className="bg-emerald-50 text-slate-900 p-3.5 rounded-xl flex items-center justify-between border border-emerald-200">
               <div className="flex items-center gap-3">
-                <img src={product.image} alt={product.name} className="w-10 h-10 object-cover rounded-lg bg-white border border-slate-200" />
+                <img src={product.image} alt={product.name} className="w-10 h-10 object-contain p-0.5 rounded-lg bg-white border border-slate-200" />
                 <div>
                   <h4 className="font-bold text-slate-900 text-xs line-clamp-1">{product.name}</h4>
                   <span className="text-[10px] text-slate-600">SKU: {product.sku} • Grade: {product.grade}</span>
@@ -321,6 +321,8 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                 <option value="Grade A">{t('grading.gradeA', 'Grade A')}</option>
                 <option value="Grade B">{t('grading.gradeB', 'Grade B')}</option>
                 <option value="Grade C">{t('grading.gradeC', 'Grade C')}</option>
+                <option value="Clearance / As Is">Clearance / As Is</option>
+                <option value="Mixed Grades">Mixed Grades</option>
               </select>
             </div>
           </div>

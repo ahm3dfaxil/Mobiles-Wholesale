@@ -107,8 +107,8 @@ export const AdminDashboard: React.FC = () => {
   };
 
   const handleDeleteProduct = async (id: string) => {
-    await deleteProduct(id);
     setDeletingProductId(null);
+    deleteProduct(id);
   };
 
   const handleQuickQtyChange = async (product: Product, delta: number) => {
@@ -192,7 +192,7 @@ export const AdminDashboard: React.FC = () => {
           <div className="flex items-center gap-4">
             <div className="hidden sm:flex items-center gap-2 text-xs bg-[#f4efe4] px-3 py-1.5 rounded-full border border-[#e6dfd1]">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-stone-700 font-semibold">{user?.email || 'admin@mobileswholesale.co.uk'}</span>
+              <span className="text-stone-700 font-semibold">{user?.email || 'regenerateglobal@gmail.com'}</span>
               <span className="bg-[#f8f3e8] text-emerald-800 px-2 py-0.5 rounded text-[10px] font-mono font-bold">
                 {user?.role || 'SUPER_ADMIN'}
               </span>
@@ -305,11 +305,11 @@ export const AdminDashboard: React.FC = () => {
 
               <div className="bg-white p-5 rounded-2xl border border-[#e6dfd1] shadow-sm space-y-1">
                 <div className="text-xs text-stone-500 font-bold uppercase tracking-wider flex items-center justify-between">
-                  <span>Inventory Valuation</span>
-                  <Coins className="w-4 h-4 text-amber-600" />
+                  <span>Pricing Mode</span>
+                  <Coins className="w-4 h-4 text-emerald-600" />
                 </div>
-                <div className="text-3xl font-black text-amber-700">£{totalInventoryValueGBP.toLocaleString()}</div>
-                <div className="text-[11px] text-stone-500">Total trade value</div>
+                <div className="text-xl font-black text-[#0a4d3c]">WhatsApp Quote</div>
+                <div className="text-[11px] text-stone-500">Price on Application (POA)</div>
               </div>
 
               <div className="bg-white p-5 rounded-2xl border border-[#e6dfd1] shadow-sm space-y-1">
@@ -399,6 +399,8 @@ export const AdminDashboard: React.FC = () => {
                     <option value="Grade A">Grade A</option>
                     <option value="Grade B">Grade B</option>
                     <option value="Grade C">Grade C</option>
+                    <option value="Clearance / As Is">Clearance / As Is</option>
+                    <option value="Mixed Grades">Mixed Grades</option>
                   </select>
                 </div>
               </div>
@@ -430,7 +432,7 @@ export const AdminDashboard: React.FC = () => {
                       <th className="p-3.5">SKU & Item</th>
                       <th className="p-3.5">Brand / Category</th>
                       <th className="p-3.5">Grade / VAT</th>
-                      <th className="p-3.5">Price (£)</th>
+                      <th className="p-3.5">Pricing</th>
                       <th className="p-3.5">Qty / Status</th>
                       <th className="p-3.5">Featured</th>
                       <th className="p-3.5 text-right">Actions</th>
@@ -452,7 +454,7 @@ export const AdminDashboard: React.FC = () => {
                               <img
                                 src={prod.image}
                                 alt={prod.name}
-                                className="w-10 h-10 rounded-lg object-cover bg-[#f4efe4] border border-[#e6dfd1] shrink-0"
+                                className="w-10 h-10 rounded-lg object-contain p-0.5 bg-[#f4efe4] border border-[#e6dfd1] shrink-0"
                               />
                               <div className="space-y-0.5 max-w-xs">
                                 <span className="font-mono text-[10px] text-[#0a4d3c] font-bold block">{prod.sku}</span>
@@ -483,6 +485,7 @@ export const AdminDashboard: React.FC = () => {
                                 prod.grade === 'Brand New Sealed' ? 'bg-[#f8f3e8] text-emerald-800 border border-[#d8c7a1]' :
                                 prod.grade === 'Grade A' || prod.grade === 'Refurbished Grade A+' ? 'bg-blue-100 text-blue-800 border border-blue-200' :
                                 prod.grade === 'Grade B' ? 'bg-amber-100 text-amber-800 border border-amber-200' :
+                                prod.grade === 'Mixed Grades' ? 'bg-purple-100 text-purple-800 border border-purple-200' :
                                 'bg-orange-100 text-orange-800 border border-orange-200'
                               }`}>
                                 {prod.grade}
@@ -491,9 +494,11 @@ export const AdminDashboard: React.FC = () => {
                             </div>
                           </td>
 
-                          {/* Trade Price */}
-                          <td className="p-3.5 font-black text-stone-900 text-sm">
-                            £{(prod.priceGBP || prod.price || 0).toLocaleString()}
+                          {/* Trade Price Column */}
+                          <td className="p-3.5">
+                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-900 border border-emerald-300 whitespace-nowrap">
+                              WhatsApp Quote
+                            </span>
                           </td>
 
                           {/* Qty & Status with Quick Controls */}

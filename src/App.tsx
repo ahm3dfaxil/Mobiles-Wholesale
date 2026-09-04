@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AuthProvider } from './context/AuthContext';
 import { ProductProvider } from './context/ProductContext';
 import { LanguageProvider } from './context/LanguageContext';
+import { CartProvider } from './context/CartContext';
 import { ProtectedRoute } from './components/admin/ProtectedRoute';
 import { Header } from './components/common/Header';
 import { Footer } from './components/common/Footer';
@@ -18,6 +19,7 @@ import { Grading } from './pages/Grading';
 import { SellToUs } from './pages/SellToUs';
 import { Business } from './pages/Business';
 import { Contact } from './pages/Contact';
+import { Cart } from './pages/Cart';
 import { AdminLogin } from './pages/admin/AdminLogin';
 import { AdminDashboard } from './pages/admin/AdminDashboard';
 
@@ -70,7 +72,9 @@ export const App: React.FC = () => {
     <LanguageProvider>
       <AuthProvider>
         <ProductProvider>
-          <Router>
+          <CartProvider>
+            <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+
             <ScrollToTop />
             <div className="premium-page flex flex-col min-h-screen text-slate-900 font-sans antialiased">
               <Header onRequestStockList={() => setIsStockListModalOpen(true)} />
@@ -79,7 +83,9 @@ export const App: React.FC = () => {
                   {/* Legacy / Primary Routes */}
                   <Route path="/" element={<Home />} />
                   <Route path="/stock" element={<Stock />} />
+                  <Route path="/cart" element={<Cart />} />
                   <Route path="/product/:id" element={<ProductDetail />} />
+
                   <Route path="/about" element={<About />} />
                   <Route path="/grading" element={<Grading />} />
                   <Route path="/sell-to-us" element={<SellToUs />} />
@@ -147,9 +153,11 @@ export const App: React.FC = () => {
               <EnquiryModal isOpen={isStockListModalOpen} onClose={() => setIsStockListModalOpen(false)} />
             </div>
           </Router>
-        </ProductProvider>
-      </AuthProvider>
-    </LanguageProvider>
+        </CartProvider>
+      </ProductProvider>
+    </AuthProvider>
+  </LanguageProvider>
+
   );
 };
 export default App;

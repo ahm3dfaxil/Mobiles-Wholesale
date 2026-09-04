@@ -15,10 +15,13 @@ import {
   Layers,
   Sparkles,
   HelpCircle,
-  Truck
+  Truck,
+  ShoppingBag,
+  Check
 } from 'lucide-react';
 import { MOCK_PRODUCTS } from '../data/mockData';
 import { useProducts } from '../context/ProductContext';
+import { useCart } from '../context/CartContext';
 import { Badge } from '../components/common/Badge';
 import { Button } from '../components/common/Button';
 import { WhatsAppIcon } from '../components/common/WhatsAppIcon';
@@ -33,11 +36,21 @@ export const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { t } = useLanguage();
+  const { addToCart } = useCart();
   
   const product = products.find(p => p.id === id) || products[0];
   const [selectedQty, setSelectedQty] = useState<number>(product ? product.moq : 5);
+  const [added, setAdded] = useState<boolean>(false);
 
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
+
+  const handleAddToCart = () => {
+    if (product) {
+      addToCart(product, selectedQty);
+      setAdded(true);
+      setTimeout(() => setAdded(false), 2000);
+    }
+  };
 
   if (!product) {
     return (
@@ -51,7 +64,7 @@ export const ProductDetail: React.FC = () => {
   }
 
   // Related products logic (same category or brand, excluding current product)
-  const relatedProducts = MOCK_PRODUCTS
+  const relatedProducts = products
     .filter(p => p.id !== product.id && (p.category === product.category || p.brand === product.brand))
     .slice(0, 4);
 
@@ -98,11 +111,11 @@ export const ProductDetail: React.FC = () => {
           
           {/* Left Column: Product Image & Badges */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="relative aspect-square bg-[#FAF8F2] rounded-2xl overflow-hidden border border-[#D8E2DE]">
+            <div className="relative aspect-square bg-white rounded-2xl overflow-hidden border border-[#D8E2DE]">
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain p-4 mix-blend-multiply filter contrast-[1.12] brightness-[1.02]"
               />
               <div className="absolute top-4 left-4 right-4 z-10 pointer-events-none">
                 <div className="flex flex-col items-start gap-1.5 max-w-[calc(100%-110px)]">
@@ -169,12 +182,12 @@ export const ProductDetail: React.FC = () => {
 
               <div>
                 <span className="text-[#596662] font-bold uppercase text-[10px] block">Network</span>
-                <span className="font-bold text-[#101A18]">{product.network || 'Unlocked'}</span>
+                <span className="font-bold text-[#101A18]">{product.network || 'N/A'}</span>
               </div>
 
               <div>
                 <span className="text-[#596662] font-bold uppercase text-[10px] block">Condition</span>
-                <span className="font-bold text-[#101A18]">{product.condition || 'Tested 100% Functional'}</span>
+                <span className="font-bold text-[#101A18]">{product.condition || 'N/A'}</span>
               </div>
             </div>
 
@@ -220,23 +233,44 @@ export const ProductDetail: React.FC = () => {
 
               <div className="flex items-center gap-3">
                 <button
+                  type="button"
                   onClick={handleDecreaseQty}
-                  className="w-9 h-9 rounded-lg bg-white border border-[#D8E2DE] font-bold text-[#101A18] flex items-center justify-center hover:bg-[#E5F3EF]"
+                  aria-label="Decrease quantity"
+                  className="w-9 h-9 rounded-lg bg-white border border-[#D8E2DE] font-bold text-[#101A18] flex items-center justify-center hover:bg-[#E5F3EF] cursor-pointer"
                 >
                   <Minus className="w-4 h-4" />
                 </button>
                 <span className="w-12 text-center text-base font-black text-[#101A18]">{selectedQty}</span>
                 <button
+                  type="button"
                   onClick={handleIncreaseQty}
-                  className="w-9 h-9 rounded-lg bg-white border border-[#D8E2DE] font-bold text-[#101A18] flex items-center justify-center hover:bg-[#E5F3EF]"
+                  aria-label="Increase quantity"
+                  className="w-9 h-9 rounded-lg bg-white border border-[#D8E2DE] font-bold text-[#101A18] flex items-center justify-center hover:bg-[#E5F3EF] cursor-pointer"
                 >
                   <Plus className="w-4 h-4" />
                 </button>
               </div>
             </div>
 
-            {/* Action Buttons: Order on WhatsApp & Request Quote */}
+            {/* Action Buttons: Add to Cart, Order on WhatsApp & Request Quote */}
             <div className="space-y-3 pt-2">
+              <Button
+                type="button"
+                variant="outline"
+                size="lg"
+                fullWidth
+                aria-label="Add to cart"
+                onClick={handleAddToCart}
+                icon={added ? <Check className="w-5 h-5 text-emerald-600" /> : <ShoppingBag className="w-5 h-5 text-[#00A88F]" />}
+                className={`py-3.5 text-sm font-bold transition-all ${
+                  added 
+                    ? '!bg-emerald-50 !border-emerald-500 !text-emerald-700' 
+                    : '!border-[#071715] !text-[#071715] hover:!bg-[#E5F3EF] hover:!border-[#00A88F]'
+                }`}
+              >
+                {added ? '✓ Added to Cart' : `Add ${selectedQty} Units to Cart`}
+              </Button>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {/* PROMINENT ORDER ON WHATSAPP BUTTON */}
                 <a
@@ -279,6 +313,7 @@ export const ProductDetail: React.FC = () => {
         </div>
       </div>
 
+
       {/* Full Technical Specifications Breakdown */}
       <div className="bg-white rounded-2xl border border-[#D8E2DE] b2b-card-shadow p-6 sm:p-8 space-y-6">
         <h3 className="text-xl font-bold text-[#071715] border-b border-[#D8E2DE] pb-3">
@@ -319,10 +354,12 @@ export const ProductDetail: React.FC = () => {
                   <td className="py-2.5 font-semibold text-[#101A18]">{value}</td>
                 </tr>
               ))}
-              <tr className="py-2.5">
-                <td className="py-2.5 font-bold text-[#596662]">UK Warranty Period</td>
-                <td className="py-2.5 font-semibold text-[#007A68]">{product.warrantyDays} Days Trade Warranty</td>
-              </tr>
+              {Boolean(product.warrantyDays && Number(product.warrantyDays) > 0) && (
+                <tr className="py-2.5">
+                  <td className="py-2.5 font-bold text-[#596662]">UK Warranty Period</td>
+                  <td className="py-2.5 font-semibold text-[#007A68]">{product.warrantyDays} Days Trade Warranty</td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

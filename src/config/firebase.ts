@@ -1,5 +1,6 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getAnalytics, isSupported, Analytics } from 'firebase/analytics';
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyCCaLANXiRti6e5Ja4Mn9baMVNMaAYlKrY",
@@ -14,6 +15,9 @@ const firebaseConfig = {
 // Initialize Firebase (prevent re-initialization if already initialized)
 export const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
+// Initialize Cloud Firestore
+export const db = getFirestore(app);
+
 // Safe Analytics initialization
 export let analytics: Analytics | null = null;
 if (typeof window !== 'undefined') {
@@ -25,3 +29,4 @@ if (typeof window !== 'undefined') {
     console.warn('Firebase Analytics not supported in this environment:', err);
   });
 }
+

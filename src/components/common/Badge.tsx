@@ -26,7 +26,7 @@ export const Badge: React.FC<BadgeProps> = ({
 
   if (type === 'grade' && grade) {
     let style = 'bg-[#FAF8F2] text-[#101A18] border-[#D8E2DE]';
-    let icon = <ShieldCheck className="w-3 h-3 mr-1 shrink-0" />;
+    let icon: React.ReactNode = <ShieldCheck className="w-3 h-3 mr-1 shrink-0" />;
     let displayGrade: string = grade;
     
     if (grade === 'Brand New Sealed') {
@@ -51,6 +51,19 @@ export const Badge: React.FC<BadgeProps> = ({
       style = 'bg-[#FAF8F2] text-[#596662] border-[#D8E2DE] font-bold';
       displayGrade = 'Grade C';
     }
+    if (grade === 'Clearance / As Is') {
+      style = 'bg-[#FAF8F2] text-[#854d0e] border-[#fde047] font-bold';
+      displayGrade = 'Clearance / As Is';
+    }
+    if (grade === 'Mixed Grades') {
+      style = 'bg-[#FAF8F2] text-[#6b21a8] border-[#c084fc] font-bold';
+      displayGrade = 'Mixed Grades';
+    }
+    if (grade === 'N/A') {
+      style = 'bg-stone-100 text-stone-600 border-stone-300 font-medium';
+      icon = null;
+      displayGrade = 'N/A';
+    }
 
     return (
       <span className={`inline-flex items-center max-w-full px-2 py-0.5 rounded-md text-[11px] font-bold border shadow-2xs ${style} ${className}`}>
@@ -66,6 +79,9 @@ export const Badge: React.FC<BadgeProps> = ({
     if (vatType === 'Margin VAT') {
       style = 'bg-[#E5F3EF] text-[#071715] border-[#D8E2DE] font-bold';
       displayVat = t('common.marginVat', 'Margin VAT');
+    } else if (vatType === 'N/A') {
+      style = 'bg-stone-100 text-stone-600 border-stone-300 font-medium';
+      displayVat = 'N/A';
     } else {
       displayVat = t('common.standardVat', '20% Standard VAT');
     }

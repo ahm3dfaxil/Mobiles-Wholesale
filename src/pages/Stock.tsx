@@ -83,6 +83,8 @@ export const Stock: React.FC = () => {
     { label: t('grading.gradeA', 'Grade A'), value: 'Grade A' },
     { label: t('grading.gradeB', 'Grade B'), value: 'Grade B' },
     { label: t('grading.gradeC', 'Grade C'), value: 'Grade C' },
+    { label: 'Clearance / As Is', value: 'Clearance / As Is' },
+    { label: 'Mixed Grades', value: 'Mixed Grades' },
   ];
 
   const availabilityOptions: { label: string; value: AvailabilityStatus | 'all' }[] = [
@@ -120,9 +122,6 @@ export const Stock: React.FC = () => {
       // Availability filter
       if (filters.availability !== 'all' && product.availability !== filters.availability) return false;
 
-      // VAT Type filter
-      if (filters.vatType !== 'all' && product.vatType !== filters.vatType) return false;
-
       // In Stock filter
       if (filters.inStockOnly && !product.inStock) return false;
 
@@ -134,7 +133,7 @@ export const Stock: React.FC = () => {
       if (filters.sortBy === 'stock-desc') return b.stockQty - a.stockQty;
       return 0;
     });
-  }, [filters]);
+  }, [filters, products]);
 
   const handleEnquire = (product: Product) => {
     setSelectedProduct(product);
@@ -190,8 +189,7 @@ export const Stock: React.FC = () => {
     filters.category !== 'all',
     filters.brand !== 'all',
     filters.grade !== 'all',
-    filters.availability !== 'all',
-    filters.vatType !== 'all'
+    filters.availability !== 'all'
   ].filter(Boolean).length;
 
   return (
@@ -312,7 +310,7 @@ export const Stock: React.FC = () => {
         </div>
 
         {/* Row 2: Desktop Filter Select Dropdowns */}
-        <div className="hidden lg:grid lg:grid-cols-5 gap-3 pt-2 border-t border-[#D8E2DE] text-xs">
+        <div className="hidden lg:grid lg:grid-cols-4 gap-3 pt-2 border-t border-[#D8E2DE] text-xs">
           {/* Category Filter */}
           <div>
             <label className="block text-[#596662] font-semibold mb-1">Category</label>
@@ -358,20 +356,6 @@ export const Stock: React.FC = () => {
               className="w-full px-2.5 py-1.5 bg-[#FAF8F2] border border-[#D8E2DE] rounded-lg focus:ring-2 focus:ring-[#071715]"
             >
               {availabilityOptions.map(a => <option key={a.value} value={a.value}>{a.label}</option>)}
-            </select>
-          </div>
-
-          {/* VAT Scheme Filter */}
-          <div>
-            <label className="block text-[#596662] font-semibold mb-1">VAT Scheme</label>
-            <select
-              value={filters.vatType}
-              onChange={(e) => setFilters({ ...filters, vatType: e.target.value as any })}
-              className="w-full px-2.5 py-1.5 bg-[#FAF8F2] border border-[#D8E2DE] rounded-lg focus:ring-2 focus:ring-[#071715]"
-            >
-              <option value="all">All VAT Schemes</option>
-              <option value="Margin VAT">Margin Scheme VAT</option>
-              <option value="Standard 20% VAT">Standard 20% VAT</option>
             </select>
           </div>
         </div>
@@ -499,7 +483,7 @@ export const Stock: React.FC = () => {
                       <td className="py-3 px-4 font-mono text-[11px] text-[#596662]">{p.sku}</td>
                       <td className="py-3 px-4"><Badge type="grade" grade={p.grade} /></td>
                       <td className="py-3 px-4 font-semibold">{p.storage || 'N/A'}</td>
-                      <td className="py-3 px-4 text-[11px] text-[#596662]">{p.network || 'Unlocked'}</td>
+                      <td className="py-3 px-4 text-[11px] text-[#596662]">{p.network || 'N/A'}</td>
                       <td className="py-3 px-4"><Badge type="stock" inStock={p.inStock} stockQty={p.stockQty} /></td>
                       <td className="py-3 px-4 text-center">
                         <div className="inline-flex items-center justify-center gap-1">

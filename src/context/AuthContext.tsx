@@ -1,4 +1,14 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { 
+  getAuth, 
+  signInWithEmailAndPassword, 
+  signOut, 
+  onAuthStateChanged 
+} from 'firebase/auth';
+import { app } from '../config/firebase';
+
+const auth = getAuth(app);
+const ADMIN_UID = import.meta.env.VITE_ADMIN_UID || 'GxyHU3vPr3VkmpZt0ivPmEgIhOc2';
 
 export interface AdminUser {
   id: string;
@@ -24,62 +34,77 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const savedToken = localStorage.getItem('mw_admin_token');
-    const savedUser = localStorage.getItem('mw_admin_user');
-
-    if (savedToken && savedUser) {
-      try {
-        setToken(savedToken);
-        setUser(JSON.parse(savedUser));
-      } catch (err) {
-        localStorage.removeItem('mw_admin_token');
-        localStorage.removeItem('mw_admin_user');
+    const unsubscribe = onAuthStateChanged(auth, async (fbUser) => {
+      if (fbUser && fbUser.uid === ADMIN_UID) {
+        try {
+          const idToken = await fbUser.getIdToken();
+          const adminUser: AdminUser = {
+            id: fbUser.uid,
+            email: fbUser.email || 'regenerateglobal@gmail.com',
+            name: 'Regenerate Global Admin',
+            role: 'SUPER_ADMIN'
+          };
+          setUser(adminUser);
+          setToken(idToken);
+          setLoading(false);
+          return;
+        } catch (e) {
+          console.warn('Failed to get ID token for admin:', e);
+        }
       }
-    }
-    setLoading(false);
+
+      // If user is logged in as non-admin or null UID, enforce logout
+      if (fbUser && fbUser.uid !== ADMIN_UID) {
+        await signOut(auth).catch(() => {});
+      }
+      setUser(null);
+      setToken(null);
+      localStorage.removeItem('mw_admin_token');
+      localStorage.removeItem('mw_admin_user');
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
   }, []);
 
   const login = async (email: string, pass: string) => {
     try {
-      const response = await fetch('/api/admin/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password: pass })
-      });
-
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        setToken(data.token);
-        setUser(data.user);
-        localStorage.setItem('mw_admin_token', data.token);
-        localStorage.setItem('mw_admin_user', JSON.stringify(data.user));
-        return { success: true };
-      } else {
-        return { success: false, error: data.error || 'Invalid credentials' };
-      }
-    } catch (err) {
-      // Dev mode fallback login when backend Express is offline
-      if (email === 'admin@mobileswholesale.co.uk' && pass === 'AdminPass123!') {
-        const mockUser: AdminUser = {
-          id: 'user-dev-admin',
-          email: 'admin@mobileswholesale.co.uk',
-          name: 'Mobiles Wholesale Admin (Dev)',
-          role: 'SUPER_ADMIN'
-        };
-        const mockToken = 'dev_mock_jwt_token_2026';
-        setToken(mockToken);
-        setUser(mockUser);
-        localStorage.setItem('mw_admin_token', mockToken);
-        localStorage.setItem('mw_admin_user', JSON.stringify(mockUser));
-        return { success: true };
+      // Pass entered credentials directly to Firebase Authentication
+      const userCred = await signInWithEmailAndPassword(auth, email.trim(), pass);
+      
+      // Strict authorization check against designated Admin UID
+      if (userCred.user.uid !== ADMIN_UID) {
+        await signOut(auth);
+        setUser(null);
+        setToken(null);
+        localStorage.removeItem('mw_admin_token');
+        localStorage.removeItem('mw_admin_user');
+        return { success: false, error: 'Access Denied: Account is not authorized for Admin Console.' };
       }
 
-      return { success: false, error: 'Network error or backend offline. Use default admin@mobileswholesale.co.uk / AdminPass123! in dev mode.' };
+      const idToken = await userCred.user.getIdToken();
+      const adminUser: AdminUser = {
+        id: userCred.user.uid,
+        email: userCred.user.email || email.trim(),
+        name: 'Regenerate Global Admin',
+        role: 'SUPER_ADMIN'
+      };
+      setUser(adminUser);
+      setToken(idToken);
+      localStorage.setItem('mw_admin_token', idToken);
+      localStorage.setItem('mw_admin_user', JSON.stringify(adminUser));
+      return { success: true };
+    } catch (fbErr: any) {
+      setUser(null);
+      setToken(null);
+      return { success: false, error: fbErr.message || 'Invalid admin credentials.' };
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    try {
+      await signOut(auth);
+    } catch (e) {}
     setToken(null);
     setUser(null);
     localStorage.removeItem('mw_admin_token');
@@ -91,7 +116,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       value={{
         user,
         token,
-        isAuthenticated: !!token && !!user,
+        isAuthenticated: !!token && !!user && user.id === ADMIN_UID,
         loading,
         login,
         logout

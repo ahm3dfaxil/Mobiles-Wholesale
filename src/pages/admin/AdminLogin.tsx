@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { ShieldCheck, Lock, Mail, KeyRound, AlertCircle, Sparkles, Building2, ArrowRight } from 'lucide-react';
+import { ShieldCheck, Mail, KeyRound, AlertCircle, ArrowRight, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { Button } from '../../components/common/Button';
-import { UK_COMPANY_INFO } from '../../data/mockData';
 
 export const AdminLogin: React.FC = () => {
-  const [email, setEmail] = useState('admin@mobileswholesale.co.uk');
-  const [password, setPassword] = useState('AdminPass123!');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -82,7 +82,7 @@ export const AdminLogin: React.FC = () => {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@mobileswholesale.co.uk"
+                placeholder="Enter your admin email"
                 className="w-full pl-10 pr-4 py-2.5 bg-[#FAF8F2] border border-[#D8E2DE] rounded-xl text-sm text-[#101A18] placeholder-[#596662] focus:outline-none focus:ring-2 focus:ring-[#071715] focus:bg-white"
               />
             </div>
@@ -97,13 +97,21 @@ export const AdminLogin: React.FC = () => {
                 <KeyRound className="w-4 h-4" />
               </div>
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••••••"
-                className="w-full pl-10 pr-4 py-2.5 bg-[#FAF8F2] border border-[#D8E2DE] rounded-xl text-sm text-[#101A18] placeholder-[#596662] focus:outline-none focus:ring-2 focus:ring-[#071715] focus:bg-white"
+                className="w-full pl-10 pr-10 py-2.5 bg-[#FAF8F2] border border-[#D8E2DE] rounded-xl text-sm text-[#101A18] placeholder-[#596662] focus:outline-none focus:ring-2 focus:ring-[#071715] focus:bg-white"
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#596662] hover:text-[#101A18] transition-colors"
+                title={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </button>
             </div>
           </div>
 
@@ -118,15 +126,6 @@ export const AdminLogin: React.FC = () => {
             {loading ? t('forms.submitting', 'Authenticating...') : t('admin.loginBtn', 'Sign In to Management Portal')}
           </Button>
         </form>
-
-        {/* Demo Credentials Helper Box */}
-        <div className="bg-[#FAF8F2] p-4 rounded-2xl border border-[#D8E2DE] text-xs text-[#596662] space-y-1 font-mono">
-          <div className="font-bold text-[#101A18] text-[11px] uppercase tracking-wider mb-1 flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5 text-[#D4AF62]" /> Default Admin Login Credentials:
-          </div>
-          <div><span className="text-[#596662]">Email:</span> admin@mobileswholesale.co.uk</div>
-          <div><span className="text-[#596662]">Password:</span> AdminPass123!</div>
-        </div>
       </div>
     </div>
   );

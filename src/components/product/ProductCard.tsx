@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Eye, CheckCircle2, Wifi, HardDrive, Minus, Plus } from 'lucide-react';
+import { Eye, CheckCircle2, Wifi, HardDrive, Minus, Plus, ShoppingBag, Check } from 'lucide-react';
 import { Product } from '../../types';
 import { Badge } from '../common/Badge';
 import { Button } from '../common/Button';
@@ -8,6 +8,7 @@ import { Card } from '../common/Card';
 import { WhatsAppIcon } from '../common/WhatsAppIcon';
 import { useLanguage } from '../../context/LanguageContext';
 import { createWhatsAppProductUrl } from '../../utils/whatsapp';
+import { useCart } from '../../context/CartContext';
 
 interface ProductCardProps {
   product: Product;
@@ -16,16 +17,26 @@ interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [quantity, setQuantity] = useState<number>(product.moq || 1);
+  const [added, setAdded] = useState<boolean>(false);
   const { t } = useLanguage();
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    addToCart(product, quantity);
+    setAdded(true);
+    setTimeout(() => {
+      setAdded(false);
+    }, 2000);
+  };
 
   return (
     <Card className="flex flex-col h-full group bg-white border border-[#D8E2DE] hover:border-[#D4AF62] rounded-2xl b2b-card-shadow b2b-card-hover overflow-hidden" padding="none">
       {/* Product Image Container */}
-      <div className="relative aspect-4/3 bg-[#FAF8F2] overflow-hidden border-b border-[#D8E2DE]">
+      <div className="relative aspect-4/3 bg-white overflow-hidden border-b border-[#D8E2DE]">
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-contain p-2 object-center mix-blend-multiply filter contrast-[1.12] brightness-[1.02] group-hover:scale-105 transition-transform duration-300"
           loading="lazy"
         />
         
@@ -75,7 +86,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               <span className="font-semibold text-[#101A18]">{product.colour}</span>
             </div>
           )}
-          {product.network && (
+          {product.network && product.network !== 'N/A' && (
             <div className="flex justify-between items-center text-[11px]">
               <span className="text-[#596662] font-medium flex items-center gap-1">
                 <Wifi className="w-3 h-3 text-[#596662]" /> {t('productDetail.network', 'Network')}:
@@ -112,10 +123,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <div className="min-w-0 flex-1">
               <Badge type="stock" inStock={product.inStock} stockQty={product.stockQty} />
             </div>
-            <span className="text-[11px] text-[#596662] flex items-center gap-1 font-medium shrink-0">
-              <CheckCircle2 className="w-3 h-3 text-[#007A68] shrink-0" />
-              {t('productDetail.warrantyDays', '{{days}}d Warranty', { days: product.warrantyDays })}
-            </span>
+            {Boolean(product.warrantyDays && Number(product.warrantyDays) > 0) && (
+              <span className="text-[11px] text-[#596662] flex items-center gap-1 font-medium shrink-0">
+                <CheckCircle2 className="w-3 h-3 text-[#007A68] shrink-0" />
+                {t('productDetail.warrantyDays', '{{days}}d Warranty', { days: product.warrantyDays })}
+              </span>
+            )}
           </div>
         </div>
 
@@ -129,6 +142,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               disabled={quantity <= (product.moq || 1)}
               className="w-6 h-6 rounded bg-white border border-[#D8E2DE] font-extrabold text-[#101A18] disabled:opacity-40 flex items-center justify-center hover:bg-[#E5F3EF]"
               title="Decrease quantity"
+              aria-label="Decrease quantity"
             >
               <Minus className="w-3 h-3" />
             </button>
@@ -138,37 +152,58 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               value={quantity}
               onChange={(e) => setQuantity(Math.max(product.moq || 1, parseInt(e.target.value) || (product.moq || 1)))}
               className="w-12 text-center font-black text-[#101A18] bg-white border border-[#D8E2DE] rounded py-0.5 text-xs focus:ring-1 focus:ring-[#071715]"
+              aria-label={`Desired quantity for ${product.name}`}
             />
             <button
               type="button"
               onClick={() => setQuantity(quantity + 1)}
               className="w-6 h-6 rounded bg-white border border-[#D8E2DE] font-extrabold text-[#101A18] flex items-center justify-center hover:bg-[#E5F3EF]"
               title="Increase quantity"
+              aria-label="Increase quantity"
             >
               <Plus className="w-3 h-3" />
             </button>
           </div>
         </div>
 
-        {/* Action Buttons: View Details & Order on WhatsApp */}
-        <div className="grid grid-cols-2 gap-2 pt-1">
-          <Link to={`/product/${product.id}`} className="w-full">
+        {/* Action Buttons: View Details, Add to Cart & Order on WhatsApp */}
+        <div className="space-y-2 pt-1">
+          <div className="grid grid-cols-2 gap-2">
+            <Link to={`/product/${product.id}`} className="w-full">
+              <Button
+                variant="outline"
+                size="sm"
+                fullWidth
+                icon={<Eye className="w-3.5 h-3.5" />}
+                className="!border-[#D8E2DE] !text-[#101A18] hover:!bg-[#FAF8F2] hover:!border-[#D4AF62]"
+              >
+                {t('common.viewDetails', 'View Details')}
+              </Button>
+            </Link>
+
             <Button
+              type="button"
               variant="outline"
               size="sm"
               fullWidth
-              icon={<Eye className="w-3.5 h-3.5" />}
-              className="!border-[#D8E2DE] !text-[#101A18] hover:!bg-[#FAF8F2] hover:!border-[#D4AF62]"
+              aria-label="Add to cart"
+              onClick={handleAddToCart}
+              icon={added ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <ShoppingBag className="w-3.5 h-3.5 text-[#00A88F]" />}
+              className={`transition-all ${
+                added 
+                  ? '!bg-emerald-50 !border-emerald-500 !text-emerald-700 font-bold' 
+                  : '!border-[#D8E2DE] !text-[#071715] hover:!bg-[#E5F3EF] hover:!border-[#00A88F] font-bold'
+              }`}
             >
-              {t('common.viewDetails', 'View Details')}
+              {added ? '✓ Added' : 'Add to Cart'}
             </Button>
-          </Link>
+          </div>
 
           <a
             href={createWhatsAppProductUrl(product, quantity)}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full"
+            className="w-full block"
           >
             <Button
               variant="whatsapp"
@@ -185,3 +220,4 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     </Card>
   );
 };
+

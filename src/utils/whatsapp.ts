@@ -1,4 +1,4 @@
-import { Product } from '../types';
+import { Product, CartItem } from '../types';
 import { WHATSAPP_CONFIG } from '../config/env';
 
 export const createWhatsAppProductUrl = (product: Product, quantity?: number): string => {
@@ -21,3 +21,31 @@ export const createWhatsAppSellToUsUrl = (deviceDetails: string, qty: number): s
   
   return `https://wa.me/${WHATSAPP_CONFIG.number}?text=${encodeURIComponent(message)}`;
 };
+
+export const createWhatsAppCartUrl = (cartItems: CartItem[]): string => {
+  if (!cartItems || cartItems.length === 0) {
+    return createWhatsAppGeneralUrl();
+  }
+
+  const itemsList = cartItems.map((item, index) => {
+    const p = item.product;
+    const details = [
+      p.storage ? `   Storage: ${p.storage}` : null,
+      p.colour || p.color ? `   Colour: ${p.colour || p.color}` : null,
+      p.grade ? `   Grade: ${p.grade}` : null,
+      p.network && p.network !== 'N/A' ? `   Network: ${p.network}` : null,
+      p.condition && p.condition !== 'N/A' ? `   Condition: ${p.condition}` : null,
+      `   Quantity: ${item.quantity} units`
+    ].filter(Boolean).join('\n');
+
+    return `${index + 1}. ${p.name}\n${details}`;
+  }).join('\n\n');
+
+  const totalProducts = cartItems.length;
+  const totalUnits = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+  const message = `Hi, I'm interested in ordering the following wholesale products:\n\n${itemsList}\n\nTotal Products: ${totalProducts}\nTotal Units: ${totalUnits}\n\nPlease confirm the latest wholesale price and availability.\n\nThank you.`;
+
+  return `https://wa.me/${WHATSAPP_CONFIG.number}?text=${encodeURIComponent(message)}`;
+};
+

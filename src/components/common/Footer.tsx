@@ -4,7 +4,8 @@ import {
   Mail, 
   Phone, 
   MapPin, 
-  CheckCircle2
+  CheckCircle2,
+  ShieldCheck
 } from 'lucide-react';
 import { WhatsAppIcon } from './WhatsAppIcon';
 import { useLanguage } from '../../context/LanguageContext';
@@ -224,8 +225,16 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Section Divider Line & Copyright */}
-        <div className="border-t border-white/10 pt-6 text-center text-xs text-[#DCE8E4]/70">
+        <div className="border-t border-white/10 pt-6 text-center text-xs text-[#DCE8E4]/70 flex items-center justify-center gap-2">
           <p>{t('footer.rightsReserved', 'Copyright © 2024 Mobile Wholesale. All Rights Reserved.')}</p>
+          <Link 
+            to="/admin/login" 
+            className="inline-flex items-center text-[#DCE8E4]/30 hover:text-[#D4AF62] transition-colors p-1 rounded hover:bg-white/5" 
+            title="Management Console"
+            aria-label="Management Console"
+          >
+            <ShieldCheck className="w-3.5 h-3.5" />
+          </Link>
         </div>
       </div>
     </footer>

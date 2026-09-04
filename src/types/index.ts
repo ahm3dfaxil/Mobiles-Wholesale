@@ -25,9 +25,11 @@ export type DeviceGrade =
   | 'Grade A'
   | 'Grade B'
   | 'Grade C'
-  | 'Clearance / As Is';
+  | 'Clearance / As Is'
+  | 'Mixed Grades'
+  | 'N/A';
 
-export type VATType = 'Margin VAT' | 'Standard 20% VAT' | 'Zero Rated (Export)';
+export type VATType = 'Margin VAT' | 'Standard 20% VAT' | 'Zero Rated (Export)' | 'N/A';
 
 export type AvailabilityStatus = 'In Stock' | 'Low Stock' | 'Pre-Order' | 'Out of Stock';
 
@@ -101,4 +103,11 @@ export interface SellToUsForm {
   message: string;
   askingPriceGBP?: number;
 }
+
+export interface CartItem {
+  product: Product;
+  quantity: number;
+  addedAt: number;
+}
+
 
