@@ -1,5 +1,5 @@
 import React from 'react';
-import { Truck, Globe, ShieldCheck } from 'lucide-react';
+import { Truck, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 interface Partner {
@@ -50,10 +50,11 @@ export const PartnerTrustNetwork: React.FC = () => {
       id: 'transglobal-express',
       name: 'Transglobal Express',
       logo: (
-        <div className="flex items-center gap-2.5">
-          <Globe className="w-6 h-6 sm:w-7 sm:h-7 text-[#0a4d3c]" />
-          <span className="text-base sm:text-lg font-black text-stone-900 tracking-tight">Transglobal <span className="text-[#0a4d3c]">Express</span></span>
-        </div>
+        <img 
+          src="/Transglobal express.png" 
+          alt="Transglobal Express" 
+          className="h-20 sm:h-28 w-auto object-contain scale-[1.85] sm:scale-[2.2]" 
+        />
       ),
     },
     {
@@ -74,10 +75,11 @@ export const PartnerTrustNetwork: React.FC = () => {
       name: 'GSM Exchange',
       category: 'B2B Trading Network',
       logo: (
-        <div className="flex items-center gap-2.5">
-          <span className="text-lg sm:text-xl font-black text-[#0a4d3c] tracking-tight">GSM</span>
-          <span className="text-base sm:text-lg font-extrabold text-stone-800">Exchange</span>
-        </div>
+        <img 
+          src="/GSM.jpg" 
+          alt="GSM Exchange" 
+          className="h-8 sm:h-10 w-auto object-contain rounded translate-y-1.5 sm:translate-y-2" 
+        />
       ),
     },
     {
@@ -85,11 +87,11 @@ export const PartnerTrustNetwork: React.FC = () => {
       name: 'eSources',
       category: 'UK Wholesale Directory',
       logo: (
-        <div className="flex items-center gap-1">
-          <span className="text-lg sm:text-xl font-black text-stone-900">e</span>
-          <span className="text-lg sm:text-xl font-black text-[#0a4d3c]">Sources</span>
-          <span className="text-xs text-stone-500 font-extrabold">.co.uk</span>
-        </div>
+        <img 
+          src="/ESources.png" 
+          alt="eSources.co.uk" 
+          className="h-8 sm:h-10 w-auto object-contain scale-110 sm:scale-125" 
+        />
       ),
     },
     {
@@ -97,10 +99,11 @@ export const PartnerTrustNetwork: React.FC = () => {
       name: 'Amazon Business',
       category: 'B2B Marketplace',
       logo: (
-        <div className="flex items-center gap-2">
-          <span className="text-lg sm:text-xl font-black text-stone-900">amazon</span>
-          <span className="text-xs sm:text-sm font-extrabold text-[#a38038] uppercase tracking-wide">business</span>
-        </div>
+        <img 
+          src="/amazon.jpg" 
+          alt="Amazon Business" 
+          className="h-20 sm:h-28 w-auto object-contain scale-[2.4] sm:scale-[2.8]" 
+        />
       ),
     },
     {
@@ -108,11 +111,11 @@ export const PartnerTrustNetwork: React.FC = () => {
       name: 'OnBuy',
       category: 'UK Marketplace',
       logo: (
-        <div className="flex items-center">
-          <span className="text-2xl sm:text-3xl font-black text-[#0a4d3c] tracking-tighter">On</span>
-          <span className="text-2xl sm:text-3xl font-black text-stone-900 tracking-tighter">Buy</span>
-          <span className="text-xs text-[#a38038] font-extrabold ml-0.5">.com</span>
-        </div>
+        <img 
+          src="/OnBuy.svg" 
+          alt="OnBuy.com" 
+          className="h-7 sm:h-8.5 w-auto object-contain" 
+        />
       ),
     },
     {
