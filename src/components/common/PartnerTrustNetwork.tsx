@@ -53,7 +53,7 @@ export const PartnerTrustNetwork: React.FC = () => {
         <img 
           src="/Transglobal express.png" 
           alt="Transglobal Express" 
-          className="h-7 sm:h-9 w-auto object-contain" 
+          className="h-11 sm:h-14 max-w-[90%] w-auto object-contain" 
         />
       ),
     },
@@ -78,7 +78,7 @@ export const PartnerTrustNetwork: React.FC = () => {
         <img 
           src="/GSM.jpg" 
           alt="GSM Exchange" 
-          className="h-7 sm:h-9 w-auto object-contain rounded translate-y-1" 
+          className="h-8.5 sm:h-11 w-auto object-contain rounded translate-y-1" 
         />
       ),
     },
@@ -90,7 +90,7 @@ export const PartnerTrustNetwork: React.FC = () => {
         <img 
           src="/ESources.png" 
           alt="eSources.co.uk" 
-          className="h-7 sm:h-9 w-auto object-contain" 
+          className="h-8.5 sm:h-11 w-auto object-contain" 
         />
       ),
     },
@@ -102,7 +102,7 @@ export const PartnerTrustNetwork: React.FC = () => {
         <img 
           src="/amazon.jpg" 
           alt="Amazon Business" 
-          className="h-7 sm:h-9 w-auto object-contain" 
+          className="h-11 sm:h-14 max-w-[90%] w-auto object-contain" 
         />
       ),
     },
@@ -114,7 +114,7 @@ export const PartnerTrustNetwork: React.FC = () => {
         <img 
           src="/OnBuy.svg" 
           alt="OnBuy.com" 
-          className="h-7 sm:h-9 w-auto object-contain" 
+          className="h-8.5 sm:h-11 w-auto object-contain" 
         />
       ),
     },
