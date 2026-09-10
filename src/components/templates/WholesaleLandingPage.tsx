@@ -153,7 +153,7 @@ export const WholesaleLandingPage: React.FC<WholesaleLandingPageProps> = ({
         breadcrumbs={breadcrumbs}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10 bg-[#FAF8F2]">
+      <div className="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8 py-4 sm:py-8 space-y-6 sm:space-y-10 bg-[#FAF8F2]">
         {/* Hero Banner */}
         <div className="bg-white text-[#101A18] rounded-2xl p-8 sm:p-12 border border-[#D8E2DE] shadow-md relative overflow-hidden">
           <div className="max-w-3xl space-y-4">

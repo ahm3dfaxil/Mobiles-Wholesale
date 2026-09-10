@@ -193,7 +193,7 @@ export const Stock: React.FC = () => {
   ].filter(Boolean).length;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div className="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8 py-4 sm:py-8 space-y-4 sm:space-y-8">
       {/* 1. PAGE HEADER */}
       {/* 1. HERO STOCK HEADER */}
       <div className="bg-white text-[#101A18] rounded-2xl p-6 sm:p-8 border border-[#D8E2DE] shadow-md relative overflow-hidden">
@@ -439,7 +439,7 @@ export const Stock: React.FC = () => {
         </div>
       ) : viewMode === 'grid' ? (
         /* RESPONSIVE GRID VIEW */
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5 sm:gap-6">
           {filteredProducts.map((product) => (
             <ProductCard
               key={product.id}

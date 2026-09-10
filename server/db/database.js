@@ -372,19 +372,24 @@ export const initDB = () => {
     saveJSON(CATEGORIES_FILE, INITIAL_CATEGORIES);
   }
   if (!fs.existsSync(USERS_FILE)) {
-    const defaultPassword = process.env.ADMIN_PASSWORD || 'AdminPass123!';
-    const passwordHash = bcrypt.hashSync(defaultPassword, 10);
-    const defaultAdmin = [
-      {
-        id: 'user-admin-01',
-        email: process.env.ADMIN_EMAIL || 'admin@mobileswholesale.co.uk',
-        passwordHash,
-        name: 'Mobiles Wholesale Admin',
-        role: 'SUPER_ADMIN',
-        createdAt: new Date().toISOString()
-      }
-    ];
-    saveJSON(USERS_FILE, defaultAdmin);
+    const adminPassword = process.env.ADMIN_PASSWORD;
+    if (!adminPassword) {
+      console.warn('SECURITY WARNING: [DB Seed] ADMIN_PASSWORD environment variable is not set. Skipping default admin user initialization.');
+      saveJSON(USERS_FILE, []);
+    } else {
+      const passwordHash = bcrypt.hashSync(adminPassword, 10);
+      const defaultAdmin = [
+        {
+          id: 'user-admin-01',
+          email: process.env.ADMIN_EMAIL || 'admin@mobileswholesale.co.uk',
+          passwordHash,
+          name: 'Mobiles Wholesale Admin',
+          role: 'SUPER_ADMIN',
+          createdAt: new Date().toISOString()
+        }
+      ];
+      saveJSON(USERS_FILE, defaultAdmin);
+    }
   }
 };
 

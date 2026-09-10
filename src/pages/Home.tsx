@@ -224,7 +224,7 @@ export const Home: React.FC = () => {
         canonicalPath="/"
       />
       {/* 1. HERO SECTION WITH DRIFTWALL BACKGROUND */}
-      <section className="premium-hero relative overflow-hidden border-b border-[#D8E2DE] pt-12 sm:pt-16 pb-20 sm:pb-24 bg-[#FAF8F2]">
+      <section className="premium-hero relative overflow-hidden border-b border-[#D8E2DE] pt-8 sm:pt-16 pb-14 sm:pb-24 bg-[#FAF8F2]">
         {/* Background Radial Pattern & Glow */}
         <div className="absolute inset-0 opacity-[.06] bg-[radial-gradient(#063F35_1px,transparent_1px)] [background-size:22px_22px] pointer-events-none z-0" />
         <div className="absolute top-0 right-0 w-[550px] h-[550px] bg-[radial-gradient(circle_at_85%_45%,rgba(0,168,143,0.14),transparent_50%)] pointer-events-none z-0" />
@@ -232,7 +232,7 @@ export const Home: React.FC = () => {
         {/* DriftWall Background Layer (Dual Left & Right Running Walls) */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden flex justify-between">
           {/* Left Running Wall */}
-          <div className="w-[45%] h-full absolute left-0 top-0 overflow-hidden">
+          <div className="w-[48%] sm:w-[45%] h-full absolute left-0 top-0 overflow-hidden">
             <DriftWall
               items={HERO_ELECTRONICS_LEFT}
               columns={3}
@@ -253,7 +253,7 @@ export const Home: React.FC = () => {
           </div>
 
           {/* Right Running Wall */}
-          <div className="w-[45%] h-full absolute right-0 top-0 overflow-hidden">
+          <div className="w-[48%] sm:w-[45%] h-full absolute right-0 top-0 overflow-hidden">
             <DriftWall
               items={HERO_ELECTRONICS}
               columns={3}
@@ -273,55 +273,55 @@ export const Home: React.FC = () => {
             />
           </div>
 
-          {/* Soft Center Gradient Mask for high text legibility */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#FAF8F2]/30 via-[#FAF8F2]/95 via-50% to-[#FAF8F2]/30 pointer-events-none z-10" />
+          {/* Soft Center Gradient Mask - Restored clear background tile visibility on mobile */}
+          <div className="absolute inset-0 bg-gradient-to-r max-sm:from-[#FAF8F2]/15 max-sm:via-[#FAF8F2]/75 max-sm:to-[#FAF8F2]/15 from-[#FAF8F2]/30 via-[#FAF8F2]/95 via-50% to-[#FAF8F2]/30 pointer-events-none z-10" />
         </div>
 
         {/* Hero Content Container */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center space-y-6 sm:space-y-7">
-          <h1 className="text-4xl sm:text-5xl lg:text-[4.25rem] font-black tracking-[-.055em] text-[#071715] leading-[1.06]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center space-y-5 sm:space-y-7">
+          <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-[4.25rem] font-black tracking-[-.04em] sm:tracking-[-.055em] text-[#071715] leading-[1.1] sm:leading-[1.06]">
             {t('hero.titlePhones', 'Mobile Wholesale UK')}
           </h1>
 
-          <p className="text-[#596662] text-base sm:text-lg leading-relaxed max-w-3xl mx-auto font-medium">
+          <p className="text-[#596662] text-sm sm:text-lg leading-relaxed max-w-3xl mx-auto font-medium px-1 sm:px-0">
             {t('hero.description', 'Mobiles Wholesale is a premier supplier of brand new and graded mobile phones and other electronics in the UK. We specialize in B2B, B2C, D2C, wholesale, retail, corporate, public, and education sectors. Whether you’re looking for the latest models or reliable graded devices in bulk, we have you covered.')}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
-            <Link to="/stock">
-              <Button size="lg" variant="primary" icon={<FileSpreadsheet className="w-5 h-5" />}>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center pt-2 max-w-xs sm:max-w-none mx-auto">
+            <Link to="/stock" className="w-full sm:w-auto">
+              <Button size="lg" variant="primary" icon={<FileSpreadsheet className="w-5 h-5" />} className="w-full sm:w-auto justify-center min-h-[48px]">
                 {t('hero.browseLiveStock', 'Browse Live Stock')}
               </Button>
             </Link>
-            <a href={createWhatsAppGeneralUrl()} target="_blank" rel="noreferrer">
-              <Button variant="whatsapp" size="lg" icon={<WhatsAppIcon className="w-5 h-5" />}>
+            <a href={createWhatsAppGeneralUrl()} target="_blank" rel="noreferrer" className="w-full sm:w-auto">
+              <Button variant="whatsapp" size="lg" icon={<WhatsAppIcon className="w-5 h-5" />} className="w-full sm:w-auto justify-center min-h-[48px]">
                 {t('hero.orderOnWhatsapp', 'Order on WhatsApp')}
               </Button>
             </a>
           </div>
 
-          <div className="pt-6 border-t border-[#D8E2DE] grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs max-w-3xl mx-auto text-left">
-            <div className="flex gap-2.5 items-start bg-white/70 p-3.5 rounded-xl border border-[#D8E2DE]">
-              <Truck className="w-4 h-4 shrink-0 text-[#007A68] mt-0.5" />
+          <div className="pt-5 sm:pt-6 border-t border-[#D8E2DE] grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-4 text-xs max-w-3xl mx-auto text-left">
+            <div className="flex gap-3 items-center sm:items-start bg-white/90 sm:bg-white/70 p-3 sm:p-3.5 rounded-xl border border-[#D8E2DE] shadow-xs sm:shadow-none">
+              <Truck className="w-4 h-4 shrink-0 text-[#007A68]" />
               <div>
-                <b className="block text-[#101A18] font-bold">{t('common.nextDayDispatch', 'Next-day dispatch')}</b>
-                <span className="text-[#596662]">{t('common.nextDayDispatchSub', 'Insured UK courier')}</span>
+                <b className="block text-[#101A18] font-bold text-xs">{t('common.nextDayDispatch', 'Next-day dispatch')}</b>
+                <span className="text-[#596662] text-[11px] sm:text-xs">{t('common.nextDayDispatchSub', 'Insured UK courier')}</span>
               </div>
             </div>
 
-            <div className="flex gap-2.5 items-start bg-white/70 p-3.5 rounded-xl border border-[#D8E2DE]">
-              <ShieldCheck className="w-4 h-4 shrink-0 text-[#007A68] mt-0.5" />
+            <div className="flex gap-3 items-center sm:items-start bg-white/90 sm:bg-white/70 p-3 sm:p-3.5 rounded-xl border border-[#D8E2DE] shadow-xs sm:shadow-none">
+              <ShieldCheck className="w-4 h-4 shrink-0 text-[#007A68]" />
               <div>
-                <b className="block text-[#101A18] font-bold">{t('common.phoneCheckTested', 'PhoneCheck tested')}</b>
-                <span className="text-[#596662]">{t('common.phoneCheckTestedSub', '60-point diagnostics')}</span>
+                <b className="block text-[#101A18] font-bold text-xs">{t('common.phoneCheckTested', 'PhoneCheck tested')}</b>
+                <span className="text-[#596662] text-[11px] sm:text-xs">{t('common.phoneCheckTestedSub', '60-point diagnostics')}</span>
               </div>
             </div>
 
-            <div className="flex gap-2.5 items-start bg-white/70 p-3.5 rounded-xl border border-[#D8E2DE]">
-              <Building2 className="w-4 h-4 shrink-0 text-[#007A68] mt-0.5" />
+            <div className="flex gap-3 items-center sm:items-start bg-white/90 sm:bg-white/70 p-3 sm:p-3.5 rounded-xl border border-[#D8E2DE] shadow-xs sm:shadow-none">
+              <Building2 className="w-4 h-4 shrink-0 text-[#007A68]" />
               <div>
-                <b className="block text-[#101A18] font-bold">{t('common.ukRegistered', 'UK registered')}</b>
-                <span className="text-[#596662]">{t('common.ukRegisteredSub', 'VAT-ready invoicing')}</span>
+                <b className="block text-[#101A18] font-bold text-xs">{t('common.ukRegistered', 'UK registered')}</b>
+                <span className="text-[#596662] text-[11px] sm:text-xs">{t('common.ukRegisteredSub', 'VAT-ready invoicing')}</span>
               </div>
             </div>
           </div>

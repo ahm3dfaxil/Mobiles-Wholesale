@@ -147,14 +147,14 @@ export const BrandsWeDealWith: React.FC = () => {
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="bg-white text-[#071715] rounded-2xl sm:rounded-3xl border border-[#D8E2DE] p-6 sm:p-8 b2b-card-shadow overflow-hidden relative marquee-container">
+      <div className="bg-white text-[#071715] rounded-2xl sm:rounded-3xl border border-[#D8E2DE] p-4 sm:p-8 b2b-card-shadow overflow-hidden relative marquee-container">
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 px-2 relative z-10">
-          <div className="flex items-center gap-3">
-            <span className="text-[10px] sm:text-xs font-black text-[#071715] uppercase tracking-widest bg-[#E5F3EF] px-3.5 py-1.5 rounded-full border border-[#D4AF62]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 sm:mb-6 relative z-10">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+            <span className="text-[10px] sm:text-xs font-black text-[#071715] uppercase tracking-widest bg-[#E5F3EF] px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-[#D4AF62] shrink-0">
               {t('brandsNetwork.badge', 'Brand Supply Network')}
             </span>
-            <h2 className="text-xl sm:text-2xl font-black text-[#071715] tracking-tight">
+            <h2 className="text-lg sm:text-2xl font-black text-[#071715] tracking-tight">
               {t('brandsNetwork.title', 'Brands We Deal With')}
             </h2>
           </div>

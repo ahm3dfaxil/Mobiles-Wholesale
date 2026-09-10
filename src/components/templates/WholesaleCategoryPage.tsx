@@ -73,7 +73,7 @@ export const WholesaleCategoryPage: React.FC<WholesaleCategoryPageProps> = ({
         breadcrumbs={breadcrumbs}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10 bg-[#FAF8F2]">
+      <div className="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8 py-4 sm:py-8 space-y-6 sm:space-y-10 bg-[#FAF8F2]">
         {/* Hero Header */}
         <div className="bg-white text-[#101A18] rounded-2xl p-8 sm:p-12 border border-[#D8E2DE] shadow-md relative overflow-hidden">
           <div className="max-w-3xl space-y-4">
@@ -167,7 +167,7 @@ export const WholesaleCategoryPage: React.FC<WholesaleCategoryPageProps> = ({
           {loading ? (
             <div className="py-12 text-center text-sm text-[#596662]">Loading live stock catalog...</div>
           ) : filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5 sm:gap-6">
               {filteredProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}

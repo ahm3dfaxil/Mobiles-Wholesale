@@ -41,7 +41,7 @@ export const ScrollStackItem: React.FC<ScrollStackItemProps> = ({ children, clas
   const bgClass = hasCustomBg ? '' : 'bg-white';
   
   return (
-    <div className={`scroll-stack-card ${bgClass} rounded-3xl border border-[#D8E2DE]/70 p-6 sm:p-10 b2b-card-shadow overflow-hidden min-h-[16rem] h-auto transition-all ${className}`}>
+    <div className={`scroll-stack-card ${bgClass} rounded-2xl sm:rounded-3xl border border-[#D8E2DE]/70 p-4 sm:p-6 lg:p-10 b2b-card-shadow overflow-hidden min-h-[14rem] sm:min-h-[16rem] h-auto transition-all ${className}`}>
       {children}
     </div>
   );

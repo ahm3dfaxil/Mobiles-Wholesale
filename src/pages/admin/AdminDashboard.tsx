@@ -192,7 +192,7 @@ export const AdminDashboard: React.FC = () => {
           <div className="flex items-center gap-4">
             <div className="hidden sm:flex items-center gap-2 text-xs bg-[#f4efe4] px-3 py-1.5 rounded-full border border-[#e6dfd1]">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-stone-700 font-semibold">{user?.email || 'regenerateglobal@gmail.com'}</span>
+              <span className="text-stone-700 font-semibold">{user?.email || 'Admin'}</span>
               <span className="bg-[#f8f3e8] text-emerald-800 px-2 py-0.5 rounded text-[10px] font-mono font-bold">
                 {user?.role || 'SUPER_ADMIN'}
               </span>

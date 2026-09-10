@@ -534,7 +534,7 @@ app.post('/api/admin/login', (req, res) => {
       });
     }
 
-    const envAdminEmail = (process.env.ADMIN_EMAIL || process.env.VITE_ADMIN_EMAIL || 'regenerateglobal@gmail.com').trim().toLowerCase();
+    const envAdminEmail = (process.env.ADMIN_EMAIL || process.env.VITE_ADMIN_EMAIL || '').trim().toLowerCase();
     const envAdminPassword = process.env.ADMIN_PASSWORD || '';
 
     if (envAdminPassword && email.trim().toLowerCase() === envAdminEmail && password === envAdminPassword) {

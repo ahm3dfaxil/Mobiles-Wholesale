@@ -40,7 +40,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           const idToken = await fbUser.getIdToken();
           const adminUser: AdminUser = {
             id: fbUser.uid,
-            email: fbUser.email || 'regenerateglobal@gmail.com',
+            email: fbUser.email || '',
             name: 'Regenerate Global Admin',
             role: 'SUPER_ADMIN'
           };

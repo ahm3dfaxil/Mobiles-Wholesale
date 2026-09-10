@@ -68,9 +68,9 @@ export const AdminLogin: React.FC = () => {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-5" autoComplete="off">
           <div>
-            <label className="block text-xs font-bold text-[#101A18] mb-1.5">
+            <label htmlFor="admin-email" className="block text-xs font-bold text-[#101A18] mb-1.5">
               {t('admin.usernameLabel', 'Admin Business Email')} *
             </label>
             <div className="relative">
@@ -78,8 +78,11 @@ export const AdminLogin: React.FC = () => {
                 <Mail className="w-4 h-4" />
               </div>
               <input
+                id="admin-email"
+                name="admin_email"
                 type="email"
                 required
+                autoComplete="username"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your admin email"
@@ -89,7 +92,7 @@ export const AdminLogin: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-[#101A18] mb-1.5">
+            <label htmlFor="admin-password" className="block text-xs font-bold text-[#101A18] mb-1.5">
               {t('admin.passwordLabel', 'Password')} *
             </label>
             <div className="relative">
@@ -97,8 +100,11 @@ export const AdminLogin: React.FC = () => {
                 <KeyRound className="w-4 h-4" />
               </div>
               <input
+                id="admin-password"
+                name="admin_password"
                 type={showPassword ? 'text' : 'password'}
                 required
+                autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••••••"

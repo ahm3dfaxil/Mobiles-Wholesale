@@ -159,8 +159,15 @@ export const DriftWall: React.FC<DriftWallProps> = ({
   align = 'right',
 }) => {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [isMobileScreen, setIsMobileScreen] = useState(false);
 
   useEffect(() => {
+    const checkScreen = () => {
+      setIsMobileScreen(window.innerWidth < 640);
+    };
+    checkScreen();
+    window.addEventListener('resize', checkScreen, { passive: true });
+
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mediaQuery.matches);
 
@@ -170,14 +177,25 @@ export const DriftWall: React.FC<DriftWallProps> = ({
 
     if (mediaQuery.addEventListener) {
       mediaQuery.addEventListener('change', handleChange);
-      return () => mediaQuery.removeEventListener('change', handleChange);
     }
+
+    return () => {
+      window.removeEventListener('resize', checkScreen);
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', handleChange);
+      }
+    };
   }, []);
 
+  const activeColumns = isMobileScreen ? Math.min(columns, 2) : columns;
+  const activeTileWidth = isMobileScreen ? Math.min(tileWidth, 120) : tileWidth;
+  const activeTileHeight = isMobileScreen ? Math.min(tileHeight, 84) : tileHeight;
+  const activeGap = isMobileScreen ? 10 : gap;
+
   // Distribute items across columns
-  const columnData: DriftWallItem[][] = Array.from({ length: columns }, () => []);
+  const columnData: DriftWallItem[][] = Array.from({ length: activeColumns }, () => []);
   items.forEach((item, idx) => {
-    columnData[idx % columns].push(item);
+    columnData[idx % activeColumns].push(item);
   });
 
   const justifyClass = 
@@ -199,7 +217,7 @@ export const DriftWall: React.FC<DriftWallProps> = ({
         style={{
           transformStyle: 'preserve-3d',
           transform: `rotateX(${tilt}deg) rotateY(${turn}deg) rotateZ(${roll}deg) translateZ(-${depth}px)`,
-          gap: `${gap}px`,
+          gap: `${activeGap}px`,
           backfaceVisibility: 'hidden',
           WebkitBackfaceVisibility: 'hidden',
         }}
@@ -217,7 +235,7 @@ export const DriftWall: React.FC<DriftWallProps> = ({
               key={colIdx}
               className="drift-wall-column flex flex-col shrink-0"
               style={{
-                gap: `${gap}px`,
+                gap: `${activeGap}px`,
                 willChange: 'transform',
                 transform: 'translate3d(0,0,0)',
                 backfaceVisibility: 'hidden',
@@ -232,8 +250,8 @@ export const DriftWall: React.FC<DriftWallProps> = ({
                   key={`${colIdx}-${itemIdx}`}
                   className="drift-wall-tile rounded-2xl overflow-hidden bg-white border-2 border-[#DDE5E0] shadow-md relative shrink-0"
                   style={{
-                    width: `${tileWidth}px`,
-                    height: `${tileHeight}px`,
+                    width: `${activeTileWidth}px`,
+                    height: `${activeTileHeight}px`,
                     borderRadius: `${radius}px`,
                     opacity: 1 - fade,
                     filter: grayscale ? 'grayscale(100%)' : 'none',

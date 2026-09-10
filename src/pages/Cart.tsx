@@ -102,7 +102,7 @@ export const Cart: React.FC = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 bg-[#FAF8F2] min-h-[75vh]">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 space-y-6 sm:space-y-8 bg-[#FAF8F2] min-h-[75vh]">
       {/* Header & Back Navigation */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#D8E2DE] pb-6">
         <div>
@@ -144,7 +144,7 @@ export const Cart: React.FC = () => {
       )}
 
       {/* Main Grid: Cart Items List (8 Cols) & Summary (4 Cols) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
         {/* Cart Product List */}
         <div className="lg:col-span-8 space-y-4">
           {itemsWithValidation.map((item) => {
@@ -155,13 +155,13 @@ export const Cart: React.FC = () => {
             return (
               <div
                 key={p.id}
-                className={`bg-white rounded-2xl border p-4 sm:p-5 b2b-card-shadow transition-all ${
+                className={`bg-white rounded-2xl border p-3.5 sm:p-5 b2b-card-shadow transition-all ${
                   item.validationError ? 'border-amber-400 bg-amber-50/20' : 'border-[#D8E2DE] hover:border-[#D4AF62]'
                 }`}
               >
-                <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                <div className="flex flex-row sm:flex-row gap-3 sm:gap-4 items-start sm:items-center">
                   {/* Thumbnail */}
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-xl border border-[#D8E2DE] overflow-hidden shrink-0 flex items-center justify-center p-2">
+                  <div className="w-16 h-16 sm:w-24 sm:h-24 bg-white rounded-xl border border-[#D8E2DE] overflow-hidden shrink-0 flex items-center justify-center p-1.5 sm:p-2">
                     <img
                       src={p.image}
                       alt={p.name}
@@ -176,35 +176,35 @@ export const Cart: React.FC = () => {
                         {p.brand}
                       </span>
                       {p.sku && (
-                        <span className="font-mono text-[10px] text-[#596662] bg-[#FAF8F2] border border-[#D8E2DE] px-1.5 py-0.5 rounded">
+                        <span className="font-mono text-[9px] sm:text-[10px] text-[#596662] bg-[#FAF8F2] border border-[#D8E2DE] px-1 sm:px-1.5 py-0.5 rounded truncate max-w-[50%]">
                           SKU: {p.sku}
                         </span>
                       )}
                     </div>
 
                     <Link to={`/product/${p.id}`} className="hover:text-[#007A68] transition-colors block">
-                      <h3 className="font-bold text-[#101A18] text-sm sm:text-base leading-snug line-clamp-2">
+                      <h3 className="font-bold text-[#101A18] text-xs sm:text-base leading-snug line-clamp-2">
                         {p.name}
                       </h3>
                     </Link>
 
                     {/* Meta Specifications Row */}
-                    <div className="flex flex-wrap items-center gap-2 text-xs text-[#596662] pt-0.5">
-                      <Badge type="grade" grade={p.grade} />
+                    <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs text-[#596662] pt-0.5">
+                      <Badge type="grade" grade={p.grade} className="!text-[9px] sm:!text-[11px] !px-1.5 sm:!px-2 !py-0.5" />
                       {p.storage && (
-                        <span className="inline-flex items-center gap-1 font-semibold text-[#101A18] bg-[#E5F3EF] px-2 py-0.5 rounded text-[11px]">
-                          <HardDrive className="w-3 h-3 text-[#596662]" /> {p.storage}
+                        <span className="inline-flex items-center gap-1 font-semibold text-[#101A18] bg-[#E5F3EF] px-1.5 sm:px-2 py-0.5 rounded text-[10px] sm:text-[11px]">
+                          <HardDrive className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#596662]" /> {p.storage}
                         </span>
                       )}
                       {p.colour && (
-                        <span className="text-[11px] font-medium bg-[#FAF8F2] border border-[#D8E2DE] px-2 py-0.5 rounded">
+                        <span className="text-[10px] sm:text-[11px] font-medium bg-[#FAF8F2] border border-[#D8E2DE] px-1.5 sm:px-2 py-0.5 rounded">
                           {p.colour}
                         </span>
                       )}
                     </div>
 
                     {/* Stock & MOQ Labels */}
-                    <div className="flex items-center gap-3 text-[11px] text-[#596662] pt-1">
+                    <div className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-[11px] text-[#596662] pt-0.5">
                       <span>MOQ: <strong className="text-[#101A18]">{moq}u</strong></span>
                       <span>•</span>
                       <span>Stock Available: <strong className="text-[#00A88F]">{maxStock}u</strong></span>
@@ -212,72 +212,72 @@ export const Cart: React.FC = () => {
 
                     {/* Item Validation Warning */}
                     {item.validationError && (
-                      <div className="text-xs font-semibold text-amber-700 bg-amber-100/80 border border-amber-300 px-2.5 py-1 rounded-lg mt-2 flex items-center gap-1.5">
+                      <div className="text-[11px] sm:text-xs font-semibold text-amber-700 bg-amber-100/80 border border-amber-300 px-2.5 py-1 rounded-lg mt-2 flex items-center gap-1.5">
                         <AlertTriangle className="w-3.5 h-3.5 text-amber-600 shrink-0" />
                         <span>{item.validationError}</span>
                       </div>
                     )}
                   </div>
+                </div>
 
-                  {/* Quantity Controls & Remove Action */}
-                  <div className="flex sm:flex-col items-center justify-between sm:items-end gap-3 w-full sm:w-auto pt-3 sm:pt-0 border-t sm:border-t-0 border-[#D8E2DE]">
-                    <div className="flex items-center gap-2 bg-[#FAF8F2] p-1.5 rounded-xl border border-[#D8E2DE]">
-                      <button
-                        type="button"
-                        aria-label="Decrease quantity"
-                        onClick={() => updateQuantity(p.id, Math.max(moq, item.quantity - 1))}
-                        disabled={item.quantity <= moq}
-                        className="w-7 h-7 rounded-lg bg-white border border-[#D8E2DE] font-black text-[#101A18] disabled:opacity-40 flex items-center justify-center hover:bg-[#E5F3EF] transition-colors cursor-pointer"
-                        title="Decrease quantity"
-                      >
-                        <Minus className="w-3.5 h-3.5" />
-                      </button>
+                {/* Quantity Controls & Remove Action */}
+                <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto pt-3 sm:pt-2 mt-3 sm:mt-0 border-t border-[#D8E2DE]">
+                  <div className="flex items-center gap-1.5 bg-[#FAF8F2] p-1.5 rounded-xl border border-[#D8E2DE]">
+                    <button
+                      type="button"
+                      aria-label="Decrease quantity"
+                      onClick={() => updateQuantity(p.id, Math.max(moq, item.quantity - 1))}
+                      disabled={item.quantity <= moq}
+                      className="w-7 h-7 rounded-lg bg-white border border-[#D8E2DE] font-black text-[#101A18] disabled:opacity-40 flex items-center justify-center hover:bg-[#E5F3EF] transition-colors cursor-pointer"
+                      title="Decrease quantity"
+                    >
+                      <Minus className="w-3.5 h-3.5" />
+                    </button>
 
-                      <input
-                        type="number"
-                        min={moq}
-                        max={maxStock}
-                        value={item.quantity}
-                        onChange={(e) => {
-                          const val = parseInt(e.target.value);
-                          if (!isNaN(val)) {
-                            updateQuantity(p.id, val);
-                          }
-                        }}
-                        onBlur={(e) => {
-                          const val = parseInt(e.target.value);
-                          if (isNaN(val) || val < moq) {
-                            updateQuantity(p.id, moq);
-                          } else if (val > maxStock) {
-                            updateQuantity(p.id, maxStock);
-                          }
-                        }}
-                        className="w-14 text-center font-extrabold text-[#101A18] bg-white border border-[#D8E2DE] rounded-md py-1 text-xs focus:ring-1 focus:ring-[#071715]"
-                        aria-label={`Quantity for ${p.name}`}
-                      />
-
-                      <button
-                        type="button"
-                        aria-label="Increase quantity"
-                        onClick={() => updateQuantity(p.id, Math.min(maxStock, item.quantity + 1))}
-                        disabled={item.quantity >= maxStock}
-                        className="w-7 h-7 rounded-lg bg-white border border-[#D8E2DE] font-black text-[#101A18] disabled:opacity-40 flex items-center justify-center hover:bg-[#E5F3EF] transition-colors cursor-pointer"
-                        title="Increase quantity"
-                      >
-                        <Plus className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
+                    <input
+                      type="number"
+                      min={moq}
+                      max={maxStock}
+                      value={item.quantity}
+                      onChange={(e) => {
+                        const val = parseInt(e.target.value);
+                        if (!isNaN(val)) {
+                          updateQuantity(p.id, val);
+                        }
+                      }}
+                      onBlur={(e) => {
+                        const val = parseInt(e.target.value);
+                        if (isNaN(val) || val < moq) {
+                          updateQuantity(p.id, moq);
+                        } else if (val > maxStock) {
+                          updateQuantity(p.id, maxStock);
+                        }
+                      }}
+                      className="w-12 sm:w-14 text-center font-extrabold text-[#101A18] bg-white border border-[#D8E2DE] rounded-md py-1 text-xs focus:ring-1 focus:ring-[#071715]"
+                      aria-label={`Quantity for ${p.name}`}
+                    />
 
                     <button
                       type="button"
-                      aria-label="Remove item"
-                      onClick={() => removeFromCart(p.id)}
-                      className="text-xs font-semibold text-stone-500 hover:text-red-600 flex items-center gap-1 transition-colors p-1"
+                      aria-label="Increase quantity"
+                      onClick={() => updateQuantity(p.id, Math.min(maxStock, item.quantity + 1))}
+                      disabled={item.quantity >= maxStock}
+                      className="w-7 h-7 rounded-lg bg-white border border-[#D8E2DE] font-black text-[#101A18] disabled:opacity-40 flex items-center justify-center hover:bg-[#E5F3EF] transition-colors cursor-pointer"
+                      title="Increase quantity"
                     >
-                      <Trash2 className="w-4 h-4" />
-                      <span className="hidden sm:inline">Remove</span>
+                      <Plus className="w-3.5 h-3.5" />
                     </button>
                   </div>
+
+                  <button
+                    type="button"
+                    aria-label="Remove item"
+                    onClick={() => removeFromCart(p.id)}
+                    className="text-xs font-semibold text-stone-500 hover:text-red-600 flex items-center gap-1 transition-colors px-2 py-1.5 rounded hover:bg-red-50"
+                  >
+                    <Trash2 className="w-3.5 h-3.5 text-red-500 shrink-0" />
+                    <span>Remove</span>
+                  </button>
                 </div>
               </div>
             );

@@ -229,4 +229,15 @@ body {
   border-radius: 3px;
 }
 
+/* Mobile PWA Safe Area & Touch Utilities */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .pt-safe {
+    padding-top: env(safe-area-inset-top);
+  }
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+
 

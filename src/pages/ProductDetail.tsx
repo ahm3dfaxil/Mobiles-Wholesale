@@ -81,7 +81,7 @@ export const ProductDetail: React.FC = () => {
   const whatsAppUrl = createWhatsAppProductUrl(product, selectedQty);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12 pb-24 sm:pb-12 bg-[#FAF8F2]">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 space-y-6 sm:space-y-12 pb-28 sm:pb-12 bg-[#FAF8F2]">
       {/* Breadcrumb Navigation */}
       <nav className="flex items-center gap-2 text-xs text-[#596662] overflow-x-auto py-1">
         <Link to="/" className="hover:text-[#00A88F] font-medium">{t('navigation.home', 'Home')}</Link>
@@ -106,30 +106,30 @@ export const ProductDetail: React.FC = () => {
       </div>
 
       {/* Main Product Showcase Card */}
-      <div className="bg-white rounded-2xl border border-[#D8E2DE] b2b-card-shadow p-6 sm:p-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+      <div className="bg-white rounded-2xl border border-[#D8E2DE] b2b-card-shadow p-4 sm:p-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12">
           
           {/* Left Column: Product Image & Badges */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="relative aspect-square bg-white rounded-2xl overflow-hidden border border-[#D8E2DE]">
+            <div className="relative aspect-4/3 sm:aspect-square max-h-[300px] sm:max-h-none bg-white rounded-2xl overflow-hidden border border-[#D8E2DE]">
               <img
                 src={product.image}
                 alt={product.name}
                 className="w-full h-full object-contain p-4 mix-blend-multiply filter contrast-[1.12] brightness-[1.02]"
               />
-              <div className="absolute top-4 left-4 right-4 z-10 pointer-events-none">
-                <div className="flex flex-col items-start gap-1.5 max-w-[calc(100%-110px)]">
-                  <Badge type="grade" grade={product.grade} />
-                  {product.isHotDeal && <Badge type="deal" />}
+              <div className="absolute top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 z-10 pointer-events-none flex items-start justify-between gap-1">
+                <div className="flex flex-col items-start gap-1.5 max-w-[60%] sm:max-w-[calc(100%-110px)]">
+                  <Badge type="grade" grade={product.grade} className="!text-[9px] sm:!text-[11px] !px-1.5 sm:!px-2 !py-0.5" />
+                  {product.isHotDeal && <Badge type="deal" className="!text-[9px] sm:!text-[11px] !px-1.5 sm:!px-2 !py-0.5" />}
                 </div>
-                <div className="absolute top-0 right-0">
-                  <Badge type="vat" vatType={product.vatType} />
+                <div className="shrink-0 max-w-[40%]">
+                  <Badge type="vat" vatType={product.vatType} className="!text-[9px] sm:!text-[11px] !px-1.5 sm:!px-2 !py-0.5" />
                 </div>
               </div>
             </div>
 
             {/* Quality Testing Guarantee Box */}
-            <div className="bg-[#E5F3EF] border border-[#D8E2DE] rounded-xl p-4 text-xs space-y-2">
+            <div className="bg-[#E5F3EF] border border-[#D8E2DE] rounded-xl p-3.5 sm:p-4 text-xs space-y-2">
               <div className="font-bold text-[#071715] flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-[#007A68]" />
                 <span>PhoneCheck Certified Inspection</span>
@@ -315,8 +315,8 @@ export const ProductDetail: React.FC = () => {
 
 
       {/* Full Technical Specifications Breakdown */}
-      <div className="bg-white rounded-2xl border border-[#D8E2DE] b2b-card-shadow p-6 sm:p-8 space-y-6">
-        <h3 className="text-xl font-bold text-[#071715] border-b border-[#D8E2DE] pb-3">
+      <div className="bg-white rounded-2xl border border-[#D8E2DE] b2b-card-shadow p-4 sm:p-8 space-y-6">
+        <h3 className="text-lg sm:text-xl font-bold text-[#071715] border-b border-[#D8E2DE] pb-3">
           Detailed Device Specifications
         </h3>
 
@@ -370,7 +370,7 @@ export const ProductDetail: React.FC = () => {
         <div className="space-y-6">
           <div className="flex items-center justify-between border-b border-[#D8E2DE] pb-4">
             <div>
-              <h3 className="text-xl font-extrabold text-[#071715]">Related Wholesale Stock</h3>
+              <h3 className="text-lg sm:text-xl font-extrabold text-[#071715]">Related Wholesale Stock</h3>
               <p className="text-xs text-[#596662] mt-0.5">Similar items available in our UK inventory</p>
             </div>
             <Link to="/stock" className="text-xs font-bold text-[#00A88F] hover:underline">
@@ -378,7 +378,7 @@ export const ProductDetail: React.FC = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-6">
             {relatedProducts.map(relProduct => (
               <ProductCard
                 key={relProduct.id}
@@ -390,7 +390,7 @@ export const ProductDetail: React.FC = () => {
       )}
 
       {/* PROMINENT STICKY WHATSAPP CTA FOR MOBILE VIEWPORT */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white text-[#101A18] p-3 border-t border-[#D8E2DE] sm:hidden flex items-center justify-between gap-3 shadow-2xl">
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white text-[#101A18] p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] border-t border-[#D8E2DE] sm:hidden flex items-center justify-between gap-3 shadow-2xl">
         <div>
           <div className="text-[10px] text-[#00A88F] font-semibold uppercase">Quick Mobile Order</div>
           <div className="text-xs font-bold text-[#071715] truncate max-w-[170px]">{product.name}</div>

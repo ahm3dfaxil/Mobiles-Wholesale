@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Award, ShieldCheck, FileSpreadsheet, Smartphone, Eye, CheckCircle2, Layers, Camera } from 'lucide-react';
+import { Award, ShieldCheck, FileSpreadsheet, Smartphone, Eye, CheckCircle2, Layers, Camera, ChevronDown } from 'lucide-react';
 import { SEOHead } from '../components/common/SEOHead';
 import { Button } from '../components/common/Button';
 import { WhatsAppIcon } from '../components/common/WhatsAppIcon';
@@ -11,7 +11,16 @@ import { EnquiryModal } from '../components/product/EnquiryModal';
 export const HowWeGrade: React.FC = () => {
   const { t } = useLanguage();
   const [selectedGradeTab, setSelectedGradeTab] = useState<string>('all');
+  const [mobileExpandedGradeId, setMobileExpandedGradeId] = useState<string | null>('brand-new');
+  const [mobileExpandedStandards, setMobileExpandedStandards] = useState<Record<string, boolean>>({});
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleMobileStandards = (id: string) => {
+    setMobileExpandedStandards((prev) => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
 
   const breadcrumbs = [
     { name: t('navigation.home', 'Home'), url: '/' },
@@ -227,8 +236,8 @@ export const HowWeGrade: React.FC = () => {
           </div>
         </div>
 
-        {/* Main Visual Grading Cards */}
-        <div className="space-y-8">
+        {/* Main Visual Grading Cards - Desktop View (hidden on mobile <640px) */}
+        <div className="hidden sm:block space-y-8">
           {filteredTiers.map((item) => (
             <div
               key={item.id}
@@ -325,6 +334,158 @@ export const HowWeGrade: React.FC = () => {
               )}
             </div>
           ))}
+        </div>
+
+        {/* Main Visual Grading Cards - Mobile View (shown ONLY on mobile <640px) */}
+        <div className="block sm:hidden space-y-3">
+          {filteredTiers.map((item) => {
+            const isExpanded = mobileExpandedGradeId === item.id;
+            const isStandardsOpen = !!mobileExpandedStandards[item.id];
+
+            return (
+              <div 
+                key={item.id}
+                className={`bg-white rounded-2xl border transition-all overflow-hidden ${
+                  isExpanded ? 'border-[#007A68] shadow-md' : 'border-[#D8E2DE] shadow-xs'
+                }`}
+              >
+                {/* Accordion Header */}
+                <button
+                  type="button"
+                  onClick={() => setMobileExpandedGradeId(isExpanded ? null : item.id)}
+                  className={`w-full text-left p-4 flex items-center justify-between gap-3 transition-colors min-h-[52px] ${
+                    isExpanded ? 'bg-[#FAF8F2] border-b border-[#D8E2DE]' : 'bg-white hover:bg-[#FAF8F2]'
+                  }`}
+                  aria-expanded={isExpanded}
+                >
+                  <div className="flex items-center gap-2.5 flex-wrap min-w-0">
+                    <span className={`px-2.5 py-1 rounded-lg text-xs font-black border ${item.badgeColor} shrink-0`}>
+                      {item.grade}
+                    </span>
+                    <div className="flex items-center gap-1.5 text-xs text-[#596662] font-semibold">
+                      <span>Rating:</span>
+                      <span className="font-extrabold text-[#071715]">{item.cosmeticScore}</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 shrink-0">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-200 ${
+                      isExpanded ? 'bg-[#E5F3EF] text-[#007A68] rotate-180' : 'bg-gray-100 text-gray-500'
+                    }`}>
+                      <ChevronDown className="w-4 h-4" />
+                    </div>
+                  </div>
+                </button>
+
+                {/* Accordion Body */}
+                {isExpanded && (
+                  <div className="p-4 space-y-4 bg-white">
+                    {/* Title & Warranty */}
+                    <div className="space-y-2">
+                      <h3 className="text-base font-black text-[#071715] leading-snug">{item.fullTitle}</h3>
+                      <div className="flex items-center">
+                        <span className="text-[11px] font-bold text-[#071715] bg-[#E5F3EF] px-2.5 py-1 rounded-full border border-[#D4AF62] flex items-center gap-1">
+                          <ShieldCheck className="w-3.5 h-3.5 text-[#007A68]" /> {item.warranty}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-xs text-[#596662] leading-relaxed font-medium">
+                      {item.description}
+                    </p>
+
+                    {/* 2-Column Compact Grid */}
+                    <div className="grid grid-cols-2 gap-2 text-xs">
+                      {/* Screen & Glass */}
+                      <div className="bg-[#FAF8F2] p-3 rounded-xl border border-[#D8E2DE] space-y-1">
+                        <div className="flex items-center gap-1.5 text-[#596662] font-extrabold uppercase text-[9px] tracking-tight">
+                          <Smartphone className="w-3.5 h-3.5 text-[#007A68] shrink-0" />
+                          <span>Screen & Glass</span>
+                        </div>
+                        <p className="font-semibold text-[#101A18] text-[11px] leading-tight">{item.screenCondition}</p>
+                      </div>
+
+                      {/* Casing & Bezels */}
+                      <div className="bg-[#FAF8F2] p-3 rounded-xl border border-[#D8E2DE] space-y-1">
+                        <div className="flex items-center gap-1.5 text-[#596662] font-extrabold uppercase text-[9px] tracking-tight">
+                          <Layers className="w-3.5 h-3.5 text-[#007A68] shrink-0" />
+                          <span>Casing & Bezels</span>
+                        </div>
+                        <p className="font-semibold text-[#101A18] text-[11px] leading-tight">{item.housingCondition}</p>
+                      </div>
+
+                      {/* Packaging & Accessories */}
+                      <div className="bg-[#FAF8F2] p-3 rounded-xl border border-[#D8E2DE] space-y-1">
+                        <div className="flex items-center gap-1.5 text-[#596662] font-extrabold uppercase text-[9px] tracking-tight">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#007A68] shrink-0" />
+                          <span>Packaging</span>
+                        </div>
+                        <p className="font-semibold text-[#101A18] text-[11px] leading-tight">{item.accessories}</p>
+                      </div>
+
+                      {/* Recommended For */}
+                      <div className="bg-[#FAF8F2] p-3 rounded-xl border border-[#D8E2DE] space-y-1">
+                        <div className="flex items-center gap-1.5 text-[#596662] font-extrabold uppercase text-[9px] tracking-tight">
+                          <Award className="w-3.5 h-3.5 text-[#D4AF62] shrink-0" />
+                          <span>Recommended</span>
+                        </div>
+                        <p className="font-semibold text-[#101A18] text-[11px] leading-tight">{item.idealFor}</p>
+                      </div>
+                    </div>
+
+                    {/* Key Condition & Standards Collapsible Section */}
+                    {item.keyPoints && item.keyPoints.length > 0 && (
+                      <div className="pt-2 border-t border-[#D8E2DE]">
+                        <button
+                          type="button"
+                          onClick={() => toggleMobileStandards(item.id)}
+                          className="w-full flex items-center justify-between bg-[#FAF8F2] p-3 rounded-xl border border-[#D8E2DE] text-xs font-black text-[#071715] hover:bg-[#F2ECE0] transition-colors min-h-[44px]"
+                        >
+                          <span className="flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-[#071715]">
+                            <CheckCircle2 className="w-4 h-4 text-[#007A68]" /> Key Condition & Standards
+                          </span>
+                          <ChevronDown className={`w-4 h-4 text-[#596662] transition-transform duration-200 ${isStandardsOpen ? 'rotate-180 text-[#007A68]' : ''}`} />
+                        </button>
+
+                        {isStandardsOpen && (
+                          <ul className="mt-2 space-y-1.5 text-xs text-[#101A18] font-medium">
+                            {item.keyPoints.map((point, pIdx) => (
+                              <li key={pIdx} className="flex items-start gap-2 bg-[#FAF8F2] p-2.5 rounded-lg border border-[#D8E2DE]/80 text-[11px] leading-snug">
+                                <CheckCircle2 className="w-3.5 h-3.5 text-[#007A68] shrink-0 mt-0.5" />
+                                <span>{point}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Visual Reference Photo */}
+                    {item.images && item.images.length > 0 && (
+                      <div className="pt-2 border-t border-[#D8E2DE] space-y-2">
+                        <span className="text-xs font-black uppercase tracking-wider text-[#071715] flex items-center gap-1.5">
+                          <Camera className="w-4 h-4 text-[#007A68]" /> Visual Reference Photo{item.images.length > 1 ? 's' : ''}
+                        </span>
+                        <div className="space-y-2">
+                          {item.images.map((imgSrc, idx) => (
+                            <div key={idx} className="relative overflow-hidden rounded-xl border border-[#D8E2DE] bg-[#FAF8F2] p-2 flex items-center justify-center max-h-[220px]">
+                              <img
+                                src={imgSrc}
+                                alt={`${item.fullTitle} visual reference ${idx + 1}`}
+                                className="w-auto max-w-full h-auto max-h-[200px] object-contain rounded-lg"
+                                loading="lazy"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
 
         {/* CTA Banner */}

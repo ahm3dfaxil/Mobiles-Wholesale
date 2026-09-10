@@ -204,13 +204,13 @@ export const PartnerTrustNetwork: React.FC = () => {
   return (
     <div className="space-y-4 sm:space-y-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* 2. TRUSTED LOGISTICS PARTNERS */}
-      <section className="bg-white rounded-2xl sm:rounded-3xl border border-[#D8E2DE] p-5 sm:p-7 b2b-card-shadow overflow-hidden relative marquee-container">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-5 px-2">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-black text-[#071715] uppercase tracking-widest bg-[#E5F3EF] px-3.5 py-1.5 rounded-full border border-[#D4AF62]">
+      <section className="bg-white rounded-2xl sm:rounded-3xl border border-[#D8E2DE] p-4 sm:p-7 b2b-card-shadow overflow-hidden relative marquee-container">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 sm:mb-5">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+            <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-black text-[#071715] uppercase tracking-widest bg-[#E5F3EF] px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-[#D4AF62] shrink-0">
               <Truck className="w-3.5 h-3.5 text-[#007A68]" /> {t('brandsNetwork.logisticsBadge', 'Logistics Network')}
             </span>
-            <h3 className="text-xl sm:text-2xl font-black text-[#071715] tracking-tight">
+            <h3 className="text-lg sm:text-2xl font-black text-[#071715] tracking-tight">
               {t('brandsNetwork.logisticsTitle', 'Trusted Logistics Partners')}
             </h3>
           </div>
@@ -255,13 +255,13 @@ export const PartnerTrustNetwork: React.FC = () => {
       </section>
 
       {/* 3. TRUSTED PARTNERS */}
-      <section className="bg-white rounded-2xl sm:rounded-3xl border border-[#D8E2DE] p-5 sm:p-7 b2b-card-shadow overflow-hidden relative marquee-container">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-5 px-2">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-black text-[#071715] uppercase tracking-widest bg-[#E5F3EF] px-3.5 py-1.5 rounded-full border border-[#D8E2DE]">
+      <section className="bg-white rounded-2xl sm:rounded-3xl border border-[#D8E2DE] p-4 sm:p-7 b2b-card-shadow overflow-hidden relative marquee-container">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 sm:mb-5">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+            <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-black text-[#071715] uppercase tracking-widest bg-[#E5F3EF] px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-[#D8E2DE] shrink-0">
               <ShieldCheck className="w-3.5 h-3.5 text-[#007A68]" /> {t('brandsNetwork.ecosystemBadge', 'Industry Ecosystem')}
             </span>
-            <h3 className="text-xl sm:text-2xl font-black text-[#101A18] tracking-tight">
+            <h3 className="text-lg sm:text-2xl font-black text-[#101A18] tracking-tight">
               {t('brandsNetwork.ecosystemTitle', 'Trusted Partners')}
             </h3>
           </div>

@@ -107,7 +107,7 @@ export const Contact: React.FC = () => {
         breadcrumbs={breadcrumbs}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12 bg-[#FAF8F2]">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-10 space-y-6 sm:space-y-12 bg-[#FAF8F2]">
       {/* Header Banner */}
       <div className="bg-white text-[#101A18] rounded-2xl p-8 sm:p-12 border border-[#D8E2DE] shadow-md relative overflow-hidden">
         <div className="max-w-3xl space-y-4">
@@ -342,11 +342,18 @@ export const Contact: React.FC = () => {
                 />
               </div>
 
-              <div className="pt-2 flex items-center justify-between">
-                <span className="text-xs text-[#596662]">
-                  Target email: <span className="font-semibold text-[#101A18]">{UK_COMPANY_INFO.salesEmail}</span>
-                </span>
-                <Button variant="primary" size="lg" type="submit" disabled={loading} icon={<Send className="w-4 h-4" />}>
+              <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+                <div className="text-xs text-[#596662]">
+                  Target email: <span className="font-semibold text-[#101A18] block sm:inline">{UK_COMPANY_INFO.salesEmail}</span>
+                </div>
+                <Button
+                  variant="primary"
+                  size="md"
+                  type="submit"
+                  disabled={loading}
+                  icon={<Send className="w-4 h-4 shrink-0" />}
+                  className="w-full sm:w-auto !py-2.5 sm:!py-3 !px-4 sm:!px-6 !text-xs sm:!text-sm lg:!text-base font-bold shrink-0 min-h-[44px] justify-center shadow-md"
+                >
                   {loading ? 'Sending Message...' : 'Send Wholesale Enquiry'}
                 </Button>
               </div>
